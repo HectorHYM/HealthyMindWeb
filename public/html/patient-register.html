@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthyMind</title>
+</head>
+<body>
+    <form id="patientRegister">
+        <input type="text" id="namesField" placeholder="Nombre(s)" required>
+        <input type="text" id="lastnamesField" placeholder="Apellidos" required>
+        <input type="email" id="emailField" placeholder="Correo Electrónico" required>
+        <input type="date" id="birthdateField" placeholder="Fecha de nacimiento" required>
+        <input type="text" id="sexField" placeholder="Sexo" required>
+        <input type="text" id="phonenumberField" placeholder="Número de telefono" required>
+        <input type="text" id="photoField" placeholder="Foto de perfil">
+        <input type="password" id="passwordField" placeholder="Contraseña" required>
+        <input type="password" id="password_rField" placeholder="Repira su contraseña" required>
+        <button type="submit">Registrar</button>
+    </form>
+
+    <script src="../js/firebase-config.js" type="module"></script>
+    <script src="../js/patient-register.js" type="module"></script>
+</body>
+</html>

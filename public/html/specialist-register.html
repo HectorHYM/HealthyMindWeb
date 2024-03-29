@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regístro de especialista</title>
+</head>
+<body>
+    <h1>Regístro de especialista</h1>
+    <br>
+
+    <form id="regSpecialistForm">
+        <input type="text" id="namesField" placeholder="Nombre(s)" required>
+        <input type="text" id="lastnamesField" placeholder="Apellidos" required>
+        <input type="email" id="emailField" placeholder="Correo Electrónico" required>
+        <input type="text" id="specialtyField" placeholder="Especialidad" required>
+        <input type="date" id="birthdateField" placeholder="Fecha de nacimiento" required>
+        <input type="text" id="rfcField" placeholder="Ingrese su rfc" required>
+        <input type="text" id="phonenumberField" placeholder="Número de telefono" required>
+        <input type="text" id="curpField" placeholder="CURP" required>
+        <input type="password" id="passwordField" placeholder="Contraseña" required>
+        <input type="password" id="password_rField" placeholder="Repetir contraseña" required>
+        <button type="submit">Registrar</button>
+    </form>
+
+    <script src="../js/firebase-config.js" type="module"></script>
+    <script src="../js/specialist-register.js" type="module"></script>
+</body>
+</html>
