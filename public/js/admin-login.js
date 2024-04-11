@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
+import { getAuth, signInWithEmailAndPassword, signOut, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
 import { app } from './firebase-config.js';
 
@@ -6,6 +6,12 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 const form = document.getElementById('adminLogin');
+
+setPersistence(auth, browserSessionPersistence).then(() => {
+    console.log("Persistencia de sesión configurada correctamenre");
+}).catch((error) => {
+    console.error("Error al configurar la persisntencia del usuario", error);
+});
 
 //*Inicio de sesión
 form.addEventListener('submit', (e) => {
@@ -22,6 +28,7 @@ form.addEventListener('submit', (e) => {
         //const errorCode = error.code;
         const errorMessage = error.message;
         console.error("Error de inicio de sesión: ", errorMessage);
+        document.getElementById("error-auth").textContent = "Error en la autenticación de usuario";
     });
 });
 
@@ -35,9 +42,11 @@ window.authRol = async(uid) => {
         const rol = userData.rol;
         if(rol === 'admin'){
             //TODO - Redirigir a página principal de administrador.
+            window.location.href = "./list.html";
             console.log("Rol del usuario: ", rol);
         }else{
             console.log("Rol de usuario no correspondido")
+            document.getElementById("error-auth").textContent = "Rol de usuario no correspondido";
             logout();
         }
     }
@@ -53,6 +62,6 @@ window.logout = async() => {
     });
 }
 
-document.getElementById('logoutButton').addEventListener('click', () => {
-    logout();
-});
+//*document.getElementById('logoutButton').addEventListener('click', () => {
+    //*logout();
+//*});

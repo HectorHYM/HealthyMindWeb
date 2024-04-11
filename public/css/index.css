@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    background-image: url('../assets/img/background.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+/*Fuentes*/
+
+.lexend-regular{
+  font-family: "Lexend", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.lexend-semibold{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.lexend-regular-error{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    color: red;
+}
+
+.navbar{
+    overflow: hidden;
+    background-color: #0066FF;
+    height: 130px;
+    max-height: auto;
+    min-height: auto;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 12px 5px rgba(0, 0, 0, 0.2);
+    top: 0;
+}
+
+.navbar img{
+    max-width: 100%;
+    height: auto;
+    max-height: 170px;
+    display: block;
+}
+
+.form-box{
+    background-color: whitesmoke;
+    width: 800px;
+    margin: 50px;
+    padding: 20px;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0 12px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.form-box h2{
+    font-size: 35px;
+    margin-bottom: 100px;
+    margin-top: 40px;
+}
+
+.form-box p{
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.form-box input[type="email"],
+.form-box input[type="password"]{
+    width: 50%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 0.2px solid gray;
+    border-radius: 5px;
+}
+
+.form-box div{
+    margin: 100px 0 0;
+}
+
+.form-box button{
+    margin: 10px auto 10px;
+    display: block;
+    padding: 10px 70px;
+    border-radius: 10px;
+    border-width: 1px;
+    background-color: #0066FF;
+    font-size: 25px;
+}
+
+.footer{
+    background-color: white;
+    height: 300px;
+    text-align: center;
+    padding: 20px;
+    box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.5);
+}
+
+.footer img{
+    max-width: 100%;
+    height: 100px;
+    max-height: 170px;
+    margin: 20px;
+}

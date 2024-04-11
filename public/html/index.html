@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador HealthyMind</title>
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <img src="../assets/img/logo.png" alt="Logo de HealthyMind">
+        </div>
+    </header>
+
+    <div class="form-box">
+        <h2 class="lexend-semibold">Administre a sus usuarios</h2>
+        <form id="adminLogin">
+            <p class="lexend-semibold">Correo Electrónico</p>
+            <input type="email" id="emailField" required>
+            <p class="lexend-semibold">Contraseña</p>
+            <input type="password" id="passwordField" required>
+            <div id = "error-auth" class="lexend-regular-error"></div>
+            <button class="lexend-semibold" type="submit">Ingresar</button>
+            <span class="lexend-semibold">Si no lograr ingresar correctamente, comuniquese con el equipo de HealthyMind</span>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <div>
+            <img src="../assets/img/instagram.png" alt="">
+            <img src="../assets/img/gmail.png" alt="">
+            <img src="../assets/img/facebook.png" alt="">
+        </div>
+        <h3 class="lexend-semibold">Contacta con el equipo</h3>
+    </footer>
+
+    <script src="../js/firebase-config.js" type="module"></script>
+    <script src="../js/admin-login.js" type="module"></script>
+</body>
+</html>
