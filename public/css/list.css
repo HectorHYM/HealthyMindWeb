@@ -1,3 +1,4 @@
+/*General*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,13 +10,38 @@ html, body {
     width: 100%;
 }
 
+/*Fuentes*/
+.lexend-semibold{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.lexend-regular{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.lexend-medium{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+/*Iconos*/
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
   'GRAD' 0,
-  'opsz' 24;
+  'opsz' 24
 }
+
+/*Elementos*/
 
 .navbar{
     overflow: hidden;
@@ -47,7 +73,7 @@ html, body {
     align-items: center;
     border-radius: 5px;
     padding: 15px;
-    margin-right: 30%;
+    margin-right: 25%;
     /*border: 1px solid white;*/
 }
 
@@ -66,6 +92,9 @@ html, body {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 ::placeholder{
@@ -74,4 +103,147 @@ html, body {
     font-weight: 400;
     font-style: normal;
     font-size: 18px;
+}
+
+.buttons-cont{
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 15px;
+}
+
+.new-btn,
+.delete-btn {
+    padding: 15px 12px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.2);
+}
+
+.new-btn{
+    background-color: #0066FF;
+    color: white;
+}
+
+.delete-btn{
+    margin-right: auto;
+    margin-left: 10px;
+    background-color: red;
+    color: white;
+}
+
+.logout-btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 20px 7px;
+}
+
+.logout-icon-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.specialist-table{
+    width: 98%;
+    box-sizing: border-box;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.headers{
+   text-align: left;
+   box-shadow: 0 4px 1px rgba(0, 0, 0, 0.2);
+   font-weight: 500;
+}
+
+.actions-head{
+    text-align: center;
+    box-shadow: 0 4px 1px rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+}
+
+.check-icon{
+    float: right;
+    padding-right: 10px;
+}
+
+.specialist-table td{
+    font-weight: 400;   
+}
+
+.specialist-table tbody tr:hover{
+    background-color: #EAEAEA;
+}
+
+.check-void-icon{
+    float: right;
+    padding-top: 7px;
+    padding-right: 10px;
+    color: #0066FF;
+    cursor: pointer;
+}
+
+.action{
+    text-align: center;
+}
+
+.actions{
+    cursor: pointer;
+    font-size: 30px;
+}
+
+.actions:hover{
+    color: #0066FF;
+}
+
+.pop-up{
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    width: 100px;
+    background-color: #0066FF;
+    border: solid 1px #EAEAEA;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+.pop-up a{
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+}
+
+.tabs{
+    display: flex;
+    float: right;
+    padding: 5px;
+    margin-right: 60px;
+    margin-top: 20px;
+}
+
+.tab-button{
+    padding: 10px;
+    margin: 2px;
+    background-color: white;
+    border: 1px solid #0066FF;
+    border-radius: 5px;
+}
+
+.tab-button:active,
+.tab-button:hover{
+    padding: 10px;
+    margin: 2px;
+    background-color: #0066FF;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
 }

@@ -10,7 +10,7 @@ const form = document.getElementById('adminLogin');
 setPersistence(auth, browserSessionPersistence).then(() => {
     console.log("Persistencia de sesión configurada correctamenre");
 }).catch((error) => {
-    console.error("Error al configurar la persisntencia del usuario", error);
+    console.error("Error al configurar la persistencia del usuario", error);
 });
 
 //*Inicio de sesión

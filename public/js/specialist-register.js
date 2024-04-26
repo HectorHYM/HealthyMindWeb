@@ -32,14 +32,14 @@ window.registerSpecialist = async(names, lastnames, email, specialty, birthdate,
         const user = userCredential.user;
         const id = user.uid;
         console.log("Especialista registrado con éxito: ", id);
-        specialistDetails(names, lastnames, email, rol, specialty, birthdate, rfc, phonenumber, curp);
+        specialistDetails(names, lastnames, email, specialty, birthdate, rfc, phonenumber, curp);
     }catch(error){
         console.error("Error en el registro: ", error);
     }
 }
 
 window.specialistDetails = async(names, lastnames, email, specialty, birthdate, rfc, phonenumber, curp) => {
-    const userRef = doc(db, "users-especialista", curp);
+    const userRef = doc(db, "prueba", curp);
     setDoc(userRef, {
         nombres: names,
         apellido: lastnames,

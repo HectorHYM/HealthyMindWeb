@@ -15,14 +15,27 @@
         <div class="navbar">
             <img src="../assets/img/logo.png" alt="Logo de HealthyMind">
             <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Buscar...">
-                <span class="material-symbols-outlined search-icon">search</span>
-                <!--<button class="search-btn">Buscar</button>-->
+                <input type="text" class="search-input" id="search-input" placeholder="Buscar...">
+                <button class="material-symbols-outlined search-icon">search</button>
             </div>
         </div>
     </header>
 
+    <div class="buttons-cont">
+        <button class="new-btn lexend-semibold" id="new-btn">Nuevo registro +</button>
+        <button class="delete-btn lexend-semibold" id="delete-btn">Eliminar seleccionados -</button>
+        <button class="logout-btn lexend-semibold" id="logout-btn">Salir</button>
+        <button class="logout-icon-btn material-symbols-outlined" id="logout-icon-btn">logout</button>
+    </div>
+
+    <div class="tabs-content"></div>
+    <div class="tabs"></div>
+
     <script src="../js/firebase-config.js" type="module"></script>
     <script src="../js/list.js" type="module"></script>
+    <script type="module">
+        import { deleteUsers } from "../js/list.js";
+        import { handleSearch } from "../js/list.js"
+    </script>
 </body>
 </html>
