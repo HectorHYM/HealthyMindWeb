@@ -73,15 +73,47 @@ body{
     position: relative;
 }
 
+.form-box::before{
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #0066FF;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #0066FF;
+    animation: orbit 4s linear infinite;
+}
+
+@keyframes orbit {
+    0%{
+        transform: rotate(0deg) translateX(700px);
+    }
+    25%{
+        transform: rotate(90deg) translateY(500px);
+    }50%{
+        transform: rotate(90deg) translateX(700px);
+    }
+    75%{
+        transform: rotate(90deg) translateY(500px);
+    }
+}
+
 .form-box h2{
     font-size: 30px;
     margin-bottom: 80px;
     margin-top: 40px;
 }
 
-.form-box p{
+.form-box .input-email{
     font-size: 20px;
     margin-bottom: 20px;
+    padding-right: 140px;
+}
+
+.form-box .input-pass{
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding-right: 210px;
 }
 
 .form-box input[type="email"],
@@ -93,18 +125,23 @@ body{
     border-radius: 5px;
 }
 
-.form-box div{
+.form-box .error-auth{
     margin: 40px 0 0;
 }
 
 .form-box button{
     margin: 10px auto 10px;
     display: block;
-    padding: 10px 70px;
+    padding: 10px 50px;
     border-radius: 10px;
     border-width: 1px;
     background-color: #0066FF;
-    font-size: 25px;
+    font-size: 20px;
+}
+
+.form-box button:active{
+    background-color: white;
+    color: #0066FF;
 }
 
 .footer{
@@ -117,7 +154,7 @@ body{
 
 .footer img{
     max-width: 100%;
-    height: 100px;
-    max-height: 170px;
+    height: 80px;
+    max-height: 100%;
     margin: 20px;
 }

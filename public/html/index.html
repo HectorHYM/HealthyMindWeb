@@ -19,11 +19,13 @@
     <div class="form-box">
         <h2 class="lexend-semibold">Administre a sus usuarios</h2>
         <form id="adminLogin">
-            <p class="lexend-semibold">Correo Electrónico</p>
-            <input type="email" id="emailField" required>
-            <p class="lexend-semibold">Contraseña</p>
-            <input type="password" id="passwordField" required>
-            <div id = "error-auth" class="lexend-regular-error"></div>
+            <div>
+                <p class="lexend-semibold input-email">Correo Electrónico</p>
+                <input type="email" id="emailField" required>
+                <p class="lexend-semibold input-pass">Contraseña</p>
+                <input type="password" id="passwordField" required>
+            </div>
+            <div class="error-auth" id="error-auth" class="lexend-regular-error"></div>
             <button class="lexend-semibold" type="submit">Ingresar</button>
             <span class="lexend-semibold">Si no lograr ingresar correctamente, comuniquese con el equipo de HealthyMind</span>
         </form>

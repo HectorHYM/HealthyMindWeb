@@ -278,25 +278,40 @@ document.addEventListener("DOMContentLoaded", async () => {
 
      //*Manejo de pop-ups con delegación de eventos
     document.addEventListener('click', function(e) {
-        const currentPopup = e.target.matches('.actions') ? e.target : null;
+        const currentPopup = e.target.matches('.actions') ? e.target.nextElementSibling : null;
+        console.log("currentPopup: ", currentPopup);
+        let activePopup = false;
 
+        //*Se itera sobre todos los pop-up para controlar su visibilidad
         document.querySelectorAll('.pop-up').forEach(popup => {
-            if(currentPopup && currentPopup.nextElementSibling === popup){
-                const isVisible = popup.style.display === 'block';
+            if(currentPopup === popup){
+                const isVisible = popup.style.display === 'block'; //*false
+                console.log("isVisible: ", isVisible);
                 popup.style.display = isVisible ? 'none' : 'block';
-                if(!isVisible) {
-                    popup.style.left = `${e.pageX}px`;
-                    popup.style.right = `${e.pageY}px`;
+                console.log("display: ", popup.style.display);
+                if(!isVisible){
+                    const popupWidth = popup.offsetWidth;
+                    const popupHeight = popup.offsetHeight;
+                    const windowWidth = window.innerWidth;
+                    const windowHeight = window.innerHeight;
+
+                    //?Se ajusta la posición horizontal
+                    const left = e.pageX + popupWidth > windowWidth ? (windowWidth - popupWidth) : e.pageX;
+                    popup.style.left = `${left}px`;
+                    //?Se ajusta la posición vertical
+                    const top = e.pageY + popupHeight > windowHeight ? (windowHeight - popupHeight) : e.pageY;
+                    popup.style.top = `${top}px`;
                 }
+                activePopup = true;
             }else{
                 popup.style.display = 'none';
             }
         });
 
-        if(!currentPopup && !e.target.closest('.pop-up')){
+        if(!currentPopup && !e.target.closest('.pop-up') && !activePopup){
             document.querySelectorAll('.pop-up').forEach(popup => {
                 popup.style.display = 'none';
-            });
+            })
         }
     });
 
