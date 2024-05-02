@@ -5,7 +5,6 @@ import { app } from './firebase-config.js';
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-
 //*Guardado de estado de sesión
 onAuthStateChanged(auth, (user) => {
     console.log("Estado de autenticación cambiado:", user);
@@ -21,7 +20,7 @@ window.logout = async() => {
     }).catch((error) => {
         console.error("Error al cerrar sesión: ", error);
     });
-}
+};
 
 //*Botones superiores
 document.getElementById('logout-btn').addEventListener('click', () => {
@@ -43,15 +42,15 @@ window.changeIcon = async(cell) => {
     }else{
         cell.textContent = 'check_box_outline_blank';
     }
-}
+};
 
 //*Función para obtener los registros de la base de datos
 const loadUserData = async ()  => {
     try {
-        const querySnapshot = await getDocs(collection(db, 'prueba'));
-        const registers = [];
+        const querySnapshot = await getDocs(collection(db, 'prueba')); //?Se obtiene cada doc de la colleción
+        const registers = []; //?Array vacio de registros
         querySnapshot.forEach(doc => {
-            const data = doc.data();
+            const data = doc.data(); //?Devuelve un objeto JavaScript con los campos del documento como propiedades
             data.id = doc.id;
             registers.push(data);
         });
@@ -61,22 +60,6 @@ const loadUserData = async ()  => {
         return [];
     }
 };
-
-//*Filtrar los registros mediante la barra de busqueda
-export const handleSearch = () => {
-    const searchInput = document.getElementById('search-input');
-    const searchText = searchInput.value.toLowerCase().trim();
-    const tables = document.querySelectorAll('.specialist-table');
-
-    tables.forEach(table => {
-        const rows = table.querySelectorAll('tbody tr');
-        rows.forEach(row => {
-            const text = row.textContent.toLowerCase();
-            console.log("Busqueda realizada con:", searchText);
-            row.style.display = text.includes(searchText) ? '' : 'none';
-        })
-    })
-}
 
 //*Eliminar los registros seleccionados
 export const deleteUsers = async () => {
@@ -94,11 +77,11 @@ export const deleteUsers = async () => {
     await Promise.all(deletePromises);
     console.log('Todos los usuarios seleccionados han sido eliminados correctamente');
     reloadTable(); //*Recarga de los datos para reflejar el cambio
-}
+};
 
 //*Se obtienen las filas seleccionadas (Las que cuentan con casilla marcada)
 const getSelectedRows = () => {
-    const rows = document.querySelectorAll('table tbody tr');
+    const rows = document.querySelectorAll('table tbody tr'); //?Se obtienen cada una de las filas
     const selectedRows = [];
 
     //*Se itera sobre todas las filas de la tabla
@@ -114,7 +97,7 @@ const getSelectedRows = () => {
     });
 
     return selectedRows;
-}
+};
 
 const getIdUser = async (index) => {
     try{
@@ -124,7 +107,7 @@ const getIdUser = async (index) => {
         console.error("Error al obtener el id del usuario", error);
         return null;
     }
-}
+};
 
 const deleteUser = async (id) => {
     try{
@@ -133,22 +116,21 @@ const deleteUser = async (id) => {
     } catch (error) {
         console.error("Error al eliminar el usuario: ", error);
     }
-}
+};
 
 //*Recarga y limpieza de tabla al actualizar los registros
 const reloadTable = async () => {
-    const tbody = document.querySelector('table tbody');
-    tbody.innerHTML = ``; //*Se limpia el contenido actual del tbody
     try{
         const registers = await loadUserData();
-        populateTable(tbody, registers);
+        populateTable(registers);
     } catch (error){
         console.log("Error al recargar los datos de la tabla", error);
     }
-}
+};
 
 //*Se puebla la tabla con los nuevos datos
-const populateTable = (tbody, registers) => {
+const populateTable = (registers, tbody) => {
+    tbody.innerHTML = ``; //*Se limpia el contenido actual del tbody
     registers.forEach(register => {
         const tr = document.createElement('tr');
         tr.innerHTML = 
@@ -170,6 +152,108 @@ const populateTable = (tbody, registers) => {
             </td>
         `;
         tbody.appendChild(tr);
+    });
+};
+
+//*Función para crear y mostrar pestañas con registros
+const setupTabsWithContent = async () => {
+    const registers = await loadUserData(); //?Se obtienen los registros
+    //*Distribución de registros entre las pestañas
+    let tabRegistration = 10; //?Número de registros por pestaña
+    let tabsNumber = Math.ceil(registers.length / tabRegistration); //?Número de pestañas
+    console.log(tabsNumber);
+    //*Crear pestañas y contenido
+    for(let i=0; i<tabsNumber; i++){
+        createTab(i+1); //?Los número de las pestañas empiezan en 1
+        let tabContent = createTabContent(i, registers.slice(i * tabRegistration, (i + 1) * tabRegistration));
+        document.querySelector('.tabs-content').appendChild(tabContent);
+    }
+    //?Asegurando que la primera pestaña sea la activa
+    openTab(0);
+};
+
+function createTab(index){
+    let tabsContainer = document.querySelector('.tabs');
+    const tabButton = document.createElement('button');
+    tabButton.classList.add('tab-button'); //?Se crea una clase al botón
+    tabButton.textContent = `${index}`; //?Se coloca el contenido de texto al botón
+    tabButton.dataset.tabIndex = index - 1;
+    tabButton.addEventListener('click', function() {
+        openTab(parseInt(this.dataset.tabIndex));
+    });
+    tabsContainer.appendChild(tabButton);
+};
+
+//*Controlamiento de apertura de las pestañas
+const openTab = (tabIndex) => {
+    let tabs = document.querySelectorAll('.tab-content');
+    let buttons = document.querySelectorAll('.tab-button');
+
+    //*Se ocultan todas las pestañas
+    for(let i = 0; i < tabs.length; i++){
+        console.log(tabs.length);
+        tabs[i].style.display = 'none';
+        //tabs[i].style.visibility = 'hidden';
+        //tabs[i].style.position = 'absolute';
+        buttons[i].classList.remove('active');
+    }
+    //*Se muestra la pestaña seleccionada
+    tabs[tabIndex].style.display = 'block';
+    //tabs[tabIndex].style.visibility = 'visible';
+    //tabs[tabIndex].style.position = 'relative';
+    buttons[tabIndex].classList.add('active');
+};
+
+//*Se crea el contenido para cada pestaña
+function createTabContent(tabIndex, registers){
+    let tabContent = document.createElement('div');
+    tabContent.className = 'tab-content';
+    tabContent.id = `Tab${tabIndex + 1}`;
+    tabContent.style.display = tabIndex === 0 ? 'block' : 'none'; //?Se asegura de solo mostrar la primera pestaña
+    //tabContent.style.visibility = 'hidden';
+    //tabContent.style.position = "absolute";
+    let table = createTable(registers);
+    tabContent.appendChild(table);
+    return tabContent;
+};
+
+//*Se crea el contenido de la tabla para cada pestaña
+function createTable(registers){
+    let table = document.createElement('table');
+    table.className = 'specialist-table';
+    table.innerHTML = 
+    `
+    <thead>
+        <tr class="lexend-medium">
+            <th class="check-icon material-symbols-outlined">checklist</th>
+            <th class="headers">Nombre(s)</th>
+            <th class="headers">Apellido</th>
+            <th class="headers">Email</th>
+            <th class="headers">Especialidad</th>
+            <th class="headers">Telefono</th>
+            <th class="headers">RFC</th>
+            <th class="actions-head">Acciones</th>
+        </tr>
+    </thead>
+    <tbody class="lexend-regular">
+    </tbody>
+    `;
+
+    let tbody = table.querySelector('tbody');
+    populateTable(registers, tbody);
+    return table;
+};
+
+//*Filtrar los registros mediante la barra de busqueda
+export const handleSearch = () => {
+    const searchInput = document.getElementById('search-input'); //*Barra de busqueda (Input)
+    const searchText = searchInput.value.toLowerCase().trim(); //*Texto ingregado en searchInput convertido a minusculas e ignorando espacios iniciales y finales
+    const allRows = document.querySelectorAll('.specialist-table tbody tr'); //*Todas las tablas generadas de registros por pestaña
+
+    allRows.forEach(row => {
+        const text = row.textContent.toLowerCase();
+        console.log("Busqueda realizada con:", searchText);
+        row.style.display = text.includes(searchText) ? '' : 'none';
     });
 }
 
@@ -196,85 +280,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         deleteBtn.addEventListener('click', deleteUsers);
     }
 
-    //*Contenedores
-    let tabsContainer = document.querySelector('.tabs');
-    let contentContainer = document.querySelector('.tabs-content');
-
-    if(!tabsContainer || !contentContainer){
-        console.error('Contenedores de pestañas no encontrados');
-    }
-
-    //*Se obtienen los registros desde la base de datos y se agregan a un array
-    const registers = await loadUserData();
-    console.log(registers);
-
-    //*Distribución de registros entre las pestañas
-    let tabRegistration = 10; //*Número de registros por pestaña
-    let tabsNumber = Math.ceil(registers.length / tabRegistration);
-
-    for(let i=0; i<tabsNumber; i++){
-        console.log(i);
-        //*Creación de pestañas
-        let tabButton = document.createElement('button'); //?Se crea un botón por cada iteración
-        tabButton.classList.add('tab-button'); //?Se crea una clase al botón
-        tabButton.textContent = `${i + 1}`; //?Se coloca el contenido de texto al botón
-        tabButton.onclick = () => { openTab(i); };
-        tabsContainer.appendChild(tabButton);
-
-        //*Creación y añadimiento del contenido de las pestañas
-        let tabContent = document.createElement('div'); //?Se crea un div
-        tabContent.classList.add('tab-content'); //?Se crea una clase para el div
-        tabContent.id = `Tab${ i + 1 }`; //?Se asigna un id junto a un Template Literal
-        if(i > 0) tabContent.style.display = 'none'; //?Se asegura que solo la primera pestaña sea mostrada inicialmente
-        
-        //*Creación de la tabla como parte del contenido
-        let table = document.createElement('table'); //?Se crea una tabla
-        table.classList.add('specialist-table'); //?Se le asigna una clase
-        table.innerHTML = 
-        `
-        <thead>
-            <tr class="lexend-medium">
-                <th class="check-icon material-symbols-outlined">checklist</th>
-                <th class="headers">Nombre(s)</th>
-                <th class="headers">Apellido</th>
-                <th class="headers">Email</th>
-                <th class="headers">Especialidad</th>
-                <th class="headers">Telefono</th>
-                <th class="headers">RFC</th>
-                <th class="actions-head">Acciones</th>
-            </tr>
-        </thead>
-        <tbody class="lexend-regular">
-        </tbody>
-        `; //?Se agrega el contenido de la tabla (Cabecera y contenedor del cuerpo) para cada pestaña
-        tabContent.appendChild(table);
-
-        let tbody = table.querySelector('tbody');
-        //*Se añaden las filas con los registros dentro del tbody
-        for(let j = i*tabRegistration; j < Math.min((i+1) * tabRegistration, registers.length); j++){
-            let tr = document.createElement('tr');
-            tr.innerHTML = 
-            `
-                <td class="check-void-icon material-symbols-outlined" onclick="changeIcon(this)">check_box_outline_blank</td>
-                <td>${registers[j].nombres}</td>
-                <td>${registers[j].apellido}</td>
-                <td>${registers[j].email}</td>
-                <td>${registers[j].especialidad}</td>
-                <td>${registers[j].telefono}</td>
-                <td>${registers[j].rfc}</td>
-                <td class="action">
-                    <span class="actions">...</span>
-                    <div class="pop-up lexend-medium">
-                        <a href="#">Detalles</a>
-                        <a href="#">Editar</a>
-                        <a href="#">Eliminar</a>
-                    </div>
-                </td>
-            `;
-            tbody.appendChild(tr);
-        }
-        contentContainer.appendChild(tabContent);
-    }
+    //TODO____________________________________________________________________________________________
+    setupTabsWithContent();
+    //TODO______________________________________________________________________________________________
 
      //*Manejo de pop-ups con delegación de eventos
     document.addEventListener('click', function(e) {
@@ -315,22 +323,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    //*Controlamiento de apertura de las pestañas
-    window.openTab = async (tabIndex) => {
-        let tabs = document.querySelectorAll('.tab-content');
-        let buttons = document.querySelectorAll('.tab-button');
-        //*Se ocultan todas las pestañas
-        for(let i = 0; i < tabs.length; i++){
-            console.log(tabs.length);
-            tabs[i].style.display = 'none';
-            buttons[i].classList.remove('active');
-        }
-        //*Se muestra la pestaña seleccionada
-        tabs[tabIndex].style.display = 'block';
-        buttons[tabIndex].classList.add('active');
-    }
-    //*Se activa solo la primera pestaña
+    /*//*Se activa solo la primera pestaña
     if(tabsNumber > 0){
         tabsContainer.firstChild.click();
-    }
+    }*/
 });

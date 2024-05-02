@@ -72,8 +72,8 @@ html, body {
     max-width: 800px;
     align-items: center;
     border-radius: 5px;
-    padding: 15px;
-    margin-right: 25%;
+    padding: 10px;
+    margin-right: 23%;
     /*border: 1px solid white;*/
 }
 
@@ -81,7 +81,7 @@ html, body {
     flex: 1;
     border: none;
     outline: none;
-    padding: 15px;
+    padding: 12px;
     border-radius: 15px;
     background-color: #ECF2F8;
     box-shadow: 0 6px 5px rgba(0, 0, 0, 0.2);

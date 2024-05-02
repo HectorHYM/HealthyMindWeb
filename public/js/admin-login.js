@@ -61,7 +61,3 @@ window.logout = async() => {
         console.error("Error al cerrar sesión: ", error);
     });
 }
-
-//*document.getElementById('logoutButton').addEventListener('click', () => {
-    //*logout();
-//*});
