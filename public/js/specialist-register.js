@@ -6,6 +6,11 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const rol = 'especialista';
 
+//*Boton de regreso a tabla de administración
+document.getElementById('logout-icon-btn').addEventListener('click', () => {
+    window.location.href = "./list.html";
+});
+
 document.getElementById('regSpecialistForm').addEventListener('submit', event => {
     event.preventDefault(); //?Previene el envío del formulario
     const names = document.getElementById('namesField').value;

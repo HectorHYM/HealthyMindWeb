@@ -76,7 +76,8 @@ export const deleteUsers = async () => {
     });
     await Promise.all(deletePromises);
     console.log('Todos los usuarios seleccionados han sido eliminados correctamente');
-    reloadTable(); //*Recarga de los datos para reflejar el cambio
+    clearContainers();
+    setupTabsWithContent(); //?Recarga de los datos para reflejar el cambio
 };
 
 //*Se obtienen las filas seleccionadas (Las que cuentan con casilla marcada)
@@ -115,16 +116,6 @@ const deleteUser = async (id) => {
         console.log("Usuario(s) eliminado(s) correctamente");
     } catch (error) {
         console.error("Error al eliminar el usuario: ", error);
-    }
-};
-
-//*Recarga y limpieza de tabla al actualizar los registros
-const reloadTable = async () => {
-    try{
-        const registers = await loadUserData();
-        populateTable(registers);
-    } catch (error){
-        console.log("Error al recargar los datos de la tabla", error);
     }
 };
 
@@ -245,16 +236,48 @@ function createTable(registers){
 };
 
 //*Filtrar los registros mediante la barra de busqueda
-export const handleSearch = () => {
+export const handleSearch = async () => {
     const searchInput = document.getElementById('search-input'); //*Barra de busqueda (Input)
     const searchText = searchInput.value.toLowerCase().trim(); //*Texto ingregado en searchInput convertido a minusculas e ignorando espacios iniciales y finales
-    const allRows = document.querySelectorAll('.specialist-table tbody tr'); //*Todas las tablas generadas de registros por pestaña
+    if(!searchText){
+        clearContainers();
+        setupTabsWithContent(); //?Se recargan las pestañas originales si no existe texto de búsqueda
+        return;
+    }
 
-    allRows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        console.log("Busqueda realizada con:", searchText);
-        row.style.display = text.includes(searchText) ? '' : 'none';
+    const allData = await loadUserData(); //?Se cargan todos los datos
+    const filteredData = allData.filter(data => {
+        return Object.values(data).some(value => value.toString().toLowerCase().includes(searchText));
     });
+
+    if(filteredData.length > 0){
+        displaySearchResults(filteredData);
+    }else{
+        noResults();
+    }
+};
+
+//*Se muestran los resultados de la busqueda en una unica tabla
+const displaySearchResults = (filteredData) => {
+    const resultsContainer = document.querySelector('.tabs-content');
+    resultsContainer.innerHTML = ``; //?Se limpia el contenido actual
+    const table = createTable(filteredData);
+    resultsContainer.appendChild(table);
+};
+
+//*Se limpia todo resultado de busqueda y se señala que no se han encontrado resultados
+const clearContainers = () => {
+    const resultsContainer = document.querySelector('.tabs-content');
+    let tabsContainer = document.querySelector('.tabs');
+    tabsContainer.innerHTML = ``;
+    resultsContainer.innerHTML = ``;
+};
+
+const noResults = () => {
+    const resultsContainer = document.querySelector('.tabs-content');
+    let tabsContainer = document.querySelector('.tabs');
+    tabsContainer.innerHTML = ``;
+    resultsContainer.innerHTML = `<div>No se encontraron coicidencias</div>`;
 }
 
 //*Contenido de la tabla con apartado de pestañas
