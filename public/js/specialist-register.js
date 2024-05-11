@@ -41,7 +41,7 @@ window.registerSpecialist = async(names, lastnames, email, specialty, birthdate,
     }catch(error){
         console.error("Error en el registro: ", error);
     }
-}
+};
 
 window.specialistDetails = async(names, lastnames, email, specialty, birthdate, rfc, phonenumber, curp) => {
     const userRef = doc(db, "prueba", curp);
@@ -58,4 +58,4 @@ window.specialistDetails = async(names, lastnames, email, specialty, birthdate, 
     }).catch((error) => {
         console.error("Error al guardar los detalles del administrador");
     });
-}
+};

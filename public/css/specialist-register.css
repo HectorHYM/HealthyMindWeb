@@ -8,6 +8,7 @@
 html, body {
     height: 100%;
     width: 100%;
+    background: linear-gradient(to right, white, #0066FF);
 }
 
 /*Iconos*/
@@ -61,7 +62,6 @@ html, body {
     min-height: 100vh;
     padding: 0px 20px;
     margin: 0;
-    background-color: white
 }
 
 .regSpecialistForm{

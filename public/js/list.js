@@ -136,13 +136,31 @@ const populateTable = (registers, tbody) => {
             <td class="action">
                 <span class="actions">...</span>
                 <div class="pop-up lexend-medium">
-                    <a href="#">Detalles</a>
-                    <a href="#">Editar</a>
-                    <a href="#">Eliminar</a>
+                    <a href="./panel.html?id=${register.id}">Detalles</a>
+                    <a href="./specialist-edit.html?id=${register.id}">Editar</a>
+                    <a href="#" class="single-delete" data-id="${register.id}">Eliminar</a>
                 </div>
             </td>
         `;
+
+        //*Se agrega el listener al <tr> para redirigir excepto el ultimo <td> 
+        tr.addEventListener('click', (event) => {
+            if(!event.target.closest('.action')){
+                window.location.href = `./panel.html?id=${register.id}`;
+            }
+        });
+
         tbody.appendChild(tr);
+    });
+
+    tbody.addEventListener('click', function(event){
+        if(event.target && event.target.matches('a.single-delete')){
+            event.preventDefault();
+            const id = event.target.getAttribute('data-id');
+            deleteUser(id);
+            clearContainers();
+            setupTabsWithContent(); //?Recarga de los datos para reflejar el cambio
+        }
     });
 };
 
@@ -280,34 +298,8 @@ const noResults = () => {
     resultsContainer.innerHTML = `<div>No se encontraron coicidencias</div>`;
 }
 
-//*Contenido de la tabla con apartado de pestañas
-document.addEventListener("DOMContentLoaded", async () => {
-
-    //*Barra de busqueda
-    const searchInput = document.querySelector('.search-input');
-    const searchButton = document.querySelector('.search-icon');
-
-    //?Evento click en el boton de busqueda
-    searchButton.addEventListener('click', handleSearch);
-
-    //?Evento keyup en el campo de entrada para detectar la tecla Enter
-    searchInput.addEventListener('keyup', (e) => {
-        if(e.key === "Enter"){
-            handleSearch();
-        }
-    });
-
-    //*Boton de eliminación para varios usuarios
-    const deleteBtn = document.getElementById('delete-btn');
-    if(deleteBtn){
-        deleteBtn.addEventListener('click', deleteUsers);
-    }
-
-    //TODO____________________________________________________________________________________________
-    setupTabsWithContent();
-    //TODO______________________________________________________________________________________________
-
-     //*Manejo de pop-ups con delegación de eventos
+const createPopUps = () => {
+    //*Manejo de pop-ups con delegación de eventos
     document.addEventListener('click', function(e) {
         const currentPopup = e.target.matches('.actions') ? e.target.nextElementSibling : null;
         console.log("currentPopup: ", currentPopup);
@@ -345,9 +337,33 @@ document.addEventListener("DOMContentLoaded", async () => {
             })
         }
     });
+};
 
-    /*//*Se activa solo la primera pestaña
-    if(tabsNumber > 0){
-        tabsContainer.firstChild.click();
-    }*/
+//*Contenido de la tabla con apartado de pestañas
+document.addEventListener("DOMContentLoaded", async () => {
+
+    //*Barra de busqueda
+    const searchInput = document.querySelector('.search-input');
+    const searchButton = document.querySelector('.search-icon');
+
+    //?Evento click en el boton de busqueda
+    searchButton.addEventListener('click', handleSearch);
+
+    //?Evento keyup en el campo de entrada para detectar la tecla Enter
+    searchInput.addEventListener('keyup', (e) => {
+        if(e.key === "Enter"){
+            handleSearch();
+        }
+    });
+
+    //*Boton de eliminación para varios usuarios
+    const deleteBtn = document.getElementById('delete-btn');
+    if(deleteBtn){
+        deleteBtn.addEventListener('click', deleteUsers);
+    }
+
+    //TODO____________________________________________________________________________________________
+    setupTabsWithContent();
+    createPopUps();
+    //TODO______________________________________________________________________________________________
 });
