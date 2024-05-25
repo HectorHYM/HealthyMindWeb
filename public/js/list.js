@@ -47,7 +47,7 @@ window.changeIcon = async(cell) => {
 //*Función para obtener los registros de la base de datos
 const loadUserData = async ()  => {
     try {
-        const querySnapshot = await getDocs(collection(db, 'prueba')); //?Se obtiene cada doc de la colleción
+        const querySnapshot = await getDocs(collection(db, 'users-especialista')); //?Se obtiene cada doc de la colleción
         const registers = []; //?Array vacio de registros
         querySnapshot.forEach(doc => {
             const data = doc.data(); //?Devuelve un objeto JavaScript con los campos del documento como propiedades
@@ -145,7 +145,7 @@ const populateTable = (registers, tbody) => {
 
         //*Se agrega el listener al <tr> para redirigir excepto el ultimo <td> 
         tr.addEventListener('click', (event) => {
-            if(!event.target.closest('.action')){
+            if(!event.target.closest('.action') && !event.target.closest('.check-void-icon')){
                 window.location.href = `./panel.html?id=${register.id}`;
             }
         });

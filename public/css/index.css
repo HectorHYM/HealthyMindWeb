@@ -73,31 +73,6 @@ body{
     position: relative;
 }
 
-.form-box::before{
-    content: '';
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: #0066FF;
-    border-radius: 50%;
-    box-shadow: 0 0 10px #0066FF;
-    animation: orbit 4s linear infinite;
-}
-
-@keyframes orbit {
-    0%{
-        transform: rotate(0deg) translateX(700px);
-    }
-    25%{
-        transform: rotate(90deg) translateY(500px);
-    }50%{
-        transform: rotate(90deg) translateX(700px);
-    }
-    75%{
-        transform: rotate(90deg) translateY(500px);
-    }
-}
-
 .form-box h2{
     font-size: 30px;
     margin-bottom: 80px;

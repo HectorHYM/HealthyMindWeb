@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if(registerId){
         //*Accede a firestore para obtener el documento del id correspondiente
-        const docRef = doc(db, 'prueba', registerId);
+        const docRef = doc(db, 'users-especialista', registerId);
         getDoc(docRef).then(docSnap => {
             if(docSnap.exists()){
                 const data = docSnap.data();
