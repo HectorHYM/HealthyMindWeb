@@ -25,13 +25,6 @@ body{
   font-style: normal;
 }
 
-.lexend-semibold{
-    font-family: "Lexend", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-}
-
 .lexend-regular-error{
     font-family: "Lexend", sans-serif;
     font-optical-sizing: auto;
@@ -40,10 +33,24 @@ body{
     color: red;
 }
 
+.lexend-medium{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.lexend-semibold{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
 .navbar{
     overflow: hidden;
     background-color: #0066FF;
-    height: 100px;
+    height: 80px;
     max-height: auto;
     min-height: auto;
     padding: 5px;
@@ -56,58 +63,62 @@ body{
 .navbar img{
     max-width: 100%;
     height: auto;
-    max-height: 130px;
+    max-height: 100px;
     display: block;
 }
 
 .form-box{
-    background-color: whitesmoke;
-    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 90%;
     margin: 50px;
-    padding: 20px;
+    padding: 30px;
     align-items: center;
     border-radius: 10px;
     box-shadow: 0 12px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
+    text-align: left;
     overflow: hidden;
     position: relative;
 }
 
 .form-box h2{
-    font-size: 30px;
-    margin-bottom: 80px;
+    font-size: 28px;
     margin-top: 40px;
+    color: whitesmoke;
 }
 
-.form-box .input-email{
-    font-size: 20px;
+.form-box .text-credentials{
+    margin-bottom: 40px;
+    color: #0066FF;
+}
+
+.form-box .input-email,
+.form-box .input-pass{
+    font-size: 15px;
     margin-bottom: 20px;
     padding-right: 140px;
-}
-
-.form-box .input-pass{
-    font-size: 20px;
-    margin-bottom: 20px;
-    padding-right: 210px;
+    color: #0066FF;
 }
 
 .form-box input[type="email"],
 .form-box input[type="password"]{
-    width: 50%;
-    margin-bottom: 20px;
-    padding: 12px;
-    border: 0.2px solid gray;
+    width: 60%;
+    margin-bottom: 30px;
+    padding: 8px;
+    border: 0.2px solid #0066FF;
     border-radius: 5px;
 }
 
 .form-box .error-auth{
     margin: 40px 0 0;
+    text-align: center;
 }
 
 .form-box button{
     margin: 10px auto 10px;
     display: block;
-    padding: 10px 50px;
+    padding: 8px 50px;
     border-radius: 10px;
     border-width: 1px;
     background-color: #0066FF;
@@ -119,6 +130,62 @@ body{
     color: #0066FF;
 }
 
+.info{
+    text-align: center;
+    font-size: 15px;
+}
+
+.info span{
+    color: whitesmoke;
+}
+
+.extra-box{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 8px;
+    max-width: 50%;
+}
+
+.image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.image img{
+    max-width: 100%;
+    height: auto;
+    max-height: 100px;
+    display: block;
+}
+
+.extra-box h1{
+    color: whitesmoke;
+    margin: 20px;
+}
+
+.extra-box p{
+    color: #0066FF;
+    margin: 20px;
+}
+
+.admin-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px; 
+}
+
+.admin-image img{
+    max-width: 100%;
+    height: auto;
+    max-height: 200px;
+    display: block;
+}
+
 .footer{
     background-color: white;
     height: 300px;
@@ -127,9 +194,56 @@ body{
     box-shadow: inset 0 15px 10px -10px rgba(0, 0, 0, 0.5);
 }
 
+.footer h2{
+    color: #0066FF;
+    margin: 10px;
+}
+
+.footer .cards{
+    width: 100%;
+    max-width: 1200px;
+    height: 340px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: auto;
+}
+
+.footer .cards .card{
+    width: 330px;
+    height: 340px;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin: 20px;
+    text-align: center;
+    transition: all 0.25s;
+}
+
+.footer .cards .card:hover{
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
+    border: solid 1px #0066FF;
+}
+
 .footer img{
     max-width: 100%;
-    height: 80px;
+    height: 180px;
     max-height: 100%;
     margin: 20px;
+}
+
+.footer h4{
+    font-size: 15px;
+    color: #0066FF;
+    margin-bottom: 5px;
+}
+
+.footer p{
+    margin: 0px 10px;
+}
+
+.footer h3{
+    margin: 30px;
+    padding: 30px;
 }

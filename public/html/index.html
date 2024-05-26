@@ -17,25 +17,56 @@
     </header>
 
     <div class="form-box">
-        <h2 class="lexend-semibold">Administre a sus usuarios</h2>
         <form id="adminLogin">
+            <h2 class="lexend-semibold">Administre a los usuarios</h2>
+            <p class="lexend-regular text-credentials">Por favor ingrese sus credenciales</p>
             <div>
-                <p class="lexend-semibold input-email">Correo Electrónico</p>
+                <p class="lexend-medium input-email">Correo Electrónico</p>
                 <input type="email" id="emailField" required>
-                <p class="lexend-semibold input-pass">Contraseña</p>
+                <p class="lexend-medium input-pass">Contraseña</p>
                 <input type="password" id="passwordField" required>
             </div>
-            <div id="error-auth" class="lexend-regular-error"></div>
+            <div id="error-auth" class="lexend-regular-error error-auth"></div>
             <button class="lexend-semibold" type="submit">Ingresar</button>
-            <span class="lexend-semibold">Si no lograr ingresar correctamente, comuniquese con el equipo de HealthyMind</span>
+            <div class="info">
+                <span class="lexend-semibold">Si no lograr ingresar correctamente, comuniquese con el equipo de HealthyMind</span>
+            </div>
         </form>
+        <div class="extra-box">
+            <div class="image">
+                <img src="../assets/img/logo.png" alt="Logo de HealthyMind">
+            </div>
+            <h1 class="lexend-semibold">Ayude a que la aplicación sea más segura y acertada con su personal!</h1>
+            <p class="lexend-medium">Con ayuda de su supervisión el equipo de HealthyMind puede asegurar consistencia en los datos, administración de especialistas en el area y demás confirmación y registros de datos!!!</p>
+            <div class="admin-image">
+                <img src="../assets/img/administrator.png" alt="Administradores">
+            </div>
+        </div>
     </div>
 
     <footer class="footer">
+        <h2 class="lexend-semibold">Interacciones</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="../assets/img/card1.webp" alt="Acción de registrar">
+                <h4 class="lexend-semibold">Registra</h4>
+                <p class="lexend-medium">Registra especialistas que tú mismo hayas aprobado de antemano para la seguridad y confianza de la gente!</p>
+            </div>
+            <div class="card">
+                <img src="../assets/img/card2.jpeg" alt="Acción de modificar">
+                <h4 class="lexend-semibold">Modifica</h4>
+                <p class="lexend-medium">Modifica datos irregulares o cambiados recientemente para no contar con información obsoleta de nuestros especialistas!</p>
+            </div>
+            <div class="card">
+                <img src="../assets/img/card3.webp" alt="Acción de verificar">
+                <h4 class="lexend-semibold">Verifica</h4>
+                <p class="lexend-medium">Verifica, datos de los usuarios, agendas, citas, horas y demás para tener un control completo en caso de alguna de aclaración o suceso!</p>
+            </div>
+        </div>
         <div>
-            <img src="../assets/img/instagram.png" alt="">
+            <!--<img src="../assets/img/instagram.png" alt="">
             <img src="../assets/img/gmail.png" alt="">
-            <img src="../assets/img/facebook.png" alt="">
+            <img src="../assets/img/facebook.png" alt="">-->
         </div>
         <h3 class="lexend-semibold">Contacta con el equipo</h3>
     </footer>
