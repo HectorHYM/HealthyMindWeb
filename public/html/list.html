@@ -24,6 +24,23 @@
     <div class="buttons-cont">
         <button class="new-btn lexend-semibold" id="new-btn">Nuevo registro +</button>
         <button class="delete-btn lexend-semibold" id="delete-btn">Eliminar seleccionados -</button>
+
+        <div id="feedback-modal" class="lexend-semibold modal">
+            <div class="modal-content">
+                <span class="close-button">&times;</span>
+                <p id="feedback-message"></p>
+            </div>
+        </div>
+        <!-- Modal de confirmación -->
+        <div id="confirm-modal" class="modal">
+            <div class="modal-content">
+                <p id="confirm-message" class="lexend-semibold">¿Estás seguro de que deseas eliminar a estos usuarios?</p>
+                <button id="confirm-yes" class="lexend-medium confirm-btn">Sí</button>
+                <button id="confirm-no" class="lexend-medium confirm-btn">No</button>
+            </div>
+        </div>
+
+        <button id="dark-mode-toggle" class="material-symbols-outlined dark-mode-toggle">dark_mode</button>
         <button class="logout-btn lexend-semibold" id="logout-btn">Salir</button>
         <button class="logout-icon-btn material-symbols-outlined" id="logout-icon-btn">logout</button>
     </div>

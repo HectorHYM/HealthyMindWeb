@@ -43,33 +43,43 @@
                     <label class="lexend-medium" for="namesField">Fecha de nacimiento</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" id="rfcField" placeholder=" " required>
+                    <input type="text" id="rfcField" placeholder=" " pattern="[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}" title="Formato de RFC no válido" required>
                     <label class="lexend-medium" for="namesField">RFC</label>
                 </div>
             </div>
             <div class="input-row">
                 <div class="input-container">
-                    <input type="text" id="phonenumberField" placeholder=" " required>
+                    <input type="text" id="phonenumberField" placeholder=" " pattern="\d{10}" title="El número de teléfono debe tener 10 dígitos" required>
                     <label class="lexend-medium" for="namesField">Número de telefono</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" id="curpField" placeholder=" " required>
+                    <input type="text" id="curpField" placeholder=" " pattern="^[A-Z]{4}\d{6}[HM][A-Z]{2}[A-Z]{3}[A-Z\d]{2}$" title="Formato de CURP no válido" required>
                     <label class="lexend-medium" for="namesField">CURP</label>
                 </div>
             </div>
-            <div class="input-container">
-                <input type="password" id="passwordField" placeholder=" " required>
-                <label class="lexend-medium" for="namesField">Contraseña</label>
-            </div>
-            <div class="input-container">
-                <input type="password" id="password_rField" placeholder=" " required>
-                <label class="lexend-medium" for="namesField">Repetir contraseña</label>
-            </div>
+
             <div class="btn-container">
                 <button type="submit" class="btn-register lexend-medium">Registrar</button>
             </div>   
         </form>
     </div>
+    <!-- Modal para feedback -->
+    <div id="feedback-modal" class="lexend-semibold modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="feedback-message"></p>
+        </div>
+    </div>
+    <!-- Modal para prompt -->
+    <div id="prompt-modal" class="modal">
+        <div class="modal-content">
+            <p id="prompt-message" class="lexend-semibold"></p>
+            <input type="password" id="prompt-input" class="prompt-input">
+            <button id="prompt-submit" class="lexend-medium confirm-btn">Aceptar</button>
+            <button id="prompt-cancel" class="lexend-medium confirm-btn">Cancelar</button>
+        </div>
+    </div>
+    
 
     <script src="../js/firebase-config.js" type="module"></script>
     <script src="../js/specialist-register.js" type="module"></script>

@@ -65,19 +65,30 @@ const loadUserData = async ()  => {
 export const deleteUsers = async () => {
     //*Se obtienen los indices de las filas seleccionadas
     const selectedRows = getSelectedRows();
-    //*Se eliminan los registros seleccionados de la base de datos
-    const deletePromises = selectedRows.map(async index => {
-        //*Se obtiene el id de la base de datos correspondiente al indice del registro
-        const user = await getIdUser(index);
-        if(user && user.id ){
-            //*Se elimina cada registro de la base de datos
-            return deleteUser(user.id);
-        }
-    });
-    await Promise.all(deletePromises);
-    console.log('Todos los usuarios seleccionados han sido eliminados correctamente');
-    clearContainers();
-    setupTabsWithContent(); //?Recarga de los datos para reflejar el cambio
+    if(selectedRows.length === 0){
+        showFeedBack('No hay usuarios seleccionados para eliminar.', 'error');
+        return;
+    }
+
+    try{
+        //*Se eliminan los registros seleccionados de la base de datos
+        const deletePromises = selectedRows.map(async index => {
+            //*Se obtiene el id de la base de datos correspondiente al indice del registro
+            const user = await getIdUser(index);
+            if(user && user.id ){
+                //*Se elimina cada registro de la base de datos
+                return deleteUser(user.id);
+            }
+        });
+        await Promise.all(deletePromises);
+        console.log('Todos los usuarios seleccionados han sido eliminados correctamente');
+        showFeedBack('Todos los usuarios seleccionados han sido eliminados correctamente', 'success');
+        clearContainers();
+        setupTabsWithContent(); //?Recarga de los datos para reflejar el cambio
+    }catch(error){
+        console.error('Error al eliminar usuarios:', error);
+        showFeedBack('Hubo un error al eliminar los usuarios. Inténtalo nuevamente.', 'error');
+    }
 };
 
 //*Se obtienen las filas seleccionadas (Las que cuentan con casilla marcada)
@@ -112,7 +123,7 @@ const getIdUser = async (index) => {
 
 const deleteUser = async (id) => {
     try{
-        await deleteDoc(doc(db, "prueba", id));
+        await deleteDoc(doc(db, "users-especialista", id));
         console.log("Usuario(s) eliminado(s) correctamente");
     } catch (error) {
         console.error("Error al eliminar el usuario: ", error);
@@ -157,9 +168,10 @@ const populateTable = (registers, tbody) => {
         if(event.target && event.target.matches('a.single-delete')){
             event.preventDefault();
             const id = event.target.getAttribute('data-id');
-            deleteUser(id);
-            clearContainers();
-            setupTabsWithContent(); //?Recarga de los datos para reflejar el cambio
+            deleteUser(id).then(() => {
+                clearContainers();
+                setupTabsWithContent(); //?Recarga de los datos para reflejar el cambio
+            });
         }
     });
 };
@@ -295,7 +307,8 @@ const noResults = () => {
     const resultsContainer = document.querySelector('.tabs-content');
     let tabsContainer = document.querySelector('.tabs');
     tabsContainer.innerHTML = ``;
-    resultsContainer.innerHTML = `<div>No se encontraron coicidencias</div>`;
+    resultsContainer.innerHTML = `<div class="lexend-semibold noresults-div">No se encontraron coicidencias</div>
+                                  `;
 }
 
 const createPopUps = () => {
@@ -339,6 +352,38 @@ const createPopUps = () => {
     });
 };
 
+const showFeedBack = (message, type) => {
+    const modal = document.getElementById('feedback-modal');
+    const feedBackMessage = document.getElementById('feedback-message');
+    feedBackMessage.textContent = message;
+    feedBackMessage.className = type;
+    modal.style.display = 'block';
+
+    setTimeout(() => {
+        modal.style.display = 'none';
+    }, 5000);
+};
+
+const enableDarkMode = (toggleButton, body, modalContents, confirmButtons, logoutBtn, logoutIconBtn) => {
+    toggleButton.classList.add('dark-mode');
+    body.classList.add('dark-mode');
+    modalContents.forEach(modal => modal.classList.add('dark-mode'));
+    confirmButtons.forEach(button => button.classList.add('dark-mode'));
+    logoutBtn.classList.add('dark-mode');
+    logoutIconBtn.classList.add('dark-mode');
+    localStorage.setItem('darkMode', 'enabled');
+};
+
+const disableDarkMode = (toggleButton, body, modalContents, confirmButtons, logoutBtn, logoutIconBtn) => {
+    toggleButton.classList.remove('dark-mode');
+    body.classList.remove('dark-mode');
+    modalContents.forEach(modal => modal.classList.remove('dark-mode'));
+    confirmButtons.forEach(button => button.classList.remove('dark-mode'));
+    logoutBtn.classList.remove('dark-mode');
+    logoutIconBtn.classList.remove('dark-mode');
+    localStorage.setItem('darkMode', 'disabled');
+};
+
 //*Contenido de la tabla con apartado de pestañas
 document.addEventListener("DOMContentLoaded", async () => {
 
@@ -356,14 +401,64 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
     });
 
-    //*Boton de eliminación para varios usuarios
-    const deleteBtn = document.getElementById('delete-btn');
-    if(deleteBtn){
-        deleteBtn.addEventListener('click', deleteUsers);
+    //*Boton de eliminación para varios usuarios y modo oscuro
+    const toggleButton = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+    const modalContents = document.querySelectorAll('.modal-content');
+    const confirmButtons = document.querySelectorAll('.confirm-btn');
+    const logoutBtn = document.querySelector('.logout-btn');
+    const logoutIconBtn = document.querySelector('.logout-icon-btn');
+
+    //*Se aplica el modo oscuro si está guardado en localStorage
+    if(localStorage.getItem('darkMode') === 'enabled'){
+        enableDarkMode(toggleButton, body, modalContents, confirmButtons, logoutBtn, logoutIconBtn);
     }
 
-    //TODO____________________________________________________________________________________________
+    //*Toggle para el Dark Mode
+    toggleButton.addEventListener('click', () => {
+        if(localStorage.getItem('darkMode') !== 'enabled'){
+            enableDarkMode(toggleButton, body, modalContents, confirmButtons, logoutBtn, logoutIconBtn);
+        }else{
+            disableDarkMode(toggleButton, body, modalContents, confirmButtons, logoutBtn, logoutIconBtn);
+        }
+    });
+    
+    //*Modales de confirmación
+    const deleteBtn = document.getElementById('delete-btn');
+    const confirmModal = document.getElementById('confirm-modal');
+    const confirmYesBtn = document.getElementById('confirm-yes');
+    const confirmNoBtn = document.getElementById('confirm-no');
+
+    if(deleteBtn){
+        deleteBtn.addEventListener('click', () => {
+            //?Mostrar modal de confirmación
+            confirmModal.style.display = 'block';
+        });
+
+        confirmYesBtn.addEventListener('click', () => {
+            //?Borrar usuarios y ocultar modal
+            deleteUsers();
+            confirmModal.style.display = 'none';
+        });
+
+        confirmNoBtn.addEventListener('click', () => {
+            //?Ocultar modal
+            confirmModal.style.display = 'none';
+        });
+    }
+
+    document.querySelector('.close-button').addEventListener('click', () => {
+        const modal = document.getElementById('feedback-modal');
+        modal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        const modal = document.getElementById('feedback-modal');
+        if(event.target === modal){
+            modal.style.display = 'none';
+        }
+    });
+
     setupTabsWithContent();
     createPopUps();
-    //TODO______________________________________________________________________________________________
 });

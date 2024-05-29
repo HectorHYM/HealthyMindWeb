@@ -43,13 +43,13 @@
                     <label class="lexend-medium" for="namesField">Fecha de nacimiento</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" id="rfc" placeholder=" " required>
+                    <input type="text" id="rfc" placeholder=" " pattern="[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}" title="Formato de RFC no válido" required>
                     <label class="lexend-medium" for="namesField">RFC</label>
                 </div>
             </div>
             <div class="input-row">
                 <div class="input-container">
-                    <input type="text" id="telefono" placeholder=" " required>
+                    <input type="text" id="telefono" placeholder=" " pattern="\d{10}" title="El número de teléfono debe tener 10 dígitos" required>
                     <label class="lexend-medium" for="namesField">Número de telefono</label>
                 </div>
                 <div class="input-container">
@@ -61,6 +61,21 @@
                 <button type="submit" class="btn-register lexend-medium">Editar</button>
             </div>   
         </form>
+    </div>
+    <!-- Modal para feedback -->
+    <div id="feedback-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <p id="feedback-message"></p>
+        </div>
+    </div>
+    <!-- Modal para confirmación -->
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <p id="confirm-message"></p>
+            <button id="confirm-yes" class="confirm-btn">Sí</button>
+            <button id="confirm-no" class="confirm-btn">No</button>
+        </div>
     </div>
 
     <script src="../js/specialist-edit.js" type="module"></script>

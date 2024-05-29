@@ -143,6 +143,68 @@ html, body {
     color: white;
 }
 
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content{
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+}
+
+.confirm-btn{
+    margin: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.confirm-btn#confirm-yes{
+    background-color: #0066FF;
+    color: white;
+}
+
+.confirm-btn#confirm-no{
+    background-color: red;
+    color: white;
+}
+
+.close-button{
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus{
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.dark-mode-toggle{
+    background-color: transparent;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
 .logout-btn {
     background-color: transparent;
     border: none;
@@ -189,6 +251,7 @@ html, body {
 
 .specialist-table tbody tr:hover{
     background-color: #EAEAEA;
+    color: black;
 }
 
 .check-void-icon{
@@ -254,5 +317,61 @@ html, body {
     background-color: #0066FF;
     border: 1px solid white;
     border-radius: 5px;
+    color: white;
+}
+
+.noresults-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.modal-content.dark-mode {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+.confirm-btn.dark-mode {
+    background-color: #444444;
+    color: #ffffff;
+}
+
+.confirm-btn#confirm-yes.dark-mode {
+    background-color: #2E7D32;
+}
+
+.confirm-btn#confirm-no.dark-mode {
+    background-color: #C62828;
+}
+
+.logout-btn.dark-mode{
+    background-color: transparent;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 20px 7px;
+    color: white;
+}
+
+.logout-icon-btn.dark-mode{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.dark-mode-toggle.dark-mode{
+    background-color: transparent;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
     color: white;
 }

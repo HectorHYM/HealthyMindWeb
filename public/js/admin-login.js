@@ -25,39 +25,47 @@ form.addEventListener('submit', (e) => {
         authRol(user.uid);
         console.log("Administrador autenticado: ", user);
     }).catch((error) => {
-        //const errorCode = error.code;
-        const errorMessage = error.message;
-        console.error("Error de inicio de sesión: ", errorMessage);
-        document.getElementById("error-auth").textContent = "Error en la autenticación de usuario";
+        console.error("Error de inicio de sesión: ", error.message);
+        document.getElementById("error-auth").textContent = "Credenciales incorrectas";
     });
 });
 
 //*Verificación de rol
-window.authRol = async(uid) => {
-    const userRef = doc(db, 'administrador', uid);
-    const docSnap = await getDoc(userRef);
-    
-    if(docSnap.exists()){
-        const userData = docSnap.data();
-        const rol = userData.rol;
-        if(rol === 'admin'){
-            //TODO - Redirigir a página principal de administrador.
-            window.location.href = "./list.html";
-            console.log("Rol del usuario: ", rol);
+window.authRol = async (uid) => {
+    try{
+        const userRef = doc(db, 'administrador', uid);
+        const docSnap = await getDoc(userRef);
+        
+        if(docSnap.exists()){
+            const userData = docSnap.data();
+            const rol = userData.rol;
+            if(rol === 'admin'){
+                //TODO - Redirigir a página principal de administrador.
+                window.location.href = "./list.html";
+                console.log("Rol del usuario: ", rol);
+            }else{
+                console.log("Rol de usuario no correspondido")
+                document.getElementById("error-auth").textContent = "Rol de usuario no correspondido";
+                logout();
+            }
         }else{
-            console.log("Rol de usuario no correspondido")
-            document.getElementById("error-auth").textContent = "Rol de usuario no correspondido";
+            console.log("No se encontró el documento del usuario");
+            document.getElementById("error-auth").textContent = "Usuario no encontrado";
             logout();
         }
+    }catch(error){
+        console.error("Error al verificar el rol del usuario: ", error.message);
+        document.getElementById("error-auth").textContent = "Error al verificar el rol del usuario";
     }
     
 }
 
 //*Función para cerrar sesión
 window.logout = async() => {
-    signOut(auth).then(() => {
+    try{
+        await signOut(auth);
         console.log("Sesión cerrada exitosamente");
-    }).catch((error) => {
-        console.error("Error al cerrar sesión: ", error);
-    });
+    }catch(error){
+        console.error("Error al cerrar sesión: ", error.message);
+    }
 }
