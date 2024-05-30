@@ -13,6 +13,34 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
+const enableDarkMode = (publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, theadDates, cells, scheduleTheads, modalContent) => {
+    const body = document.body;
+    body.classList.add('dark-mode');
+    publicationsTxt.classList.add('dark-mode');
+    appointmentsTxt.classList.add('dark-mode');
+    backIconBtn.classList.add('dark-mode');
+    moreInfo.classList.add('dark-mode');
+    theadDates.classList.add('dark-mode');
+    cells.forEach(cell => cell.classList.add('dark-mode'));
+    modalContent.classList.add('dark-mode');
+    scheduleTheads.forEach(thead => thead.classList.add('dark-mode'));
+    localStorage.setItem('darkMode', 'enabled');
+};
+
+const disableDarkMode = (publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, theadDates, cells, scheduleTheads, modalContent) => {
+    const body = document.body;
+    body.classList.remove('dark-mode');
+    publicationsTxt.classList.remove('dark-mode');
+    appointmentsTxt.classList.remove('dark-mode');
+    backIconBtn.classList.remove('dark-mode');
+    moreInfo.classList.remove('dark-mode');
+    theadDates.classList.remove('dark-mode');
+    cells.forEach(cell => cell.classList.remove('dark-mode'));
+    modalContent.classList.remove('dark-mode');
+    scheduleTheads.forEach(thead => thead.classList.remove('dark-mode'));
+    localStorage.setItem('darkMode', 'disabled');
+};
+
 document.addEventListener("DOMContentLoaded", async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const registerId = urlParams.get('id');
@@ -56,6 +84,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.getElementById('back-icon-btn').addEventListener('click', () => {
         window.history.back();
     });
+
+    //*Elementos para el dark mode
+    const publicationsTxt = document.querySelector('.publications-txt');
+    const appointmentsTxt = document.querySelector('.appointments-txt');
+    const backIconBtn = document.querySelector('.back-icon-btn');
+    const moreInfo = document.querySelector('.more-info');
+    const theadDates = document.querySelector('.thead-dates');
+    const cells = document.querySelectorAll('.date-cell');
+    const modalContent = document.querySelector('.modal-content');
+    const scheduleTheads = document.querySelectorAll('.schedule-thead');
+
+    //*Se aplica el modo oscuro si está guardado en localStorage
+    if(localStorage.getItem('darkMode') === 'enabled'){
+        enableDarkMode(publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, theadDates, cells, scheduleTheads, modalContent);
+    }else{
+        disableDarkMode(publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, theadDates, cells, scheduleTheads, modalContent);
+    }
     
 });
 
@@ -172,6 +217,13 @@ const showModal = async (dateId, registerId) => {
         modalTableBody.appendChild(row);
     });
     modal.style.display = 'block';
+
+    const dataScheduleCells = document.querySelectorAll('.data-schedule-cell');
+    if (localStorage.getItem('darkMode') === 'enabled') {
+        dataScheduleCells.forEach(cell => cell.classList.add('dark-mode'));
+    } else {
+        dataScheduleCells.forEach(cell => cell.classList.remove('dark-mode'));
+    }
 };
 
 const closeModal = () => {

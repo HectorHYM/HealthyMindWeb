@@ -167,24 +167,41 @@ h2{
     border-collapse: collapse;
 }
 
-th{
+th.thead-dates{
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
     background-color: whitesmoke;
     box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
-
 }
 
-td.date-cell:hover{
-    background-color: #EAEAEA;
-}
-
-th.date-thead, td{
+td.date-cell{
     padding: 10px;
     text-align: left;
     border: 1px solid #ddd;
 }
 
+td.date-cell:hover{
+    background-color: #EAEAEA;
+    color: black;
+}
+
+th.schedule-thead{
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: whitesmoke;
+    box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
+}
+
 tr.schedule-row:hover{
     background-color: #EAEAEA;
+    color: black;
+}
+
+td.data-schedule-cell{
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
 }
 
 .modal{
@@ -221,4 +238,79 @@ tr.schedule-row:hover{
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.publications-txt.dark-mode,
+.appointments-txt.dark-mode{
+    background-color: #121212;
+    border-radius: 5px;
+    box-shadow: 0px 19px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px 60px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.back-icon-btn.dark-mode{
+    background-color: #121212;
+    color: white;
+    border: none;
+    max-height: 30px;
+    margin: 5px;
+}
+
+.back-icon-btn.dark-mode:hover{
+    color: #0066FF;
+}
+
+.more-info.dark-mode{
+    flex-direction: column;
+    align-items: initial;
+    background-color: #121212;
+    border-radius: 10px;
+    box-shadow: 0px 19px 15px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    margin: 0px 20px 30px;
+}
+
+.thead-dates.dark-mode{
+    background-color: #121212;
+    color: white;
+    box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #121212;
+}
+
+td.date-cell.dark-mode{
+    padding: 10px;
+    text-align: left;
+    border: 1px solid black;
+    box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
+}
+
+th.schedule-thead.dark-mode{
+    padding: 10px;
+    border: 1px solid black;
+    background-color: #121212;
+    color: white;
+    box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content.dark-mode{
+    background-color: #121212;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #0066FF;
+    width: 80%;
+}
+
+td.data-schedule-cell.dark-mode{
+    padding: 10px;
+    text-align: left;
+    border: 1px solid black;
+    box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
 }
