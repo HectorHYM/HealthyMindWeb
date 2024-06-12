@@ -8,13 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <meta name="description" content="Edite a los usuarios de HealthyMind de la manera más sencilla">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    <div class="return-container">
-        <button class="logout-icon-btn material-symbols-outlined" id="logout-icon-btn">logout</button>
-    </div>
-    <div class="formContainer">
+    <header class="return-container">
+        <button id="logout-icon-btn" class="logout-icon-btn material-symbols-outlined" aria-label="Volver a tabla">logout</button>
+    </header>
+    <!--Formulario de edición-->
+    <main class="formContainer">
         <form id="regSpecialistForm" class="regSpecialistForm">
             <h3 class="lexend-semibold">Editar datos de especialista</h3>
             <div class="input-row">
@@ -58,10 +60,10 @@
                 </div>
             </div>
             <div class="btn-container">
-                <button type="submit" class="btn-register lexend-medium">Editar</button>
+                <button type="submit" class="btn-register lexend-medium" aria-label="Editar usuario">Editar</button>
             </div>   
         </form>
-    </div>
+    </main>
     <!-- Modal para feedback -->
     <div id="feedback-modal" class="modal">
         <div class="modal-content">
@@ -73,12 +75,12 @@
     <div id="confirm-modal" class="modal">
         <div class="modal-content">
             <p id="confirm-message"></p>
-            <button id="confirm-yes" class="confirm-btn">Sí</button>
-            <button id="confirm-no" class="confirm-btn">No</button>
+            <button id="confirm-yes" class="confirm-btn" aria-label="Confirmar edición">Sí</button>
+            <button id="confirm-no" class="confirm-btn" aria-label="Cancelar edición">No</button>
         </div>
     </div>
 
-    <script src="../js/specialist-edit.js" type="module"></script>
-    <script src="../js/firebase-config.js" type="module"></script>
+    <script src="../js/specialist-edit.js" type="module" defer></script>
+    <script src="../js/firebase-config.js" type="module" defer></script>
 </body>
 </html>

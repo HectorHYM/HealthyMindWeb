@@ -99,6 +99,7 @@ body{
     margin-bottom: 20px;
     padding-right: 140px;
     color: #0066FF;
+    display: block;
 }
 
 .form-box input[type="email"],

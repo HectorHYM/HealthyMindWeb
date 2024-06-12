@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador HealthyMind</title>
+    <meta name="description" content="Administrador HealthyMind - Ingrese y administre a los usuarios de HealthyMind para asegurar el ambiente saludable y seguro de la mejor aplicación para la salud mental">
     <link rel="stylesheet" href="../css/index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!--Navbar-->  
     <header>
-        <div class="navbar">
+        <nav class="navbar">
             <img src="../assets/img/logo.png" alt="Logo de HealthyMind">
-        </div>
+        </nav>
     </header>
 
-    <div class="form-box">
-        <form id="adminLogin">
-            <h2 class="lexend-semibold">Administre a los usuarios</h2>
+    <!--Formulario de login-->
+    <main class="form-box">
+        <form id="adminLogin" aria-labelledby="adminLoginTitle">
+            <h2 id="adminLoginTitle" class="lexend-semibold">Administre a los usuarios</h2>
             <p class="lexend-regular text-credentials">Por favor ingrese sus credenciales</p>
             <div>
-                <p class="lexend-medium input-email">Correo Electrónico</p>
-                <input type="email" id="emailField" required>
-                <p class="lexend-medium input-pass">Contraseña</p>
-                <input type="password" id="passwordField" required>
+                <label for="emailField" class="lexend-medium input-email">Correo Electrónico</label>
+                <input type="email" id="emailField" required aria-required="true">
+                <label for="passwordField" class="lexend-medium input-pass">Contraseña</label>
+                <input type="password" id="passwordField" required aria-required="true">
             </div>
             <div id="error-auth" class="lexend-regular-error error-auth"></div>
             <button class="lexend-semibold" type="submit">Ingresar</button>
@@ -32,6 +35,7 @@
                 <span class="lexend-semibold">Si no lograr ingresar correctamente, comuniquese con el equipo de HealthyMind</span>
             </div>
         </form>
+
         <div class="extra-box">
             <div class="image">
                 <img src="../assets/img/logo.png" alt="Logo de HealthyMind">
@@ -42,36 +46,32 @@
                 <img src="../assets/img/administrator.png" alt="Administradores">
             </div>
         </div>
-    </div>
+    </main>
 
+    <!--Pie de página-->
     <footer class="footer">
         <h2 class="lexend-semibold">Interacciones</h2>
         <div class="cards">
-            <div class="card">
-                <img src="../assets/img/card1.webp" alt="Acción de registrar">
+            <section class="card">
+                <img src="../assets/img/card1.webp" alt="Acción de registrar en HealthyMind">
                 <h4 class="lexend-semibold">Registra</h4>
                 <p class="lexend-medium">Registra especialistas que tú mismo hayas aprobado de antemano para la seguridad y confianza de la gente!</p>
-            </div>
-            <div class="card">
-                <img src="../assets/img/card2.jpeg" alt="Acción de modificar">
+            </section>
+            <section class="card">
+                <img src="../assets/img/card2.jpeg" alt="Acción de modificar en HealthyMind">
                 <h4 class="lexend-semibold">Modifica</h4>
                 <p class="lexend-medium">Modifica datos irregulares o cambiados recientemente para no contar con información obsoleta de nuestros especialistas!</p>
-            </div>
-            <div class="card">
-                <img src="../assets/img/card3.webp" alt="Acción de verificar">
+            </section>
+            <section class="card">
+                <img src="../assets/img/card3.webp" alt="Acción de verificar en HealthyMind">
                 <h4 class="lexend-semibold">Verifica</h4>
                 <p class="lexend-medium">Verifica, datos de los usuarios, agendas, citas, horas y demás para tener un control completo en caso de alguna de aclaración o suceso!</p>
-            </div>
-        </div>
-        <div>
-            <!--<img src="../assets/img/instagram.png" alt="">
-            <img src="../assets/img/gmail.png" alt="">
-            <img src="../assets/img/facebook.png" alt="">-->
+            </section>
         </div>
         <h3 class="lexend-semibold">Envianos un correo a healthymind@gmail.com</h3>
     </footer>
 
-    <script src="../js/firebase-config.js" type="module"></script>
-    <script src="../js/admin-login.js" type="module"></script>
+    <script src="../js/firebase-config.js" type="module" defer></script>
+    <script src="../js/admin-login.js" type="module" defer></script>
 </body>
 </html>

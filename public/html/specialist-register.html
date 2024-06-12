@@ -8,13 +8,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <meta name="description" content="Registre a los usuarios de HealthyMind de la manera más sencilla">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    <div class="return-container">
-        <button class="logout-icon-btn material-symbols-outlined" id="logout-icon-btn">logout</button>
-    </div>
-    <div class="formContainer">
+    <header class="return-container">
+        <button id="logout-icon-btn" class="logout-icon-btn material-symbols-outlined" aria-label="Volver a tabla">logout</button>
+    </header>
+    <!--Formulario de registro-->
+    <main class="formContainer">
         <form id="regSpecialistForm" class="regSpecialistForm">
             <h3 class="lexend-semibold">Regístro de especialista</h3>
             <div class="input-row">
@@ -59,10 +61,10 @@
             </div>
 
             <div class="btn-container">
-                <button type="submit" class="btn-register lexend-medium">Registrar</button>
+                <button type="submit" class="btn-register lexend-medium" aria-label="Registrar usuario">Registrar</button>
             </div>   
         </form>
-    </div>
+    </main>
     <!-- Modal para feedback -->
     <div id="feedback-modal" class="lexend-semibold modal">
         <div class="modal-content">
@@ -75,13 +77,13 @@
         <div class="modal-content">
             <p id="prompt-message" class="lexend-semibold"></p>
             <input type="password" id="prompt-input" class="prompt-input">
-            <button id="prompt-submit" class="lexend-medium confirm-btn">Aceptar</button>
-            <button id="prompt-cancel" class="lexend-medium confirm-btn">Cancelar</button>
+            <button id="prompt-submit" class="lexend-medium confirm-btn" aria-label="Aceptar registro de usuario">Aceptar</button>
+            <button id="prompt-cancel" class="lexend-medium confirm-btn" aria-label="Cancelar registro de usuario">Cancelar</button>
         </div>
     </div>
     
 
-    <script src="../js/firebase-config.js" type="module"></script>
-    <script src="../js/specialist-register.js" type="module"></script>
+    <script src="../js/firebase-config.js" type="module" defer></script>
+    <script src="../js/specialist-register.js" type="module" defer></script>
 </body>
 </html>
