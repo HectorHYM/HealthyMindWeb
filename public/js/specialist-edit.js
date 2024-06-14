@@ -1,9 +1,17 @@
-import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
 import { getFirestore, doc, getDoc, updateDoc, setDoc, collection } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
 import { app } from './firebase-config.js';
 
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+//*Guardado de estado de sesión
+onAuthStateChanged(auth, (user) => {
+    console.log("Estado de autenticación cambiado:", user);
+    if(!user){
+        window.location.href = "./index.html";
+    }
+});
 
 //*Boton de regreso a tabla de administración
 document.getElementById('logout-icon-btn').addEventListener('click', () => {

@@ -2,36 +2,43 @@ import { getAuth, signInWithEmailAndPassword, signOut, setPersistence, browserSe
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
 import { app } from './firebase-config.js';
 
+//*Inicialización de Firebase Authentication y Firestore
 const auth = getAuth(app);
 const db = getFirestore(app);
-
 const form = document.getElementById('adminLogin');
 
-setPersistence(auth, browserSessionPersistence).then(() => {
-    console.log("Persistencia de sesión configurada correctamenre");
-}).catch((error) => {
-    console.error("Error al configurar la persistencia del usuario", error);
-});
+//?Mensajes de errores
+const ERROR_MESSAGES = {
+    PERSISTENCE: "Error al configurar la persistencia del usuario: ",
+    LOGIN: "Credenciales incorrectas",
+    ROLE_VERIFICATION: "Error al verificar el rol del usuario: ",
+    USER_NOT_FOUND: "Usuario no encontrado",
+    ROLE_MISMATCH: "Rol de usuario no correspondido",
+    SIGN_OUT: "Error al cerrar sesión: "
+}
 
-//*Inicio de sesión
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
+//*Configuración de persistencia de usuario
+const configurePersistence = async () => {
+    try{
+        await setPersistence(auth, browserSessionPersistence);
+        console.log("Persistencia de sesión configurada correctamente");
+    }catch(error){
+        console.error(ERROR_MESSAGES.PERSISTENCE, error);
+    }
+};
 
-    const email = document.getElementById('emailField').value;
-    const password = document.getElementById('passwordField').value;
-    
-    signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
-        const user = userCredential.user;
-        authRol(user.uid);
-        console.log("Administrador autenticado: ", user);
-    }).catch((error) => {
-        console.error("Error de inicio de sesión: ", error.message);
-        document.getElementById("error-auth").textContent = "Credenciales incorrectas";
-    });
-});
+//*Función para cerrar sesión
+const logout = async() => {
+    try{
+        await signOut(auth);
+        console.log("Sesión cerrada exitosamente");
+    }catch(error){
+        console.error(ERROR_MESSAGES.SIGN_OUT, error.message);
+    }
+};
 
 //*Verificación de rol
-window.authRol = async (uid) => {
+const authRol = async (uid) => {
     try{
         const userRef = doc(db, 'administrador', uid);
         const docSnap = await getDoc(userRef);
@@ -40,32 +47,41 @@ window.authRol = async (uid) => {
             const userData = docSnap.data();
             const rol = userData.rol;
             if(rol === 'admin'){
-                //TODO - Redirigir a página principal de administrador.
                 window.location.href = "./list.html";
                 console.log("Rol del usuario: ", rol);
             }else{
-                console.log("Rol de usuario no correspondido")
-                document.getElementById("error-auth").textContent = "Rol de usuario no correspondido";
-                logout();
+                console.error(ERROR_MESSAGES.ROLE_MISMATCH)
+                document.getElementById('error-auth').textContent = ERROR_MESSAGES.ROLE_MISMATCH;
+                await logout();
             }
         }else{
-            console.log("No se encontró el documento del usuario");
-            document.getElementById("error-auth").textContent = "Usuario no encontrado";
-            logout();
+            console.error(ERROR_MESSAGES.USER_NOT_FOUND);
+            document.getElementById("error-auth").textContent = ERROR_MESSAGES.USER_NOT_FOUND;
+            await logout();
         }
     }catch(error){
-        console.error("Error al verificar el rol del usuario: ", error.message);
-        document.getElementById("error-auth").textContent = "Error al verificar el rol del usuario";
+        console.error(ERROR_MESSAGES.ROLE_VERIFICATION, error.message);
+        document.getElementById('error-auth').textContent = ERROR_MESSAGES.ROLE_VERIFICATION;
     }
     
-}
+};
 
-//*Función para cerrar sesión
-window.logout = async() => {
+configurePersistence();
+
+//*Inicio de sesión
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('emailField').value;
+    const password = document.getElementById('passwordField').value;
+    
     try{
-        await signOut(auth);
-        console.log("Sesión cerrada exitosamente");
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        await authRol(user.uid);
+        console.log("Administrador autenticado: ", user);
     }catch(error){
-        console.error("Error al cerrar sesión: ", error.message);
+        console.error(ERROR_MESSAGES.LOGIN, error.message);
+        document.getElementById('error-auth').textContent = ERROR_MESSAGES.LOGIN;
     }
-}
+});
