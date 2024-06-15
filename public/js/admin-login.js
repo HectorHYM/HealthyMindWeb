@@ -27,15 +27,25 @@ const configurePersistence = async () => {
     }
 };
 
-//*Función para cerrar sesión
-const logout = async() => {
+configurePersistence();
+
+//*Inicio de sesión
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const email = document.getElementById('emailField').value;
+    const password = document.getElementById('passwordField').value;
+    
     try{
-        await signOut(auth);
-        console.log("Sesión cerrada exitosamente");
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        await authRol(user.uid);
+        console.log("Administrador autenticado: ", user);
     }catch(error){
-        console.error(ERROR_MESSAGES.SIGN_OUT, error.message);
+        console.error(ERROR_MESSAGES.LOGIN, error.message);
+        document.getElementById('error-auth').textContent = ERROR_MESSAGES.LOGIN;
     }
-};
+});
 
 //*Verificación de rol
 const authRol = async (uid) => {
@@ -66,22 +76,12 @@ const authRol = async (uid) => {
     
 };
 
-configurePersistence();
-
-//*Inicio de sesión
-form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    const email = document.getElementById('emailField').value;
-    const password = document.getElementById('passwordField').value;
-    
+//*Función para cerrar sesión
+const logout = async() => {
     try{
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        const user = userCredential.user;
-        await authRol(user.uid);
-        console.log("Administrador autenticado: ", user);
+        await signOut(auth);
+        console.log("Sesión cerrada exitosamente");
     }catch(error){
-        console.error(ERROR_MESSAGES.LOGIN, error.message);
-        document.getElementById('error-auth').textContent = ERROR_MESSAGES.LOGIN;
+        console.error(ERROR_MESSAGES.SIGN_OUT, error.message);
     }
-});
+};
