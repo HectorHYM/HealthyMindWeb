@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
+import { getAuth, signOut, onAuthStateChanged} from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
 import { getFirestore, doc, getDocs, collection, deleteDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
 import { app } from './firebase-config.js';
 
@@ -214,14 +214,10 @@ const openTab = (tabIndex) => {
     for(let i = 0; i < tabs.length; i++){
         console.log(tabs.length);
         tabs[i].style.display = 'none';
-        //tabs[i].style.visibility = 'hidden';
-        //tabs[i].style.position = 'absolute';
         buttons[i].classList.remove('active');
     }
     //*Se muestra la pestaña seleccionada
     tabs[tabIndex].style.display = 'block';
-    //tabs[tabIndex].style.visibility = 'visible';
-    //tabs[tabIndex].style.position = 'relative';
     buttons[tabIndex].classList.add('active');
 };
 

@@ -10,6 +10,7 @@ const firebaseConfig = {
     measurementId: "G-V3V7Y30FCM"
 };
 
+//*Se inicializa la aplicación de Firebase
 const app = initializeApp(firebaseConfig);
 
 export {app}; //*Se exporta la configuración

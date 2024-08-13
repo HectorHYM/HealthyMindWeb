@@ -1,4 +1,4 @@
-//TODO - DETALLADO
+//!SIN USO
 import { getAuth, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js'
 import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-firestore.js";
 import { app } from './firebase-config.js';
