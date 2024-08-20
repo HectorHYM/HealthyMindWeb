@@ -2,6 +2,12 @@ import { logoutHandler, auth } from "./auth.js";
 import { loadUserData, deleteUser } from "./firestore.js";
 import { changeIcon } from "./icons.js";
 
+export const setUpNewRegisterButton = () => {
+    document.getElementById('new-btn').addEventListener('click', () =>{
+        window.location.href = '../../html/specialist-register.html';
+    });
+};
+
 //*Botones para cerrar sesión
 export const setupLogoutButtons = () => {
     document.getElementById('logout-btn').addEventListener('click', logoutHandler);
