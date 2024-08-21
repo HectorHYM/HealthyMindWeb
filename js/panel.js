@@ -13,13 +13,14 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-const enableDarkMode = (publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, theadDates, cells, scheduleTheads, modalContent) => {
+const enableDarkMode = (publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, infoButton, theadDates, cells, scheduleTheads, modalContent) => {
     const body = document.body;
     body.classList.add('dark-mode');
     publicationsTxt.classList.add('dark-mode');
     appointmentsTxt.classList.add('dark-mode');
     backIconBtn.classList.add('dark-mode');
     moreInfo.classList.add('dark-mode');
+    infoButton.classList.add('dark-mode');
     theadDates.classList.add('dark-mode');
     cells.forEach(cell => cell.classList.add('dark-mode'));
     modalContent.classList.add('dark-mode');
@@ -27,13 +28,14 @@ const enableDarkMode = (publicationsTxt, appointmentsTxt, backIconBtn, moreInfo,
     localStorage.setItem('darkMode', 'enabled');
 };
 
-const disableDarkMode = (publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, theadDates, cells, scheduleTheads, modalContent) => {
+const disableDarkMode = (publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, infoButton, theadDates, cells, scheduleTheads, modalContent) => {
     const body = document.body;
     body.classList.remove('dark-mode');
     publicationsTxt.classList.remove('dark-mode');
     appointmentsTxt.classList.remove('dark-mode');
     backIconBtn.classList.remove('dark-mode');
     moreInfo.classList.remove('dark-mode');
+    infoButton.classList.remove('dark-mode');
     theadDates.classList.remove('dark-mode');
     cells.forEach(cell => cell.classList.remove('dark-mode'));
     modalContent.classList.remove('dark-mode');
@@ -90,6 +92,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const appointmentsTxt = document.querySelector('.appointments-txt');
     const backIconBtn = document.querySelector('.back-icon-btn');
     const moreInfo = document.querySelector('.more-info');
+    const infoButton = document.querySelector('.info-button');
     const theadDates = document.querySelector('.thead-dates');
     const cells = document.querySelectorAll('.date-cell');
     const modalContent = document.querySelector('.modal-content');
@@ -97,9 +100,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     //*Se aplica el modo oscuro si está guardado en localStorage
     if(localStorage.getItem('darkMode') === 'enabled'){
-        enableDarkMode(publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, theadDates, cells, scheduleTheads, modalContent);
+        enableDarkMode(publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, infoButton, theadDates, cells, scheduleTheads, modalContent);
     }else{
-        disableDarkMode(publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, theadDates, cells, scheduleTheads, modalContent);
+        disableDarkMode(publicationsTxt, appointmentsTxt, backIconBtn, moreInfo, infoButton, theadDates, cells, scheduleTheads, modalContent);
     }
     
 });
@@ -114,7 +117,8 @@ const fillDetails = async (registerId) => {
             if(docSnap.exists()){
                 const data = docSnap.data();
                 const profileImage = document.getElementById('img-perfil');
-                profileImage.src = data.foto || 'N/A';
+                profileImage.src = data.foto || '../assets/img/logo.png';
+
                 document.querySelector('.detail-curp').textContent = registerId || 'N/A';
                 document.querySelector('.detail-nombre').textContent = data.nombres || 'N/A';
                 document.querySelector('.detail-apellido').textContent = data.apellido || 'N/A';
@@ -122,6 +126,24 @@ const fillDetails = async (registerId) => {
                 document.querySelector('.detail-especialidad').textContent = data.especialidad || 'N/A';
                 document.querySelector('.detail-rfc').textContent = data.rfc || 'N/A';
                 document.querySelector('.detail-telefono').textContent = data.telefono || 'N/A';
+
+                //* Elementos y lógica para el botón y el modal de información
+                const infoButton = document.getElementById('info-button');
+                const modal = document.getElementById('modal');
+                const modalTitle = document.getElementById('modal-title');
+                const modalInfo = document.getElementById('modal-info');
+                const modalTable = document.getElementById('modal-table');
+                const modalInfoContent = document.getElementById('modal-info-content');
+
+                //*Evento de boton de información
+                infoButton.addEventListener('click', () => {
+                    modalTitle.textContent = 'Información'; //? Se cambia el titulo del modal si es necesario
+                    modalInfoContent.textContent = data.informacion || "No hay información disponible";
+                    modalInfo.style.display = 'block';
+                    modalTable.style.display = 'none';
+                    modal.style.display = 'block'; 
+                });
+
             }else{
                 console.error("No se encontro registro con ese ID");
             }
@@ -188,6 +210,11 @@ const formatDate = (dateId) => {
 };
 
 const showModal = async (dateId, registerId) => {
+    document.getElementById('modal-info').style.display = 'none'; // Ocultar modal de información
+    document.getElementById('modal-title').textContent = 'Horarios'; // Cambia el título al de horarios
+    document.getElementById('modal-table').style.display = 'table'; // Mostrar tabla
+    document.getElementById('modal').style.display = 'block';
+
     const modal = document.getElementById('modal');
     const modalTableBody = document.querySelector('#modal-table tbody');
     modalTableBody.innerHTML = ``;

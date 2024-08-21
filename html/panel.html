@@ -47,7 +47,10 @@
                 <label class="lexend-semibold" for="correo">Correo Electrónico</label>
                 <p class="lexend-semibold detail-email"></p>
                 <label class="lexend-semibold" for="especialidad">Especialidad</label>
-                <p class="lexend-semibold detail-especialidad"></p>
+                <div>
+                    <p class="lexend-semibold detail-especialidad"></p>
+                    <button id="info-button" class="info-button material-symbols-outlined">info</button>
+                </div>
                 <label class="lexend-semibold" for="rfc">RFC</label>
                 <p class="lexend-semibold detail-rfc"></p>
                 <label class="lexend-semibold" for="telefono">Telefono</label>
@@ -73,8 +76,8 @@
         <!--Modal de horarios-->
         <div id="modal" class="modal">
             <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2 class="lexend-semibold">Horarios</h2>
+                <span id="modal-close" class="close">&times;</span>
+                <h2 id="modal-title" class="lexend-semibold">Horarios</h2>
                 <table id="modal-table" class="modal-table">
                     <thead>
                         <tr>
@@ -87,6 +90,9 @@
                         <!--Contenido agregado dinámicamente-->
                     </tbody>
                 </table>
+                <div id="modal-info" style="display: none;">
+                    <p id="modal-info-content" class="lexend-light"></p>
+                </div>
             </div>
         </div>
     </main>

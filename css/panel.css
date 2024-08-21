@@ -32,6 +32,13 @@ html, body {
     font-style: normal;
 }
 
+.lexend-light{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
 /*Iconos*/
 .material-symbols-outlined {
     font-variation-settings:
@@ -137,6 +144,10 @@ html, body {
     margin: 0px 20px 30px;
 }
 
+.more-info div{
+    display: flex;
+}
+
 .img-perfil{
     width: 30px;
     height: 30px;
@@ -154,6 +165,18 @@ label{
 .detail-apellido{
     margin-left: 5px;
     color: whitesmoke;
+}
+
+.info-button{
+    color: black;
+    background-color: none;
+    background-color: transparent;
+    border: none;
+    margin-left: 10px; 
+}
+
+.info-button:hover{
+    color: #0066FF;
 }
 
 h2{
@@ -264,7 +287,7 @@ body.dark-mode {
     margin: 5px;
 }
 
-.back-icon-btn.dark-mode:hover{
+.dark-mode .back-icon-btn:hover{
     color: #0066FF;
 }
 
@@ -276,6 +299,17 @@ body.dark-mode {
     box-shadow: 0px 19px 15px rgba(0, 0, 0, 0.1);
     height: 100%;
     margin: 0px 20px 30px;
+}
+
+.info-button.dark-mode{
+    color: whitesmoke;
+    background-color: none;
+    background-color: transparent;
+    border: none;
+}
+
+.dark-mode .info-button:hover{
+    color: #0066FF;
 }
 
 .thead-dates.dark-mode{
