@@ -184,6 +184,25 @@ h2{
     margin: 10px;
 }
 
+.pub-element{
+    margin: 10px;
+}
+
+.pub-element:hover{
+    margin: 10px;
+    color: #0066FF;
+}
+
+.pub-details-img{
+    max-width: 100%;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
 .dates-table,
 .modal-table{
     width: 100%;

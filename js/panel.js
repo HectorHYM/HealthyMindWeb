@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     fillDetails(registerId);
 
+    //* Se obtiene el número de publicaciones y se coloca en el div correspondiente
     getNumberOfPublications(registerId).then(size => {
         const div = document.querySelector('.publications');
         div.textContent = `${size}`;
@@ -56,12 +57,31 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("Error al obtener el número de publicaciones", error);
     });
 
+    //* Se muestra el modal de la lista de publicaciones al presionar su elemento
+    document.querySelector('.publications-txt').addEventListener('click', () => {
+        showPublicationsModal(registerId);
+    });
+
+    //* Se muestra el modal de los detalles de la publicación previamente seleccionada
+    document.getElementById('publicationsList').addEventListener('click', (e) => {
+        if (e.target && e.target.matches('li.pub-element')) {
+            const publicationId = e.target.getAttribute('data-id');
+            showPublicationDetailsModal(registerId, publicationId);
+        }
+    });
+
+    //* Se obtiene el número de pagos (citas realizadas) y se coloca en el div correspondiente
     getNumberOfPayments(registerId).then(size => {
         const div = document.querySelector('.appointments');
         div.textContent = `${size}`;
     }).catch(error => {
         console.error("Error al obtener el número de pagos", error);
     });
+
+    //* Se muestra el modal de pagos al presionar su elemento
+    /*document.querySelector('.appointments-txt').addEventListener('click', () => {
+
+    });*/
 
     if(registerId){
         try{
@@ -107,7 +127,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     
 });
 
-//*LLenado de datos delos detalles de especialista
+//*LLenado de datos de los detalles de especialista
 const fillDetails = async (registerId) => {
     if(registerId){
         try{
@@ -133,6 +153,8 @@ const fillDetails = async (registerId) => {
                 const modalTitle = document.getElementById('modal-title');
                 const modalInfo = document.getElementById('modal-info');
                 const modalTable = document.getElementById('modal-table');
+                const publicationsModal = document.getElementById('publicationsModal');
+                const publicationsDetailsModal = document.getElementById('publicationDetailsModal');
                 const modalInfoContent = document.getElementById('modal-info-content');
 
                 //*Evento de boton de información
@@ -141,6 +163,8 @@ const fillDetails = async (registerId) => {
                     modalInfoContent.textContent = data.informacion || "No hay información disponible";
                     modalInfo.style.display = 'block';
                     modalTable.style.display = 'none';
+                    publicationsModal.style.display = 'none';
+                    publicationsDetailsModal.style.display = 'none';
                     modal.style.display = 'block'; 
                 });
 
@@ -155,19 +179,85 @@ const fillDetails = async (registerId) => {
     }
 };
 
-
-//*Número de publicaciones
+//*Lógica para obtener el número total de publicaciones
 const getNumberOfPublications = async (registerId) => {
     const publicationsRef = collection(db, 'users-especialista', registerId, 'publicaciones');
     const snapshot = await getDocs(publicationsRef);
     return snapshot.size; //?Se retorna el número de documentos de la colección
 };
 
-//*Número de pagos
+//* Función para obtener las publicaciones
+const getPublications = async (registerId) => {
+    const publicationsRef = collection(db, 'users-especialista', registerId, 'publicaciones');
+    const snapshot = await getDocs(publicationsRef);
+    return snapshot.docs.map(doc => ({
+        ...doc.data(),
+        docId: doc.id
+    })); //? Se hace un mapeo de todas las publicaciones
+};
+
+//* Función para abrir el modal y llenar la lista de publicaciones
+const showPublicationsModal = async (registerId) => {
+    const publicationsModal = document.getElementById('publicationsModal');
+    const modalTitle = document.getElementById('modal-title');
+    const publicationsList = document.getElementById('publicationsList');
+    const modalInfo = document.getElementById('modal-info');
+    const modalTable = document.getElementById('modal-table');
+    const publicationsDetailsModal = document.getElementById('publicationDetailsModal');
+    
+    //* Se obtiene la lista de las publicaciones
+    const publications = await getPublications(registerId);
+    
+    //* Se llena la lista en el modal y se ocultan los modales no utilizados
+    publicationsList.innerHTML = publications.map(pub => `<li class="lexend-regular pub-element" data-id="${pub.docId}">${pub.titulo}</li>`).join('');
+    modal.style.display = 'block';
+    modalInfo.style.display = 'none';
+    modalTable.style.display = 'none';
+    publicationsDetailsModal.style.display = 'none';
+    publicationsModal.style.display = 'block';
+    modalTitle.textContent = 'Lista de publicaciones'; //? Se cambia el titulo del modal si es necesario
+};
+
+//* Función para abrir el modal con los detalles de la publicación
+const showPublicationDetailsModal = async (registerId, publicationId) => {
+    console.log('registerId:', registerId);
+    console.log('publicationId:', publicationId);
+    const publicationsDetailsModal = document.getElementById('publicationDetailsModal');
+    const publicationsModal = document.getElementById('publicationsModal');
+    const modalInfo = document.getElementById('modal-info');
+    const modalTable = document.getElementById('modal-table');
+    const titleElement = document.getElementById('modal-title');
+    const imageElement = document.getElementById('modalImage');
+    const textElement = document.getElementById('modalText');
+
+    publicationsDetailsModal.style.display = 'block';
+    publicationsModal.style.display = 'none';
+    modalInfo.style.display = 'none';
+    modalTable.style.display = 'none';
+
+    //* Se obtiene la publicación seleccionada
+    const publicationRef = doc(db, 'users-especialista', registerId, 'publicaciones', publicationId);
+    const publicationDoc = await getDoc(publicationRef);
+    const publication = publicationDoc.data();
+
+    //* Se actualiza el contenido del modal con los datos de la publicación
+    titleElement.textContent = publication.titulo;
+    imageElement.src = publication.imagen;
+    textElement.textContent = publication.texto;
+};
+
+//*Lógica para obtener el número de pagos (citas realizadas)
 const getNumberOfPayments = async (registerId) => {
     const publicationsRef = collection(db, 'users-especialista', registerId, 'pago');
     const snapshot = await getDocs(publicationsRef);
     return snapshot.size;
+};
+
+//* Función para obtener los pagos
+const getPayments = async (registerId) => {
+    const paymentsRef = collection(db, 'users-especialista', registerId, 'pagos');
+    const snapshot = await getDocs(paymentsRef);
+    return snapshot.docs.map(doc => doc.data()); //? Se hace un mapeo de todos los pagos
 };
 
 //*Se obtienen las fechas de la agenda
@@ -209,10 +299,13 @@ const formatDate = (dateId) => {
     return `Día ${day} de ${monthName} del año ${year}`;
 };
 
+//* Se muestra el modal con la tabla de horarios y se muestran los datos
 const showModal = async (dateId, registerId) => {
-    document.getElementById('modal-info').style.display = 'none'; // Ocultar modal de información
-    document.getElementById('modal-title').textContent = 'Horarios'; // Cambia el título al de horarios
-    document.getElementById('modal-table').style.display = 'table'; // Mostrar tabla
+    document.getElementById('modal-info').style.display = 'none'; //? Ocultar modal de información
+    document.getElementById('publicationsModal').style.display = 'none'; //? Ocultar modal de publicaciones
+    document.getElementById('publicationDetailsModal').style.display = 'none' //? Ocultar modal de detalles de publicaciones
+    document.getElementById('modal-title').textContent = 'Horarios'; //? Cambia el título al de horarios
+    document.getElementById('modal-table').style.display = 'table'; //? Mostrar modal de la tabla
     document.getElementById('modal').style.display = 'block';
 
     const modal = document.getElementById('modal');
@@ -228,7 +321,7 @@ const showModal = async (dateId, registerId) => {
         const stateCell = document.createElement('td');
         stateCell.className = 'data-schedule-cell';
         stateCell.classList.add('lexend-regular');
-        stateCell.textContent = data.estado || 'N/A';
+        stateCell.textContent = data.estado || 'No disponible';
         const startTimeCell = document.createElement('td');
         startTimeCell.className = 'data-schedule-cell';
         startTimeCell.classList.add('lexend-regular');

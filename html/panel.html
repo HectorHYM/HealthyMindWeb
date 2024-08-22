@@ -73,11 +73,12 @@
             </tbody>
         </table>
 
-        <!--Modal de horarios-->
+        <!--Modales-->
         <div id="modal" class="modal">
             <div class="modal-content">
                 <span id="modal-close" class="close">&times;</span>
                 <h2 id="modal-title" class="lexend-semibold">Horarios</h2>
+                <!--Modal para horarios de las fechas-->
                 <table id="modal-table" class="modal-table">
                     <thead>
                         <tr>
@@ -90,8 +91,29 @@
                         <!--Contenido agregado dinámicamente-->
                     </tbody>
                 </table>
+                <!--Modal para información sobre la especialidad de los especialistas-->
                 <div id="modal-info" style="display: none;">
                     <p id="modal-info-content" class="lexend-light"></p>
+                </div>
+                <!-- Modal de Publicaciones -->
+                <div id="publicationsModal" style="display: none;">
+                    <div class="modal-publications-content">
+                        <ul id="publicationsList"></ul>
+                    </div>
+                </div>
+                <!-- Modal de Detalles de la Publicación -->
+                <div id="publicationDetailsModal" style="display: none;">
+                    <div class="modal-publications-details-content">
+                        <img id="modalImage" class="pub-details-img" src="" alt="Imagen de la publicación HealthyMind">
+                        <p id="modalText" class="lexend-regular"></p>
+                    </div>
+                </div>
+
+                <!-- Modal de Pagos -->
+                <div id="paymentsModal" style="display: none;">
+                    <div class="modal-payments-content">
+                        <ul id="paymentsList"></ul>
+                    </div>
                 </div>
             </div>
         </div>

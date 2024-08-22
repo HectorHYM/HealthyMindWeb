@@ -21,42 +21,42 @@
             <h3 class="lexend-semibold">Regístro de especialista</h3>
             <div class="input-row">
                 <div class="input-container">
-                    <input type="text" id="namesField" placeholder=" " required>
+                    <input type="text" id="namesField" placeholder=" " required aria-required="true">
                     <label class="lexend-medium" for="namesField">Nombre(s)</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" id="lastnamesField" placeholder=" " required>
-                    <label class="lexend-medium" for="namesField">Apellidos</label>
+                    <input type="text" id="lastnamesField" placeholder=" " required aria-required="true">
+                    <label class="lexend-medium" for="lastnamesField">Apellidos</label>
                 </div>
             </div>
             <div class="input-row">
                 <div class="input-container">
-                    <input type="email" id="emailField" placeholder=" " required>
-                    <label class="lexend-medium" for="namesField">Correo Electrónico</label>
+                    <input type="email" id="emailField" placeholder=" " required aria-required="true">
+                    <label class="lexend-medium" for="emailField">Correo Electrónico</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" id="specialtyField" placeholder=" " required>
-                    <label class="lexend-medium" for="namesField">Especialidad</label>
-                </div>
-            </div>
-            <div class="input-row">
-                <div class="input-container">
-                    <input type="date" id="birthdateField" placeholder=" " required>
-                    <label class="lexend-medium" for="namesField">Fecha de nacimiento</label>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="rfcField" placeholder=" " pattern="[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}" title="Formato de RFC no válido" required>
-                    <label class="lexend-medium" for="namesField">RFC</label>
+                    <input type="text" id="specialtyField" placeholder=" " required aria-required="true">
+                    <label class="lexend-medium" for="specialtyField">Especialidad</label>
                 </div>
             </div>
             <div class="input-row">
                 <div class="input-container">
-                    <input type="text" id="phonenumberField" placeholder=" " pattern="\d{10}" title="El número de teléfono debe tener 10 dígitos" required>
-                    <label class="lexend-medium" for="namesField">Número de telefono</label>
+                    <input type="date" id="birthdateField" placeholder=" " required aria-required="true">
+                    <label class="lexend-medium" for="birthdateField">Fecha de nacimiento</label>
                 </div>
                 <div class="input-container">
-                    <input type="text" id="curpField" placeholder=" " pattern="^[A-Z]{4}\d{6}[HM][A-Z]{2}[A-Z]{3}[A-Z\d]{2}$" title="Formato de CURP no válido" required>
-                    <label class="lexend-medium" for="namesField">CURP</label>
+                    <input type="text" id="rfcField" placeholder=" " pattern="[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}" title="Formato de RFC no válido" required aria-required="true">
+                    <label class="lexend-medium" for="rfcField">RFC</label>
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-container">
+                    <input type="text" id="phonenumberField" placeholder=" " pattern="\d{10}" title="El número de teléfono debe tener 10 dígitos" required aria-required="true">
+                    <label class="lexend-medium" for="phonenumberField">Número de telefono</label>
+                </div>
+                <div class="input-container">
+                    <input type="text" id="curpField" placeholder=" " pattern="^[A-Z]{4}\d{6}[HM][A-Z]{2}[A-Z]{3}[A-Z\d]{2}$" title="Formato de CURP no válido" required aria-required="true">
+                    <label class="lexend-medium" for="curpField">CURP</label>
                 </div>
             </div>
 
