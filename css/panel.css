@@ -189,8 +189,21 @@ h2{
 }
 
 .pub-element:hover{
-    margin: 10px;
+    margin: 12px;
     color: #0066FF;
+}
+
+.pay-element{
+    margin: 15px;
+}
+
+.pay-element:hover{
+    margin: 17px;
+    color: #0066FF;
+}
+
+.pay-text-element{
+    margin: 5px 10px;
 }
 
 .pub-details-img{

@@ -79,9 +79,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     //* Se muestra el modal de pagos al presionar su elemento
-    /*document.querySelector('.appointments-txt').addEventListener('click', () => {
+    document.querySelector('.appointments-txt').addEventListener('click', () => {
+        showPaymentsModal(registerId);
+    });
 
-    });*/
+    //* Se muestra el modal de los detalles del pago/cita previamente seleccionada
+    document.getElementById('paymentsList').addEventListener('click', (e) => {
+        if (e.target && e.target.matches('li.pay-element')) {
+            const paymentId = e.target.getAttribute('data-id');
+            showPaymentDetailsModal(paymentId);
+        }
+    });
 
     if(registerId){
         try{
@@ -155,6 +163,8 @@ const fillDetails = async (registerId) => {
                 const modalTable = document.getElementById('modal-table');
                 const publicationsModal = document.getElementById('publicationsModal');
                 const publicationsDetailsModal = document.getElementById('publicationDetailsModal');
+                const paymentsModal = document.getElementById('paymentsModal');
+                const paymentsDetailsModal = document.getElementById('paymentDetailsModal');
                 const modalInfoContent = document.getElementById('modal-info-content');
 
                 //*Evento de boton de información
@@ -165,6 +175,8 @@ const fillDetails = async (registerId) => {
                     modalTable.style.display = 'none';
                     publicationsModal.style.display = 'none';
                     publicationsDetailsModal.style.display = 'none';
+                    paymentsModal.style.display = 'none';
+                    paymentsDetailsModal.style.display = 'none';
                     modal.style.display = 'block'; 
                 });
 
@@ -186,7 +198,7 @@ const getNumberOfPublications = async (registerId) => {
     return snapshot.size; //?Se retorna el número de documentos de la colección
 };
 
-//* Función para obtener las publicaciones
+//* Función para obtener la lista las publicaciones
 const getPublications = async (registerId) => {
     const publicationsRef = collection(db, 'users-especialista', registerId, 'publicaciones');
     const snapshot = await getDocs(publicationsRef);
@@ -199,6 +211,8 @@ const getPublications = async (registerId) => {
 //* Función para abrir el modal y llenar la lista de publicaciones
 const showPublicationsModal = async (registerId) => {
     const publicationsModal = document.getElementById('publicationsModal');
+    const paymentsModal = document.getElementById('paymentsModal');
+    const paymentsDetailsModal = document.getElementById('paymentDetailsModal');
     const modalTitle = document.getElementById('modal-title');
     const publicationsList = document.getElementById('publicationsList');
     const modalInfo = document.getElementById('modal-info');
@@ -215,6 +229,8 @@ const showPublicationsModal = async (registerId) => {
     modalTable.style.display = 'none';
     publicationsDetailsModal.style.display = 'none';
     publicationsModal.style.display = 'block';
+    paymentsModal.style.display = 'none';
+    paymentsDetailsModal.style.display = 'none';
     modalTitle.textContent = 'Lista de publicaciones'; //? Se cambia el titulo del modal si es necesario
 };
 
@@ -224,6 +240,8 @@ const showPublicationDetailsModal = async (registerId, publicationId) => {
     console.log('publicationId:', publicationId);
     const publicationsDetailsModal = document.getElementById('publicationDetailsModal');
     const publicationsModal = document.getElementById('publicationsModal');
+    const paymentsModal = document.getElementById('paymentsModal');
+    const paymentsDetailsModal = document.getElementById('paymentDetailsModal');
     const modalInfo = document.getElementById('modal-info');
     const modalTable = document.getElementById('modal-table');
     const titleElement = document.getElementById('modal-title');
@@ -232,6 +250,8 @@ const showPublicationDetailsModal = async (registerId, publicationId) => {
 
     publicationsDetailsModal.style.display = 'block';
     publicationsModal.style.display = 'none';
+    paymentsModal.style.display = 'none';
+    paymentsDetailsModal.style.display = 'none';
     modalInfo.style.display = 'none';
     modalTable.style.display = 'none';
 
@@ -248,16 +268,117 @@ const showPublicationDetailsModal = async (registerId, publicationId) => {
 
 //*Lógica para obtener el número de pagos (citas realizadas)
 const getNumberOfPayments = async (registerId) => {
-    const publicationsRef = collection(db, 'users-especialista', registerId, 'pago');
-    const snapshot = await getDocs(publicationsRef);
-    return snapshot.size;
+    try{
+        const paymentsRef = collection(db, 'transacciones');
+        const querySnapshot = await getDocs(paymentsRef); //? Se obtienen los documentos de transacciones
+
+        let size = 0; //? Contador para contar el número de citas realizadas por el especialista correspondiente
+
+        querySnapshot.forEach((doc) => {
+            const specialistId = doc.data().id_especialista;
+            //? Si el campo id_especialista coincide con el id del especialista correspondiente se añade al contador
+            if(specialistId === registerId){
+                size++;
+            }
+        });
+    return size;
+    }catch(error){
+        console.error("Error al obtener los documentos: ", error);
+        return 0;
+    }
 };
 
-//* Función para obtener los pagos
+//* Función para obtener la lista de los pagos (citas realizadas)
 const getPayments = async (registerId) => {
-    const paymentsRef = collection(db, 'users-especialista', registerId, 'pagos');
-    const snapshot = await getDocs(paymentsRef);
-    return snapshot.docs.map(doc => doc.data()); //? Se hace un mapeo de todos los pagos
+    const paymentsRef = collection(db, 'transacciones');
+    const querySnapshot = await getDocs(paymentsRef); //? Se obtienen los documentos de transacciones
+
+    const paymentsList = [];
+    querySnapshot.forEach((doc) => {
+        const specialistId = doc.data().id_especialista;
+        if(specialistId === registerId){
+            paymentsList.push({
+                ...doc.data(),
+                docId: doc.id
+            });
+        }
+    });
+
+    return paymentsList;
+};
+
+//* Función para abrir el modal y llenar la lista de los pagos realizados
+const showPaymentsModal = async (registerId) => {
+    const paymentsModal = document.getElementById('paymentsModal');
+    const paymentsDetailsModal = document.getElementById('paymentDetailsModal');
+    const publicationsModal = document.getElementById('publicationsModal');
+    const modalTitle = document.getElementById('modal-title');
+    const paymentsList = document.getElementById('paymentsList');
+    const modalInfo = document.getElementById('modal-info');
+    const modalTable = document.getElementById('modal-table');
+    const publicationsDetailsModal = document.getElementById('publicationDetailsModal');
+    
+    //* Se obtiene la lista de los pagos referentes al especialista actual
+    const payments = await getPayments(registerId);
+    
+    //* Se llena la lista en el modal y se ocultan los modales no utilizados
+    paymentsList.innerHTML = payments.map(pay => `<li class="lexend-regular pay-element" data-id="${pay.docId}">${pay.fecha_cita}</li>`).join('');
+    modal.style.display = 'block';
+    paymentsModal.style.display = 'block';
+    paymentsDetailsModal.style.display = 'none';
+    modalInfo.style.display = 'none';
+    modalTable.style.display = 'none';
+    publicationsDetailsModal.style.display = 'none';
+    publicationsModal.style.display = 'none';
+    modalTitle.textContent = 'Lista de citas realizadas'; //? Se cambia el titulo del modal si es necesario
+};
+
+//* Función para abrir el modal con los detalles del pago/cita
+const showPaymentDetailsModal = async (paymentId) => {
+    const publicationsDetailsModal = document.getElementById('publicationDetailsModal');
+    const publicationsModal = document.getElementById('publicationsModal');
+    const paymentsModal = document.getElementById('paymentsModal');
+    const paymentsDetailsModal = document.getElementById('paymentDetailsModal');
+    const modalInfo = document.getElementById('modal-info');
+    const modalTable = document.getElementById('modal-table');
+
+    const titleElement = document.getElementById('modal-title');
+
+    const dateText = document.getElementById('date-text');
+    const payStateText = document.getElementById('pay-state-text');
+    const payDateText = document.getElementById('pay-date-text');
+    const scheduleText = document.getElementById('schedule-text');
+    const namePacientText = document.getElementById('name-pacient-text');
+    const meetCodeText = document.getElementById('meet-code-text');
+    const totalPaymentText = document.getElementById('total-payment-text');
+
+    publicationsDetailsModal.style.display = 'none';
+    publicationsModal.style.display = 'none';
+    paymentsModal.style.display = 'none';
+    paymentsDetailsModal.style.display = 'block';
+    modalInfo.style.display = 'none';
+    modalTable.style.display = 'none';
+
+    //* Se obtiene el pago/cita seleccionada
+    const paymentRef = doc(db, 'transacciones', paymentId);
+    const paymentDoc = await getDoc(paymentRef);
+    const payment = paymentDoc.data();
+
+    //* Se actualiza el contenido del modal con los datos del pago/cita
+    titleElement.textContent = "Detalles de la cita";
+
+    dateText.textContent = payment.fecha_cita;
+    payStateText.textContent = payment.estado_pago;
+    payDateText.textContent = payment.pago_cita;
+    scheduleText.textContent = payment.horario_cita;
+
+    const pacientRef = doc(db, 'users-paciente', payment.id_paciente);
+    const pacientDoc = await getDoc(pacientRef);
+    const pacient = pacientDoc.data();
+    namePacientText.textContent = pacient.nombres + " " + pacient.apellidos; //? Accedemos a la colección de los pacientes para obtener el nombre
+
+    meetCodeText.textContent = payment.id_meet;
+    totalPaymentText.textContent = payment.total;
 };
 
 //*Se obtienen las fechas de la agenda
@@ -304,6 +425,8 @@ const showModal = async (dateId, registerId) => {
     document.getElementById('modal-info').style.display = 'none'; //? Ocultar modal de información
     document.getElementById('publicationsModal').style.display = 'none'; //? Ocultar modal de publicaciones
     document.getElementById('publicationDetailsModal').style.display = 'none' //? Ocultar modal de detalles de publicaciones
+    document.getElementById('paymentsModal').style.display = 'none'; //? Ocultar modal de lista de pagos
+    document.getElementById('paymentDetailsModal').style.display = 'none'; //? Ocultar modal de detalles de pagos/citas
     document.getElementById('modal-title').textContent = 'Horarios'; //? Cambia el título al de horarios
     document.getElementById('modal-table').style.display = 'table'; //? Mostrar modal de la tabla
     document.getElementById('modal').style.display = 'block';
