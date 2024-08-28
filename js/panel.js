@@ -365,7 +365,7 @@ const showPaymentDetailsModal = async (paymentId) => {
     const payment = paymentDoc.data();
 
     //* Se actualiza el contenido del modal con los datos del pago/cita
-    titleElement.textContent = "Detalles de la cita";
+    titleElement.textContent = "Detalles de cita";
 
     dateText.textContent = payment.fecha_cita;
     payStateText.textContent = payment.estado_pago;

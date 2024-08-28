@@ -8,7 +8,6 @@
 html, body {
     height: 100%;
     width: 100%;
-    background-image: url(../assets/img/forms_bg.webp);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -44,47 +43,97 @@ html, body {
     margin: 10px 0px 0px 10px;
 }
 
+.logout-btn-cont{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
 .logout-icon-btn{
-    background-color: white;
-    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.1);
-    border: 1px solid #aaa;
+    background: none;
+    max-width: 5%;
+    border: none;
     border-radius: 5px;
     cursor: pointer;
+    float: right;
 }
 
 .logout-icon-btn:hover{
-    background-color: #0066FF;
-    border: 1px solid #0066FF;
+    color: white;
 }
 
-.formContainer{
+.container{
+    display: flex;
+    height: 100vh; /* Ocupa toda la altura de la vista */
+}
+
+.left-side{
+    flex: 1; /* Ocupa la mitad izquierda */
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 0px 20px;
-    margin: 0;
+    text-align: center;
+}
+
+.right-side{
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #0066FF;
+    box-shadow: 1px 1px 1px 8px rgba(0,0,0,0.1);
+}
+
+.main-image{
+    max-width: 40%;
+    border-radius: 10px;
+    height: auto;
+}
+
+.title{
+    margin-top: 20px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.description {
+    /*margin-top: 10px;*/
+    margin: 10px 30% 0px 30%;
+    font-size: 16px;
+    text-align: left;
+    color: #888;
+}
+
+.arrow {
+    margin-top: 20px;
+    width: 50px; /* Ajusta el tamaño de la flecha según necesites */
+    height: auto;
 }
 
 .regSpecialistForm{
     width: 100%;
     max-width: 800px;
     margin: auto;
-    padding: 20px;
+    padding: 40px;
     background: whitesmoke;
     border-radius: 10px;
     box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
     justify-content: space-between;
 }
 
 h3{
-    margin: 10px;
+    margin: 25px 5px;
 }
 
 .input-row{
     display: flex;
     justify-content: space-between;
+    margin: 10px 0px;
 }
 
 .input-container{

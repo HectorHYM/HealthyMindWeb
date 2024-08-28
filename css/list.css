@@ -331,6 +331,7 @@ html, body {
 body.dark-mode {
     background-color: #121212;
     color: #ffffff;
+    border: none;
 }
 
 .modal-content.dark-mode {

@@ -12,57 +12,67 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    <header class="return-container">
-        <button id="logout-icon-btn" class="logout-icon-btn material-symbols-outlined" aria-label="Volver a tabla">logout</button>
-    </header>
     <!--Formulario de edición-->
-    <main class="formContainer">
-        <form id="regSpecialistForm" class="regSpecialistForm">
-            <h3 class="lexend-semibold">Editar datos de especialista</h3>
-            <div class="input-row">
-                <div class="input-container">
-                    <input type="text" id="nombres" placeholder=" " required>
-                    <label class="lexend-medium" for="namesField">Nombre(s)</label>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="apellido" placeholder=" " required>
-                    <label class="lexend-medium" for="namesField">Apellidos</label>
-                </div>
+    <main class="container">
+        <div class="left-side">
+            <img src="../assets/img/calm.png" alt="Edición de especialista" class="main-image">
+            <h2 class="lexend-semibold title">Mantén la consistencia</h2>
+            <p class="lexend-medium description">Mantener la consistencia al editar los datos de un especialista garantiza una experiencia
+                de usuario intuitiva y coherente, mejorando la precisión y la eficiencia en la actualización de la información.
+            </p>
+            <img src="../assets/img/blue_arrow.png" alt="Flecha" class="arrow">
+        </div>
+        <div class="right-side">
+            <div class="logout-btn-cont">
+                <button id="logout-icon-btn" class="logout-icon-btn material-symbols-outlined" aria-label="Volver a tabla">logout</button>
             </div>
-            <div class="input-row">
-                <div class="input-container">
-                    <input type="email" id="email" placeholder=" " required>
-                    <label class="lexend-medium" for="namesField">Correo Electrónico</label>
+            <form id="regSpecialistForm" class="regSpecialistForm">
+                <h3 class="lexend-semibold">Editar datos de especialista</h3>
+                <div class="input-row">
+                    <div class="input-container">
+                        <input type="text" id="nombres" placeholder=" " required>
+                        <label class="lexend-medium" for="namesField">Nombre(s)</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="apellido" placeholder=" " required>
+                        <label class="lexend-medium" for="namesField">Apellidos</label>
+                    </div>
                 </div>
-                <div class="input-container">
-                    <input type="text" id="especialidad" placeholder=" " required>
-                    <label class="lexend-medium" for="namesField">Especialidad</label>
+                <div class="input-row">
+                    <div class="input-container">
+                        <input type="email" id="email" placeholder=" " required>
+                        <label class="lexend-medium" for="namesField">Correo Electrónico</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="especialidad" placeholder=" " required>
+                        <label class="lexend-medium" for="namesField">Especialidad</label>
+                    </div>
                 </div>
-            </div>
-            <div class="input-row">
-                <div class="input-container">
-                    <input type="date" id="birthdateField" placeholder=" " required>
-                    <label class="lexend-medium" for="namesField">Fecha de nacimiento</label>
+                <div class="input-row">
+                    <div class="input-container">
+                        <input type="date" id="birthdateField" placeholder=" " required>
+                        <label class="lexend-medium" for="namesField">Fecha de nacimiento</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="rfc" placeholder=" " pattern="[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}" title="Formato de RFC no válido" required>
+                        <label class="lexend-medium" for="namesField">RFC</label>
+                    </div>
                 </div>
-                <div class="input-container">
-                    <input type="text" id="rfc" placeholder=" " pattern="[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}" title="Formato de RFC no válido" required>
-                    <label class="lexend-medium" for="namesField">RFC</label>
+                <div class="input-row">
+                    <div class="input-container">
+                        <input type="text" id="telefono" placeholder=" " pattern="\d{10}" title="El número de teléfono debe tener 10 dígitos" required>
+                        <label class="lexend-medium" for="namesField">Número de telefono</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="curp" placeholder=" " readonly>
+                        <label class="lexend-medium" for="namesField">CURP</label>
+                    </div>
                 </div>
-            </div>
-            <div class="input-row">
-                <div class="input-container">
-                    <input type="text" id="telefono" placeholder=" " pattern="\d{10}" title="El número de teléfono debe tener 10 dígitos" required>
-                    <label class="lexend-medium" for="namesField">Número de telefono</label>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="curp" placeholder=" " readonly>
-                    <label class="lexend-medium" for="namesField">CURP</label>
-                </div>
-            </div>
-            <div class="btn-container">
-                <button type="submit" class="btn-register lexend-medium" aria-label="Editar usuario">Editar</button>
-            </div>   
-        </form>
+                <div class="btn-container">
+                    <button type="submit" class="btn-register lexend-medium" aria-label="Editar usuario">Editar</button>
+                </div>   
+            </form>
+        </div>
     </main>
     <!-- Modal para feedback -->
     <div id="feedback-modal" class="modal">

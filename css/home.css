@@ -1,0 +1,249 @@
+/* General */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+body{
+    background-color: white;
+}
+
+/* Fuentes */
+.lexend-semibold{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.lexend-medium{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.lexend-regular{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Iconos */
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+/* Elementos */
+
+/* Light Mode */
+.header-cont{
+    display: flex;
+    align-items: flex-end;
+    justify-content: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.settings-btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.settings-btn:hover{
+    color: #0066FF;
+}
+
+/* Estilos para barra lateral emergente */
+.sidebar{
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: -250px; /* Se oculta la barra lateral fuera de la vista */
+    background-color: #0066FF;
+    color: whitesmoke;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.2);
+}
+
+.sidebar.active{
+    right: 0;
+}
+
+.theme-cont{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.theme-p{
+    color: black;
+}
+
+.theme-icons-cont{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    gap: 8px;
+}
+
+.light-mode-toggle{
+    background: none;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.light-mode-toggle:hover{
+    color: whitesmoke;
+}
+
+.dark-mode-toggle{
+    background: none;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.dark-mode-toggle:hover{
+    color: whitesmoke;
+}
+
+.logout-cont{
+    display: flex;
+    align-items: center; /* Alinea los elementos verticalmente en el centro */
+    gap: 10px; /* Espacio entre los elementos */
+    justify-content: flex-end;
+    margin-top: auto;
+}
+
+.logout-btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.logout-icon {
+    margin-left: 8px;
+}
+
+.logout-btn:hover{
+    color: whitesmoke;
+}
+
+main{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+}
+
+.title{
+    font-size: 5em;
+    margin-bottom: 20px;
+    color: #0066FF;
+}
+
+.subtitle{
+    font-size: 1.5em;
+    margin-bottom: 40px;
+}
+
+.options-cont{
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espacio entre los elementos */
+}
+
+.esp-btn,
+.pac-btn{
+    display: flex;
+    align-items: center;
+    padding: 20px 40px;
+    border: 2px solid #0066FF;
+    border-radius: 8px;
+    background-color: whitesmoke;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.esp-btn:hover,
+.pac-btn:hover{
+    background-color: #0066FF;
+}
+
+.btn-icon{
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.hands-img{
+    width: 40%;
+    height: 45%;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../assets/img/hands.png);
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #1A1F36;
+}
+
+.settings-btn.dark-mode{
+    color: white;
+}
+
+.dark-mode.settings-btn:hover{
+    color: #0066FF;
+}
+
+.subtitle.dark-mode{
+    color: white;
+}
+
+.esp-btn.dark-mode{
+    border: 2px solid black;
+}
+
+.pac-btn.dark-mode{
+    border: 2px solid black;
+}
+
+.hands-img.dark-mode{
+    width: 40%;
+    height: 45%;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../assets/img/png_inverted_hands.png);
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}

@@ -12,58 +12,68 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    <header class="return-container">
-        <button id="logout-icon-btn" class="logout-icon-btn material-symbols-outlined" aria-label="Volver a tabla">logout</button>
-    </header>
     <!--Formulario de registro-->
-    <main class="formContainer">
-        <form id="regSpecialistForm" class="regSpecialistForm">
-            <h3 class="lexend-semibold">Regístro de especialista</h3>
-            <div class="input-row">
-                <div class="input-container">
-                    <input type="text" id="namesField" placeholder=" " required aria-required="true">
-                    <label class="lexend-medium" for="namesField">Nombre(s)</label>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="lastnamesField" placeholder=" " required aria-required="true">
-                    <label class="lexend-medium" for="lastnamesField">Apellidos</label>
-                </div>
+    <main class="container">
+        <div class="left-side">
+            <img src="../assets/img/infantil.png" alt="Registro de especialista" class="main-image">
+            <h2 class="lexend-semibold title">Desarrolla la plataforma</h2>
+            <p class="lexend-medium description">Asegurándote de que cada especialista registrado en HealthyMind actúe con profesionalismo 
+                y ética, contribuyes a que la plataforma sea un lugar más seguro para todos los pacientes.
+            </p>
+            <img src="../assets/img/blue_arrow.png" alt="Flecha" class="arrow">
+        </div>
+        <div class="right-side">
+            <div class="logout-btn-cont">
+                <button id="logout-icon-btn" class="logout-icon-btn material-symbols-outlined" aria-label="Volver a tabla">logout</button>
             </div>
-            <div class="input-row">
-                <div class="input-container">
-                    <input type="email" id="emailField" placeholder=" " required aria-required="true">
-                    <label class="lexend-medium" for="emailField">Correo Electrónico</label>
+            <form id="regSpecialistForm" class="regSpecialistForm">
+                <h3 class="lexend-semibold">Regístro de especialista</h3>
+                <div class="input-row">
+                    <div class="input-container">
+                        <input type="text" id="namesField" placeholder=" " required aria-required="true">
+                        <label class="lexend-medium" for="namesField">Nombre(s)</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="lastnamesField" placeholder=" " required aria-required="true">
+                        <label class="lexend-medium" for="lastnamesField">Apellidos</label>
+                    </div>
                 </div>
-                <div class="input-container">
-                    <input type="text" id="specialtyField" placeholder=" " required aria-required="true">
-                    <label class="lexend-medium" for="specialtyField">Especialidad</label>
+                <div class="input-row">
+                    <div class="input-container">
+                        <input type="email" id="emailField" placeholder=" " required aria-required="true">
+                        <label class="lexend-medium" for="emailField">Correo Electrónico</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="specialtyField" placeholder=" " required aria-required="true">
+                        <label class="lexend-medium" for="specialtyField">Especialidad</label>
+                    </div>
                 </div>
-            </div>
-            <div class="input-row">
-                <div class="input-container">
-                    <input type="date" id="birthdateField" placeholder=" " required aria-required="true">
-                    <label class="lexend-medium" for="birthdateField">Fecha de nacimiento</label>
+                <div class="input-row">
+                    <div class="input-container">
+                        <input type="date" id="birthdateField" placeholder=" " required aria-required="true">
+                        <label class="lexend-medium" for="birthdateField">Fecha de nacimiento</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="rfcField" placeholder=" " pattern="[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}" title="Formato de RFC no válido" required aria-required="true">
+                        <label class="lexend-medium" for="rfcField">RFC</label>
+                    </div>
                 </div>
-                <div class="input-container">
-                    <input type="text" id="rfcField" placeholder=" " pattern="[A-ZÑ&]{3,4}\d{6}[A-Z0-9]{3}" title="Formato de RFC no válido" required aria-required="true">
-                    <label class="lexend-medium" for="rfcField">RFC</label>
+                <div class="input-row">
+                    <div class="input-container">
+                        <input type="text" id="phonenumberField" placeholder=" " pattern="\d{10}" title="El número de teléfono debe tener 10 dígitos" required aria-required="true">
+                        <label class="lexend-medium" for="phonenumberField">Número de telefono</label>
+                    </div>
+                    <div class="input-container">
+                        <input type="text" id="curpField" placeholder=" " pattern="^[A-Z]{4}\d{6}[HM][A-Z]{2}[A-Z]{3}[A-Z\d]{2}$" title="Formato de CURP no válido" required aria-required="true">
+                        <label class="lexend-medium" for="curpField">CURP</label>
+                    </div>
                 </div>
-            </div>
-            <div class="input-row">
-                <div class="input-container">
-                    <input type="text" id="phonenumberField" placeholder=" " pattern="\d{10}" title="El número de teléfono debe tener 10 dígitos" required aria-required="true">
-                    <label class="lexend-medium" for="phonenumberField">Número de telefono</label>
-                </div>
-                <div class="input-container">
-                    <input type="text" id="curpField" placeholder=" " pattern="^[A-Z]{4}\d{6}[HM][A-Z]{2}[A-Z]{3}[A-Z\d]{2}$" title="Formato de CURP no válido" required aria-required="true">
-                    <label class="lexend-medium" for="curpField">CURP</label>
-                </div>
-            </div>
-
-            <div class="btn-container">
-                <button type="submit" class="btn-register lexend-medium" aria-label="Registrar usuario">Registrar</button>
-            </div>   
-        </form>
+    
+                <div class="btn-container">
+                    <button type="submit" class="btn-register lexend-medium" aria-label="Registrar usuario">Registrar</button>
+                </div>   
+            </form>
+        </div>
     </main>
     <!-- Modal para feedback -->
     <div id="feedback-modal" class="lexend-semibold modal">
@@ -82,7 +92,6 @@
         </div>
     </div>
     
-
     <script src="../js/firebase-config.js" type="module" defer></script>
     <script src="../js/specialist-register.js" type="module" defer></script>
 </body>

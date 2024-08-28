@@ -2,6 +2,7 @@ import { logoutHandler, auth } from "./auth.js";
 import { loadUserData, deleteUser } from "./firestore.js";
 import { changeIcon } from "./icons.js";
 
+//*Boton para nuevos registros
 export const setUpNewRegisterButton = () => {
     document.getElementById('new-btn').addEventListener('click', () =>{
         window.location.href = '../../html/specialist-register.html';

@@ -57,7 +57,7 @@ const authRol = async (uid) => {
             const userData = docSnap.data();
             const rol = userData.rol;
             if(rol === 'admin'){
-                window.location.href = "./list.html";
+                window.location.href = "./home.html";
                 console.log("Rol del usuario: ", rol);
             }else{
                 console.error(ERROR_MESSAGES.ROLE_MISMATCH)

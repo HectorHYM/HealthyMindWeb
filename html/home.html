@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Inicio de administración</title>
+</head>
+<body>
+    <header>
+        <div class="header-cont">
+            <button id="settings-btn" class="material-symbols-outlined settings-btn">settings</button>
+        </div>
+    </header>
+    <main>
+        <!-- Barra de configuración -->
+         <div id="sidebar" class="sidebar">
+            <div class="theme-cont">
+                <p class="lexend-semibold theme-p">Tema</p>
+            </div>
+            <div class="theme-icons-cont">
+                <button id="light-mode-toggle" class="material-symbols-outlined light-mode-toggle" aria-label="Alternar a modo claro">light_mode</button>
+                <button id="dark-mode-toggle" class="material-symbols-outlined dark-mode-toggle" aria-label="Alternar a modo oscuro">dark_mode</button>
+            </div>
+            <div class="logout-cont">
+                <button id="logout-btn" class="logout-btn lexend-semibold" aria-label="Cerrar sesión">
+                    Cerrar sesión
+                    <span class="material-symbols-outlined logout-icon">logout</span>
+                </button>
+            </div>
+         </div>
+
+        <h1 class="title lexend-semibold">Bienvenido!</h1>
+        <h2 class="subtitle lexend-medium">¿Qué clase de usuario administrara el día de hoy?</h2>
+        <div class="options-cont">
+            <button id="esp-btn" class="esp-btn lexend-regular">
+                <img src="../assets/img/esp_icon.png" alt="Icono de especialistas" class="btn-icon">
+                Especialistas
+            </button>
+            <button class="pac-btn lexend-regular">
+                <img src="../assets/img/users_icon.png" alt="Icono de pacientes" class="btn-icon">
+                Pacientes
+            </button>
+        </div>
+        <div class="hands-img"></div>
+    </main>
+
+    <script src="../js/home.js" type="module" defer></script>
+</body>
+</html>
