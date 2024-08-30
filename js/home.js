@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupLightMode();
     setupDarkMode();
+    setupNeutralMode();
 
     document.getElementById('settings-btn').addEventListener('click', () => {
         let sidebar = document.getElementById('sidebar');
@@ -54,8 +55,11 @@ const logoutHandler = async () => {
 //*Inicializa los elementos los cuales seran cambiados y llama a la función correspondiente para activar el light mode
 const setupLightMode = () => {
     const lightButton = document.getElementById('light-mode-toggle');
+    const darkButton = document.getElementById('dark-mode-toggle');
+    const neutralButton = document.getElementById('neutral-mode-toggle');
     const body = document.body;
     const settingsBtn = document.querySelector('.settings-btn');
+    const sidebar = document.querySelector('.sidebar');
     const title = document.querySelector('.title');
     const subtitle = document.querySelector('.subtitle');
     const espBtn = document.querySelector('.esp-btn');
@@ -63,34 +67,50 @@ const setupLightMode = () => {
     const handsImg = document.querySelector('.hands-img');
 
     if(localStorage.getItem('lightMode') === 'enabled'){
-        enableLightMode(body, settingsBtn, title, subtitle, espBtn, pacBtn, handsImg);
+        enableLightMode(lightButton, darkButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
     };
 
     lightButton.addEventListener('click', () => {
         if(localStorage.getItem('lightMode') != 'enabled'){
-            enableLightMode(body, settingsBtn, title, subtitle, espBtn, pacBtn, handsImg);
+            enableLightMode(lightButton, darkButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
         }
     });
 };
 
 //*Activa el modo luminoso
-const enableLightMode = (body, settingsBtn, title, subtitle, espBtn, pacBtn, handsImg) => {
+const enableLightMode = (lightButton, darkButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg) => {
     body.classList.remove('dark-mode');
     settingsBtn.classList.remove('dark-mode');
-    title.classList.remove('dark-mode');
     subtitle.classList.remove('dark-mode');
     espBtn.classList.remove('dark-mode');
     pacBtn.classList.remove('dark-mode');
     handsImg.classList.remove('dark-mode');
+
+    body.classList.remove('neutral-mode');
+    settingsBtn.classList.remove('neutral-mode');
+    sidebar.classList.remove('neutral-mode');
+    lightButton.classList.remove('neutral-mode');
+    darkButton.classList.remove('neutral-mode');
+    neutralButton.classList.remove('neutral-mode');
+    title.classList.remove('neutral-mode');
+    subtitle.classList.remove('neutral-mode');
+    espBtn.classList.remove('neutral-mode');
+    pacBtn.classList.remove('neutral-mode');
+    handsImg.classList.remove('neutral-mode');
+
     localStorage.setItem('darkMode', 'disabled');
+    localStorage.setItem('neutralMode', 'disabled');
     localStorage.setItem('lightMode', 'enabled');
 };
 
 //*Inicializa los elementos los cuales seran cambiados y llama a la función correspondiente para activar el dark mode
 const setupDarkMode = () => {
     const darkButton = document.getElementById('dark-mode-toggle');
+    const lightButton = document.getElementById('light-mode-toggle');
+    const neutralButton = document.getElementById('neutral-mode-toggle');
     const body = document.body;
     const settingsBtn = document.querySelector('.settings-btn');
+    const sidebar = document.querySelector('.sidebar');
     const title = document.querySelector('.title');
     const subtitle = document.querySelector('.subtitle');
     const espBtn = document.querySelector('.esp-btn');
@@ -98,25 +118,89 @@ const setupDarkMode = () => {
     const handsImg = document.querySelector('.hands-img');
 
     if(localStorage.getItem('darkMode') === 'enabled'){
-        enableDarkMode(body, settingsBtn, title, subtitle, espBtn, pacBtn, handsImg);
+        enableDarkMode(darkButton, lightButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
     };
 
     darkButton.addEventListener('click', () => {
         if(localStorage.getItem('darkMode') != 'enabled'){
-            enableDarkMode(body, settingsBtn, title, subtitle, espBtn, pacBtn, handsImg);
+            enableDarkMode(darkButton, lightButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
         }
     });
 };
 
 //*Activa el modo oscuro
-const enableDarkMode = (body, settingsBtn, title, subtitle, espBtn, pacBtn, handsImg) => {
+const enableDarkMode = (darkButton, lightButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg) => {
     body.classList.add('dark-mode');
     settingsBtn.classList.add('dark-mode');
-    title.classList.add('dark-mode');
     subtitle.classList.add('dark-mode');
     espBtn.classList.add('dark-mode');
     pacBtn.classList.add('dark-mode');
     handsImg.classList.add('dark-mode');
+
+    body.classList.remove('neutral-mode');
+    settingsBtn.classList.remove('neutral-mode');
+    sidebar.classList.remove('neutral-mode');
+    lightButton.classList.remove('neutral-mode');
+    darkButton.classList.remove('neutral-mode');
+    neutralButton.classList.remove('neutral-mode');
+    title.classList.remove('neutral-mode');
+    subtitle.classList.remove('neutral-mode');
+    espBtn.classList.remove('neutral-mode');
+    pacBtn.classList.remove('neutral-mode');
+    handsImg.classList.remove('neutral-mode');
+
     localStorage.setItem('lightMode', 'disabled');
+    localStorage.setItem('neutralMode', 'disabled');
     localStorage.setItem('darkMode', 'enabled');
+};
+
+//*Inicializa los elementos los cuales seran cambiados y llama a la función correspondiente para activar el neutral mode
+const setupNeutralMode = () => {
+    const neutralButton = document.getElementById('neutral-mode-toggle');
+    const lightButton = document.getElementById('light-mode-toggle');
+    const darkButton = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+    const settingsBtn = document.querySelector('.settings-btn');
+    const sidebar = document.querySelector('.sidebar');
+    const title = document.querySelector('.title');
+    const subtitle = document.querySelector('.subtitle');
+    const espBtn = document.querySelector('.esp-btn');
+    const pacBtn = document.querySelector('.pac-btn');
+    const handsImg = document.querySelector('.hands-img');
+
+    if(localStorage.getItem('neutralMode') === 'enabled'){
+        enableNeutralMode(neutralButton, lightButton, darkButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
+    };
+
+    neutralButton.addEventListener('click', () => {
+        if(localStorage.getItem('neutralMode') != 'enabled'){
+            enableNeutralMode(neutralButton, lightButton, darkButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
+        }
+    });
+};
+
+//*Activa el modo oscuro
+const enableNeutralMode = (neutralButton, lightButton, darkButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg) => {
+    body.classList.add('neutral-mode');
+    settingsBtn.classList.add('neutral-mode');
+    sidebar.classList.add('neutral-mode');
+    lightButton.classList.add('neutral-mode');
+    darkButton.classList.add('neutral-mode');
+    neutralButton.classList.add('neutral-mode');
+    title.classList.add('neutral-mode');
+    subtitle.classList.add('neutral-mode');
+    espBtn.classList.add('neutral-mode');
+    pacBtn.classList.add('neutral-mode');
+    handsImg.classList.add('neutral-mode');
+
+    body.classList.remove('dark-mode');
+    settingsBtn.classList.remove('dark-mode');
+    subtitle.classList.remove('dark-mode');
+    espBtn.classList.remove('dark-mode');
+    pacBtn.classList.remove('dark-mode');
+    handsImg.classList.remove('dark-mode');
+
+    localStorage.setItem('lightMode', 'disabled');
+    localStorage.setItem('darkMode', 'disabled');
+    localStorage.setItem('neutralMode', 'enabled');
 };
