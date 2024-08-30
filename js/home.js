@@ -27,6 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('esp-btn').addEventListener('click', () =>{
         window.location.href = '../html/list.html';
     });
+
+    document.getElementById('pac-btn').addEventListener('click', () =>{
+        window.location.href = '../html/list_p.html';
+    });
 });
 
 //*Función para el estado de autenticación con el método correspondiente
