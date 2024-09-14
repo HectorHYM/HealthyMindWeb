@@ -146,6 +146,7 @@ function createTable(registers) {
                 <th class="headers">Especialidad</th>
                 <th class="headers">Telefono</th>
                 <th class="headers">RFC</th>
+                <th class="headers">Cedula</th>
                 <th class="actions-head">Acciones</th>
             </tr>
         </thead>
@@ -171,6 +172,7 @@ const populateTable = (registers, tbody) => {
             <td>${register.especialidad}</td>
             <td>${register.telefono}</td>
             <td>${register.rfc}</td>
+            <td>${register.cedula}</td>
             <td class="action">
                 <span class="actions">...</span>
                 <div class="pop-up lexend-medium">
