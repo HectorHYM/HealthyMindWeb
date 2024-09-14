@@ -11,6 +11,17 @@ html, body {
     overflow-y: hidden;
 }
 
+body,
+.settings-btn,
+.sidebar,
+.title,
+.subtitle,
+.esp-btn,
+.pac-btn,
+.hands-img {
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease, background-image 0.3s ease;
+}
+
 body{
     background-color: whitesmoke;
 }
@@ -189,7 +200,8 @@ main{
 }
 
 .esp-btn,
-.pac-btn{
+.pac-btn,
+.pub-btn{
     display: flex;
     align-items: center;
     padding: 20px 40px;
@@ -201,7 +213,8 @@ main{
 }
 
 .esp-btn:hover,
-.pac-btn:hover{
+.pac-btn:hover,
+.pub-btn:hover{
     background-color: #0066FF;
 }
 
@@ -237,14 +250,6 @@ body.dark-mode {
 
 .subtitle.dark-mode{
     color: whitesmoke;
-}
-
-.esp-btn.dark-mode{
-    border: 2px solid black;
-}
-
-.pac-btn.dark-mode{
-    border: 2px solid black;
 }
 
 .hands-img.dark-mode{
@@ -283,16 +288,18 @@ body.neutral-mode{
     color: #0066FF;
 }
 
+.neutral-mode.logout-btn:hover{
+    color: #0066FF;
+}
+
 .title.neutral-mode,
 .subtitle.neutral-mode{
     color: white;
 }
 
-.esp-btn.neutral-mode{
-    border: 2px solid black;
-}
-
-.pac-btn.neutral-mode{
+.esp-btn.neutral-mode,
+.pac-btn.neutral-mode,
+.pub-btn.neutral-mode{
     border: 2px solid black;
 }
 

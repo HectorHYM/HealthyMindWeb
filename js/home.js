@@ -60,25 +60,27 @@ const setupLightMode = () => {
     const body = document.body;
     const settingsBtn = document.querySelector('.settings-btn');
     const sidebar = document.querySelector('.sidebar');
+    const logoutBtn = document.querySelector('.logout-btn');
     const title = document.querySelector('.title');
     const subtitle = document.querySelector('.subtitle');
     const espBtn = document.querySelector('.esp-btn');
     const pacBtn = document.querySelector('.pac-btn');
+    const pubBtn = document.querySelector('.pub-btn');
     const handsImg = document.querySelector('.hands-img');
 
     if(localStorage.getItem('lightMode') === 'enabled'){
-        enableLightMode(lightButton, darkButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
+        enableLightMode(lightButton, darkButton, neutralButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn, handsImg);
     };
 
     lightButton.addEventListener('click', () => {
         if(localStorage.getItem('lightMode') != 'enabled'){
-            enableLightMode(lightButton, darkButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
+            enableLightMode(lightButton, darkButton, neutralButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn, handsImg);
         }
     });
 };
 
 //*Activa el modo luminoso
-const enableLightMode = (lightButton, darkButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg) => {
+const enableLightMode = (lightButton, darkButton, neutralButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn, handsImg) => {
     body.classList.remove('dark-mode');
     settingsBtn.classList.remove('dark-mode');
     subtitle.classList.remove('dark-mode');
@@ -92,10 +94,12 @@ const enableLightMode = (lightButton, darkButton, neutralButton, body, settingsB
     lightButton.classList.remove('neutral-mode');
     darkButton.classList.remove('neutral-mode');
     neutralButton.classList.remove('neutral-mode');
+    logoutBtn.classList.remove('neutral-mode');
     title.classList.remove('neutral-mode');
     subtitle.classList.remove('neutral-mode');
     espBtn.classList.remove('neutral-mode');
     pacBtn.classList.remove('neutral-mode');
+    pubBtn.classList.remove('neutral-mode');
     handsImg.classList.remove('neutral-mode');
 
     localStorage.setItem('darkMode', 'disabled');
@@ -111,30 +115,30 @@ const setupDarkMode = () => {
     const body = document.body;
     const settingsBtn = document.querySelector('.settings-btn');
     const sidebar = document.querySelector('.sidebar');
+    const logoutBtn = document.querySelector('.logout-btn');
     const title = document.querySelector('.title');
     const subtitle = document.querySelector('.subtitle');
     const espBtn = document.querySelector('.esp-btn');
     const pacBtn = document.querySelector('.pac-btn');
+    const pubBtn = document.querySelector('.pub-btn');
     const handsImg = document.querySelector('.hands-img');
 
     if(localStorage.getItem('darkMode') === 'enabled'){
-        enableDarkMode(darkButton, lightButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
+        enableDarkMode(darkButton, lightButton, neutralButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn, handsImg);
     };
 
     darkButton.addEventListener('click', () => {
         if(localStorage.getItem('darkMode') != 'enabled'){
-            enableDarkMode(darkButton, lightButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
+            enableDarkMode(darkButton, lightButton, neutralButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn, handsImg);
         }
     });
 };
 
 //*Activa el modo oscuro
-const enableDarkMode = (darkButton, lightButton, neutralButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg) => {
+const enableDarkMode = (darkButton, lightButton, neutralButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn, handsImg) => {
     body.classList.add('dark-mode');
     settingsBtn.classList.add('dark-mode');
     subtitle.classList.add('dark-mode');
-    espBtn.classList.add('dark-mode');
-    pacBtn.classList.add('dark-mode');
     handsImg.classList.add('dark-mode');
 
     body.classList.remove('neutral-mode');
@@ -143,10 +147,12 @@ const enableDarkMode = (darkButton, lightButton, neutralButton, body, settingsBt
     lightButton.classList.remove('neutral-mode');
     darkButton.classList.remove('neutral-mode');
     neutralButton.classList.remove('neutral-mode');
+    logoutBtn.classList.remove('neutral-mode');
     title.classList.remove('neutral-mode');
     subtitle.classList.remove('neutral-mode');
     espBtn.classList.remove('neutral-mode');
     pacBtn.classList.remove('neutral-mode');
+    pubBtn.classList.remove('neutral-mode');
     handsImg.classList.remove('neutral-mode');
 
     localStorage.setItem('lightMode', 'disabled');
@@ -162,42 +168,44 @@ const setupNeutralMode = () => {
     const body = document.body;
     const settingsBtn = document.querySelector('.settings-btn');
     const sidebar = document.querySelector('.sidebar');
+    const logoutBtn = document.querySelector('.logout-btn');
     const title = document.querySelector('.title');
     const subtitle = document.querySelector('.subtitle');
     const espBtn = document.querySelector('.esp-btn');
     const pacBtn = document.querySelector('.pac-btn');
+    const pubBtn = document.querySelector('.pub-btn');
     const handsImg = document.querySelector('.hands-img');
 
     if(localStorage.getItem('neutralMode') === 'enabled'){
-        enableNeutralMode(neutralButton, lightButton, darkButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
+        enableNeutralMode(neutralButton, lightButton, darkButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn, handsImg);
     };
 
     neutralButton.addEventListener('click', () => {
         if(localStorage.getItem('neutralMode') != 'enabled'){
-            enableNeutralMode(neutralButton, lightButton, darkButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg);
+            enableNeutralMode(neutralButton, lightButton, darkButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn,  handsImg);
         }
     });
 };
 
 //*Activa el modo oscuro
-const enableNeutralMode = (neutralButton, lightButton, darkButton, body, settingsBtn, sidebar, title, subtitle, espBtn, pacBtn, handsImg) => {
+const enableNeutralMode = (neutralButton, lightButton, darkButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn, handsImg) => {
     body.classList.add('neutral-mode');
     settingsBtn.classList.add('neutral-mode');
     sidebar.classList.add('neutral-mode');
     lightButton.classList.add('neutral-mode');
     darkButton.classList.add('neutral-mode');
     neutralButton.classList.add('neutral-mode');
+    logoutBtn.classList.add('neutral-mode');
     title.classList.add('neutral-mode');
     subtitle.classList.add('neutral-mode');
     espBtn.classList.add('neutral-mode');
     pacBtn.classList.add('neutral-mode');
+    pubBtn.classList.add('neutral-mode');
     handsImg.classList.add('neutral-mode');
 
     body.classList.remove('dark-mode');
     settingsBtn.classList.remove('dark-mode');
     subtitle.classList.remove('dark-mode');
-    espBtn.classList.remove('dark-mode');
-    pacBtn.classList.remove('dark-mode');
     handsImg.classList.remove('dark-mode');
 
     localStorage.setItem('lightMode', 'disabled');

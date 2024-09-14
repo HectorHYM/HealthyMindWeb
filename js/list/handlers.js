@@ -4,15 +4,17 @@ import { changeIcon } from "./icons.js";
 
 //*Boton para nuevos registros
 export const setUpNewRegisterButton = () => {
-    document.getElementById('new-btn').addEventListener('click', () =>{
+    document.getElementById('new-btn').addEventListener('click', () => {
         window.location.href = '../../html/specialist-register.html';
     });
 };
 
-//*Botones para cerrar sesión
-export const setupLogoutButtons = () => {
-    document.getElementById('logout-btn').addEventListener('click', logoutHandler);
-    document.getElementById('logout-icon-btn').addEventListener('click', logoutHandler);
+//*Boton para volver a home
+export const setupBackButton = () => {
+    //!document.getElementById('back-icon-btn').addEventListener('click', logoutHandler);
+    document.getElementById('back-icon-btn').addEventListener('click', () => {
+        window.location.href = '../../html/home.html';
+    });
 };
 
 //*Función que añade eventos para la ejecución de la busqueda de usuarios
@@ -110,7 +112,9 @@ const openTab = (tabIndex) => {
             buttons[i].classList.remove('active');
         };
         tabs[tabIndex].style.display = 'block';
-        buttons[tabIndex].classList.add('active'); 
+        if(tabs.length > 1 && buttons.length > 1){
+            buttons[tabIndex].classList.add('active'); 
+        }
     }else{
         console.error(`tabIndex ${tabIndex} fuera de rango o elementos no encontrados`);
     }
@@ -137,7 +141,7 @@ function createTable(registers) {
             <tr class="lexend-medium">
                 <th class="check-icon material-symbols-outlined">checklist</th>
                 <th class="headers">Nombre(s)</th>
-                <th class="headers">Apellido</th>
+                <th class="headers">Apellidos</th>
                 <th class="headers">Email</th>
                 <th class="headers">Especialidad</th>
                 <th class="headers">Telefono</th>
@@ -162,7 +166,7 @@ const populateTable = (registers, tbody) => {
         `
             <td class="check-void-icon material-symbols-outlined">check_box_outline_blank</td>
             <td>${register.nombres}</td>
-            <td>${register.apellido}</td>
+            <td>${register.apellido_p} ${register.apellido_m}</td>
             <td>${register.email}</td>
             <td>${register.especialidad}</td>
             <td>${register.telefono}</td>
@@ -201,48 +205,6 @@ const populateTable = (registers, tbody) => {
 };
 
 //*Inicializa los elementos los cuales seran cambiados y llama a las funciones correspondientes
-export const setupDarkMode = () => {
-    const toggleButton = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-    const modalContents = document.querySelectorAll('.modal-content');
-    const confirmButtons = document.querySelectorAll('.confirm-btn');
-    const logoutBtn = document.querySelector('.logout-btn');
-    const logoutIconBtn = document.querySelector('.logout-icon-btn');
-
-    if(localStorage.getItem('darkMode') === 'enabled'){
-        enableDarkMode(toggleButton, body, modalContents, confirmButtons, logoutBtn, logoutIconBtn);
-    };
-
-    toggleButton.addEventListener('click', () => {
-        if(localStorage.getItem('darkMode') != 'enabled'){
-            enableDarkMode(toggleButton, body, modalContents, confirmButtons, logoutBtn, logoutIconBtn);
-        }else{
-            disableDarkMode(toggleButton, body, modalContents, confirmButtons, logoutBtn, logoutIconBtn);
-        }
-    });
-};
-
-//*Activa el modo oscuro
-const enableDarkMode = (toggleButton, body, modalContents, confirmButtons, logoutBtn, logoutIconBtn) => {
-    toggleButton.classList.add('dark-mode');
-    body.classList.add('dark-mode');
-    modalContents.forEach(modal => modal.classList.add('dark-mode'));
-    confirmButtons.forEach(button => button.classList.add('dark-mode'));
-    logoutBtn.classList.add('dark-mode');
-    logoutIconBtn.classList.add('dark-mode');
-    localStorage.setItem('darkMode', 'enabled');
-};
-
-//*Desactiva el modo oscuro
-const disableDarkMode = (toggleButton, body, modalContents, confirmButtons, logoutBtn, logoutIconBtn) => {
-    toggleButton.classList.remove('dark-mode');
-    body.classList.remove('dark-mode');
-    modalContents.forEach(modal => modal.classList.remove('dark-mode'));
-    confirmButtons.forEach(button => button.classList.remove('dark-mode'));
-    logoutBtn.classList.remove('dark-mode');
-    logoutIconBtn.classList.remove('dark-mode');
-    localStorage.setItem('darkMode', 'disabled');
-};
 
 //*Inicializa los elementos y asigna los eventos
 export const setupDeleteConfirmation = () => {
@@ -253,16 +215,16 @@ export const setupDeleteConfirmation = () => {
 
     if(deleteBtn){
         deleteBtn.addEventListener('click', () => {
-            confirmModal.style.display = 'block';
+            confirmModal.classList.add('show');
         });
 
         confirmYesBtn.addEventListener('click', () => {
             deleteUsers();
-            confirmModal.style.display = 'none';
+            confirmModal.classList.remove('show');
         });
 
         confirmNoBtn.addEventListener('click', () => {
-            confirmModal.style.display = 'none';
+            confirmModal.classList.remove('show');
         });
     }
 };
@@ -318,8 +280,8 @@ const showFeedBack = (message, type) => {
     const modal = document.getElementById('feedback-modal');
     const feedBackMessage = document.getElementById('feedback-message');
     feedBackMessage.textContent = message;
-    modal.style.display = 'block';
+    modal.classList.add('show');
     setTimeout(() => {
-        modal.style.display = 'none';
-    }, 5000);
+        modal.classList.remove('show');
+    }, 2000);
 };

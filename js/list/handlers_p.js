@@ -2,6 +2,13 @@ import { logoutHandler } from "./auth.js";
 import { loadUserData, deleteUser } from "./firestore_p.js";
 import { changeIcon } from "./icons.js";
 
+//*Boton para volver a home
+export const setupBackButton = () => {
+    document.getElementById('back-icon-btn').addEventListener('click', () => {
+        window.location.href = '../../html/home.html';
+    });
+};
+
 //*Función que añade eventos para la ejecución de la busqueda de usuarios
 export const setupSearch = () => {
     const searchInput = document.querySelector('.search-input');
@@ -97,7 +104,9 @@ const openTab = (tabIndex) => {
             buttons[i].classList.remove('active');
         };
         tabs[tabIndex].style.display = 'block';
-        buttons[tabIndex].classList.add('active'); 
+        if(tabs.length > 1 && buttons.length > 1){
+            buttons[tabIndex].classList.add('active'); 
+        }
     }else{
         console.error(`tabIndex ${tabIndex} fuera de rango o elementos no encontrados`);
     }
@@ -200,16 +209,16 @@ export const setupDeleteConfirmation = () => {
 
     if(deleteBtn){
         deleteBtn.addEventListener('click', () => {
-            confirmModal.style.display = 'block';
+            confirmModal.classList.add('show');
         });
 
         confirmYesBtn.addEventListener('click', () => {
             deleteUsers();
-            confirmModal.style.display = 'none';
+            confirmModal.classList.remove('show');
         });
 
         confirmNoBtn.addEventListener('click', () => {
-            confirmModal.style.display = 'none';
+            confirmModal.classList.remove('show');
         });
     }
 };
@@ -266,8 +275,8 @@ const showFeedBack = (message, type) => {
     const modal = document.getElementById('feedback-modal');
     const feedBackMessage = document.getElementById('feedback-message');
     feedBackMessage.textContent = message;
-    modal.style.display = 'block';
+    modal.classList.add('show');
     setTimeout(() => {
-        modal.style.display = 'none';
-    }, 5000);
+        modal.classList.remove('show');
+    }, 2000);
 };
