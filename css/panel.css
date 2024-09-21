@@ -71,36 +71,105 @@ html, body {
     margin-left: 5px;
 }
 
-.elements{
+.elements-out{
     display: flex;
-    justify-content: space-around;
-    margin-top: 40px;
-    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
     box-sizing: border-box;
+    background-color: #0066FF;
+    width: 100%;
+    margin-top: 40px;
+    padding: 25px;
+    gap: 30px;
+    border-radius: 5px;
+    box-shadow: 0px 19px 15px rgba(0, 0, 0, 0.1);
 }
 
-.publications-txt,
-.appointments-txt{
+.elements-in{
+    display: flex;
     background-color: whitesmoke;
     border-radius: 5px;
     box-shadow: 0px 19px 15px rgba(0, 0, 0, 0.1);
-    padding: 20px 60px;
-    text-align: center;
-    font-size: 25px;
+    padding: 20px;
 }
 
-.publications,
-.appointments{
+.left-part,
+.right-part{
+    width: 50%;
+}
+
+.left-head-cont{
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-head-cont{
+    display: flex;
+    justify-content: right;
+    margin-bottom: 10px;
+}
+
+.right-body-cont{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+h3{
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.img-panel{
+    width: 300px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.detail-nombre,
+.detail-apellido{
+    margin-top: 10px;
+}
+
+.credentials-cont{
+    display: flex;
+    gap: 10px;
+}
+
+.img-perfil{
+    width: 40px;
+    height: 40px;
+    border-radius: 25px;
+    box-shadow: 0px 19px 15px rgba(0, 0, 0, 0.1);
+}
+
+.icon-citas{
+    display: block;
+    height: auto;
+    cursor: pointer;
+    max-width: 100%;
+    max-height: 30px;
+    transition: color 0.2s ease;
+}
+
+.icon-citas:hover{
     color: #0066FF;
 }
 
-.publications-txt img,
-.appointments-txt img{
-    max-width: 100%;
-    height: auto;
-    max-height: 100px;
-    display: block;
-    margin: 15px 0px;
+.elms-cont{
+    display: flex;
+    gap: 30px;
+}
+
+.data-cont{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.especialidad-cont{
+    display: flex;
 }
 
 .back-icon-btn{
@@ -114,57 +183,10 @@ html, body {
     color: #0066FF;
 }
 
-.details{
-    background-color: #0066FF;
-    width: 350px;
-    height: 450px;
-    border-radius: 0px 0px 5px 5px;
-    box-shadow: 0px 19px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.first-info, 
-.more-info{
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    width: 92%;
-}
-
-.more-info{
-    flex-direction: column;
-    align-items: initial;
-    background-color: whitesmoke;
-    border-radius: 10px;
-    box-shadow: 0px 19px 15px rgba(0, 0, 0, 0.1);
-    height: 100%;
-    margin: 0px 20px 30px;
-}
-
-.more-info div{
-    display: flex;
-}
-
-.img-perfil{
-    width: 30px;
-    height: 30px;
-    border-radius: 30px;
-    box-shadow: 0px 19px 15px rgba(0, 0, 0, 0.1);
-}
-
 label{
     color: #0066FF;
     font-size: 12px;
     margin-top: 15px;
-}
-
-.detail-nombre,
-.detail-apellido{
-    margin-left: 5px;
-    color: whitesmoke;
 }
 
 .info-button{
@@ -184,6 +206,21 @@ h2{
     margin: 10px;
 }
 
+.search-input{
+    border: none;
+    outline: none;
+    background-color: #ECF2F8;
+    width: 300px;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+    transition: border 0.4s ease;
+}
+
+.search-input:focus{
+    border: #0066FF solid 1px;
+}
+
 .pub-element{
     margin: 10px;
 }
@@ -194,16 +231,20 @@ h2{
 }
 
 .pay-element{
-    margin: 15px;
+    list-style-type: none;
+    cursor: pointer;
+    border: #0066FF 1px solid;
+    border-radius: 2px;
+    margin: 10px;
+    padding: 5px;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease;
 }
 
 .pay-element:hover{
-    margin: 17px;
     color: #0066FF;
-}
-
-.pay-text-element{
-    margin: 5px 10px;
+    background-color: #ffffff;
+    margin: 7px;
 }
 
 .pub-details-img{
@@ -223,10 +264,12 @@ h2{
 }
 
 th.thead-dates{
-    padding: 10px;
+    display: flex;
+    justify-content: space-between;
     text-align: left;
-    border: 1px solid #ddd;
     background-color: whitesmoke;
+    padding: 10px;
+    border: 1px solid #ddd;
     box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -278,7 +321,56 @@ td.data-schedule-cell{
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #0066FF;
+    border-radius: 8px;
     width: 80%;
+}
+
+.date-data-row{
+    display: flex;
+    gap: 20px;
+}
+
+.date-data-last-row{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.date-data-cont,
+.date-data-last-cont{
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: #0066FF 2px solid;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px;
+    box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.date-data-cont:hover,
+.date-data-last-cont:hover{
+    background-color: #ECF2F8;
+}
+
+.date-data-last-cont{
+    align-items: center;
+}
+
+.date-data-inter-cont{
+    display: flex;
+}
+
+.date-data-label{
+    color: #0066FF;
+    margin: 2px;
+}
+
+.pay-text-element{
+    margin-top: 8px;
+    margin-left: 24px;
 }
 
 .close{

@@ -18,45 +18,81 @@
             <h1 class="lexend-semibold txtdetails">Detalles</h1>
             <p class="lexend-medium txtwelcome">Hola, bienvenido!</p>
             <p class="lexend-light txtwarning">La mayoría de los datos recopilados son de ciertos periodos por lo que datos de antiguas fechas pudieran no aparecer</p>
-            <div class="elements">
-                <div class="lexend-semibold publications-txt">
-                    <div class="publications"></div>
-                    <img src="../assets/img/book.png" alt="Icono de publicaciones">
-                    Publicaciones
-                </div>
-                <div class="lexend-semibold appointments-txt">
-                    <div class="appointments"></div>
-                    <img src="../assets/img/pencil.png" alt="Icono de citas">
-                    Citas realizadas
+            <div class="elements-out">
+                <div class="elements-in">
+                    <div class="left-part">
+                        <div class="left-head-cont">
+                            <div class="credentials-cont">
+                                <img class="img-perfil" id="img-perfil" src="" alt="Foto de perfil">
+                                <p class="lexend-semibold detail-nombre"></p>
+                                <p class="lexend-semibold detail-apellido"></p>
+                            </div>
+                        </div>
+                        <div class="elms-cont">
+                            <div class="data-cont">
+                                <label class="lexend-semibold" for="curp">Curp</label>
+                                <p class="lexend-semibold detail-curp"></p>
+                            </div>
+                            <div class="data-cont">
+                                <label class="lexend-semibold" for="rfc">RFC</label>
+                                <p class="lexend-semibold detail-rfc"></p>
+                            </div>
+                            <div class="data-cont">
+                                <label class="lexend-semibold" for="cedula">Cedula</label>
+                                <p class="lexend-semibold detail-cedula"></p>
+                            </div>
+                        </div>
+                        <div class="elms-cont">
+                            <div class="data-cont">
+                                <label class="lexend-semibold" for="especialidad">Especialidades</label>
+                                <div class="especialidad-cont">
+                                    <p class="lexend-semibold detail-especialidad"></p>
+                                    <button id="info-button" class="info-button material-symbols-outlined">info</button>
+                                </div>
+                                <p class="lexend-semibold detail-especialidad1"></p>
+                                <p class="lexend-semibold detail-especialidad2"></p>
+                            </div>
+                            <div class="data-cont">
+                                <label class="lexend-semibold" for="formacion">Formación</label>
+                                <p class="lexend-semibold detail-formacion"></p>
+                                <p class="lexend-semibold detail-formacion1"></p>
+                            </div>
+                            <div class="data-cont">
+                                <label class="lexend-semibold" for="idiomas">Idiomas</label>
+                                <p class="lexend-semibold detail-idioma"></p>
+                                <p class="lexend-semibold detail-idioma1"></p>
+                            </div>
+                        </div>
+                        <div class="elms-cont">
+                            <div class="data-cont">
+                                <label class="lexend-semibold" for="correo">Correo Electrónico</label>
+                                <p class="lexend-semibold detail-email"></p>
+                            </div>
+                            <div class="data-cont">
+                                <label class="lexend-semibold" for="telefono">Telefono</label>
+                                <p class="lexend-semibold detail-telefono"></p>
+                            </div>
+                            <div class="data-cont">
+                                <label class="lexend-semibold" for="fechanac">Fecha de nacimiento</label>
+                                <p class="lexend-semibold detail-fechanac"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right-part">
+                        <div class="right-head-cont">
+                            <span class="material-symbols-outlined icon-citas">pending_actions</span>
+                        </div>
+                        <div class="right-body-cont">
+                            <h3 class="lexend-regular panel-text">Los datos acerca de los especialistas aseguran su autenticidad, 
+                                por lo que es importante rectificarlos constantemente. Asimismo, la información relacionada con las 
+                                citas que se realizan posee la misma relevancia, por lo que debe mantenerse de manera transparente.</h3>
+                            <img class="img-panel" src="../assets/img/panel.png" alt="Foto de panel">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <button id="back-icon-btn" class="back-icon-btn material-symbols-outlined" aria-label="Volver a tabla">menu_open</button>
-
-        <div class="details">
-            <!--Detalles principales del usuario-->
-            <div class="first-info">
-                <img class="img-perfil" id="img-perfil" src="" alt="Foto de perfil">
-                <p class="lexend-semibold detail-nombre"></p>
-                <p class="lexend-semibold detail-apellido"></p>
-            </div>
-            <!--Demás detalles-->
-            <div class="more-info">
-                <label class="lexend-semibold" for="curp">Curp</label>
-                <p class="lexend-semibold detail-curp"></p>
-                <label class="lexend-semibold" for="correo">Correo Electrónico</label>
-                <p class="lexend-semibold detail-email"></p>
-                <label class="lexend-semibold" for="especialidad">Especialidad</label>
-                <div>
-                    <p class="lexend-semibold detail-especialidad"></p>
-                    <button id="info-button" class="info-button material-symbols-outlined">info</button>
-                </div>
-                <label class="lexend-semibold" for="rfc">RFC</label>
-                <p class="lexend-semibold detail-rfc"></p>
-                <label class="lexend-semibold" for="telefono">Telefono</label>
-                <p class="lexend-semibold detail-telefono"></p>
-            </div>
-        </div>
     </header>
 
     <main class="mid">
@@ -65,10 +101,13 @@
         <table id="dates-table" class="dates-table">
             <thead>
                 <tr>
-                    <th class="lexend-medium thead-dates">Fecha</th>
+                    <th class="lexend-medium thead-dates">
+                        Fecha
+                        <input type="text" id="search-input" class="search-input" placeholder="Buscar..." aria-label="Buscar en la tabla">
+                    </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="dates-body">
                 <!--Contenido agregado dinámicamente-->
             </tbody>
         </table>
@@ -95,19 +134,6 @@
                 <div id="modal-info" style="display: none;">
                     <p id="modal-info-content" class="lexend-light"></p>
                 </div>
-                <!-- Modal de Publicaciones -->
-                <div id="publicationsModal" style="display: none;">
-                    <div class="modal-publications-content">
-                        <ul id="publicationsList"></ul>
-                    </div>
-                </div>
-                <!-- Modal de detalles de la Publicación -->
-                <div id="publicationDetailsModal" style="display: none;">
-                    <div class="modal-publications-details-content">
-                        <img id="modalImage" class="pub-details-img" src="" alt="Imagen de la publicación HealthyMind">
-                        <p id="modalText" class="lexend-regular"></p>
-                    </div>
-                </div>
                 <!-- Modal de pagos -->
                 <div id="paymentsModal" style="display: none;">
                     <div class="modal-payments-content">
@@ -117,20 +143,62 @@
                 <!-- Modal de detalles de los pagos o citas realizadas -->
                 <div id="paymentDetailsModal" style="display: none;">
                     <div class="modal-payments-details-content">
-                        <label class="lexend-semibold" for="Fecha">Fecha de realización</label>
-                        <p id="date-text" class="lexend-regular pay-text-element"></p>
-                        <label class="lexend-semibold" for="Estado de pago">Estado de pago por parte del cliente</label>
-                        <p id="pay-state-text" class="lexend-regular pay-text-element"></p>
-                        <label class="lexend-semibold" for="Pago de cita">Estado de pago dirigido al especialista</label>
-                        <p id="pay-date-text" class="lexend-regular pay-text-element"></p>
-                        <label class="lexend-semibold" for="Horario de la cita">Horario de la cita</label>
-                        <p id="schedule-text" class="lexend-regular pay-text-element"></p>
-                        <label class="lexend-semibold" for="Nombre del paciente">Nombre del paciente</label>
-                        <p id="name-pacient-text" class="lexend-regular pay-text-element"></p>
-                        <label class="lexend-semibold" for="Código de videollamada">Código de videollamada</label>
-                        <p id="meet-code-text" class="lexend-regular pay-text-element"></p>
-                        <label class="lexend-semibold" for="Pago total">Pago total</label>
-                        <p id="total-payment-text" class="lexend-regular pay-text-element"></p>
+                        <div class="date-data-row">
+                            <div class="date-data-cont">
+                                <div class="date-data-inter-cont">
+                                    <span class="material-symbols-outlined date-data-icon">face</span>
+                                    <p class="lexend-semibold date-data-label">Nombre del paciente</p>
+                                </div>
+                                <p id="name-pacient-text" class="lexend-regular pay-text-element"></p>
+                            </div>
+                            <div class="date-data-cont">
+                                <div class="date-data-inter-cont">
+                                    <span class="material-symbols-outlined">event</span>
+                                    <p class="lexend-semibold date-data-label" for="Fecha">Fecha de realización</p>
+                                </div>
+                                <p id="date-text" class="lexend-regular pay-text-element"></p>
+                            </div>
+                            <div class="date-data-cont">
+                                <div class="date-data-inter-cont">
+                                    <span class="material-symbols-outlined">supervisor_account</span>
+                                    <p class="lexend-semibold date-data-label" for="Estado de pago">Estado de pago por parte del cliente</p>
+                                </div>
+                                <p id="pay-state-text" class="lexend-regular pay-text-element"></p>
+                            </div>
+                        </div>
+
+                        <div class="date-data-row">
+                            <div class="date-data-cont">
+                                <div class="date-data-inter-cont">
+                                    <span class="material-symbols-outlined">psychology</span>
+                                    <p class="lexend-semibold date-data-label" for="Pago de cita">Estado de pago dirigido al especialista</p>
+                                </div>
+                                <p id="pay-date-text" class="lexend-regular pay-text-element"></p>
+                            </div>
+                            <div class="date-data-cont">
+                                <div class="date-data-inter-cont">
+                                    <span class="material-symbols-outlined">schedule</span>
+                                    <p class="lexend-semibold date-data-label" for="Horario de la cita">Horario de la cita</p>
+                                </div>
+                                <p id="schedule-text" class="lexend-regular pay-text-element"></p>
+                            </div>
+                            <div class="date-data-cont">
+                                <div class="date-data-inter-cont">
+                                    <span class="material-symbols-outlined">videocam</span>
+                                    <p class="lexend-semibold date-data-label" for="Código de videollamada">Código de videollamada</p>
+                                </div>
+                                <p id="meet-code-text" class="lexend-regular pay-text-element"></p>
+                            </div>
+                        </div>
+                        <div class="date-data-last-row">
+                            <div class="date-data-last-cont">
+                                <div class="date-data-inter-cont">
+                                    <span class="material-symbols-outlined">payments</span>
+                                    <p class="lexend-semibold date-data-label" for="Pago total">Pago total</p>
+                                </div>
+                                <p id="total-payment-text" class="lexend-regular pay-text-element"></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
