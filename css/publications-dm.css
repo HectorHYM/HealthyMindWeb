@@ -1,0 +1,758 @@
+/* General */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    background-color: #1A1F36;
+}
+
+/* Iconos */
+.material-symbols-outlined {
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24
+}
+
+/* Fuentes */
+.lexend-semibold{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.lexend-medium{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.lexend-regular{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.lexend-light{
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* Elementos */
+body,
+.navbar-cont,
+.title,
+.pubs-container,
+.pub-cont,
+.text-cont,
+.text-cont h2,
+.text-cont p,
+.text-cont button,
+.search-input,
+.newpub-btn,
+.deletepub-btn{
+    transition: all 0.3s ease;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin: 0px;
+}
+
+.dark-mode-toggle{
+    color: whitesmoke;
+}
+
+.navbar-cont{
+    background-color: #0066FF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px 20px;
+    margin: 0px 20px 0px 20px;
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.2);
+}
+
+.search-input{
+    color: whitesmoke;
+    border: #888 1px solid;
+    outline: none;
+    width: 40%;
+    padding: 10px;
+    border: blue 2px solid;
+    border-radius: 10px;
+    background-color: #1A1F36;
+    box-shadow: 0 6px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.icon-logo{
+    max-height: 80px;
+    max-width: 200px; /* Ajusta el ancho máximo de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    width: auto; /* Evita que la imagen se deforme */
+}
+
+.search-input:hover,
+.search-input:focus{
+    border: black 1px solid;
+}
+
+main{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-cont{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.settings-btn{
+    transition: all 0.3s ease;
+}
+
+.settings-btn{
+    color: whitesmoke;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.settings-btn:hover{
+    color: #0066FF;
+}
+
+.initial-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.title{
+    font-size: 45px;
+    color: white;
+}
+
+.initial-btn-cont{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.newpub-btn{
+    color: whitesmoke;
+    background-color: #2C3E50;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    border: #0066FF 2px solid;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.newpub-btn:hover{
+    background-color: #0066FF;
+}
+
+.deletepub-btn{
+    color: whitesmoke;
+    background-color: #2C3E50;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    border: red 2px solid;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.deletepub-btn:hover{
+    background-color: red;
+}
+
+.pubs-container{
+    background-color: #2C3E50;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: auto;
+    max-width: 1400px;
+    gap: 30px 80px;
+    margin: 30px;
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.main-pubs-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px 80px;
+}
+
+.empty-message{
+    color: whitesmoke;
+}
+
+.pagination-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pub-cont{
+    background-color: #1A1F36;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 375px;
+    min-width: 200px;
+    max-height: 400px;
+    min-height: 300px;
+    height: auto;
+    margin: 0px 0px;
+    border: blue 2px solid;
+    border-radius: 10px;
+    padding: 25px 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.pub-cont:hover{
+    background-color: #0066FF;
+}
+
+.buttons-cont{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    padding: 5px;
+    margin: 0px 0px 0px 0px;
+}
+
+.direct-delete-btn,
+.select-delete-btn,
+.edit-pub-btn{
+    color: #0066FF;
+    border: #0066FF 2px solid;
+    padding: 1px;
+    border-radius: 5px;
+    background-color: #2C3E50;
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.direct-delete-btn:hover{
+    background-color: red;
+    border: whitesmoke 2px solid;
+    color: whitesmoke;
+}
+
+.select-delete-btn.selected{
+    background-color: #0066FF;
+    border: whitesmoke 2px solid;
+    color: whitesmoke;
+}
+
+.edit-pub-btn:hover{
+    background-color: #0066FF;
+    color: whitesmoke;
+    border: whitesmoke 2px solid;
+}
+
+.img-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pub-img{
+    background-color: black;
+    border-radius: 5px;
+    max-width: 80px;
+    max-height: 80px;
+    width: auto;
+    height: auto;
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.1);
+}
+
+.text-cont{
+    background-color: #2C3E50;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: blue 2px solid;
+    gap: 15px;
+    width: 300px;
+    min-width: 250px;
+    max-height: 250px;
+    min-height: 250px;
+    height: auto;
+    margin: 0px 0px 15px 0px;
+    padding: 10px 20px 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.text-cont p{
+    color: whitesmoke;
+}
+
+.pubLabels{
+    display: flex;
+    color: #0066FF;
+    font-size: 18px;
+}
+
+.id-icon{
+    margin-left: 5px;
+}
+
+.pub-title,
+.pub-id{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;    /* Limita el texto a 2 líneas */
+    line-clamp: 2;
+    overflow: hidden;         /* Oculta el texto que exceda las 2 líneas */
+    text-overflow: ellipsis;  /* Muestra puntos suspensivos al final */
+    font-size: 15px;
+}
+
+.page-btn{
+    background-color: whitesmoke;
+    border: 2px #0066FF solid;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.page-btn:hover{
+    background-color: #0066FF;
+    border: 2px blue solid;
+    color: whitesmoke;
+}
+
+.page-btn.active{
+    background-color: #0066FF;
+    border: 2px blue solid;
+    color: whitesmoke;
+}
+
+.modal{
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal.show{
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content{
+    background-color: #1A1F36;
+    color: whitesmoke;
+    padding: 40px;
+    width: 80%;
+    max-width: 650px;
+    max-height: 85%; /* Ajusta la altura máxima al 80% de la pantalla */
+    overflow-y: auto; /* Agrega scroll si el contenido es mayor al tamaño máximo */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.pub-modal{
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.pub-modal.show{
+    opacity: 1;
+    visibility: visible;
+}
+
+.pub-modal-content{
+    color: whitesmoke;
+    background-color: #1A1F36;
+    padding: 0px;
+    width: auto;
+    max-width: 1300px;
+    min-width: 200px;
+    max-height: 85%; /* Ajusta la altura máxima al 80% de la pantalla */
+    height: auto;
+    overflow-y: auto; /* Agrega scroll si el contenido es mayor al tamaño máximo */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.detail-img-cont{
+    position: relative;
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.detail-img-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(10px); /* Borroso solo en el fondo */
+    z-index: 0; /* Fondo detrás de la imagen principal */
+}
+
+.detail-pub-img{
+    position: relative;
+    z-index: 1;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: none;
+    border-radius: 5px;
+}
+
+.detail-data-cont{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+    gap: 10px;
+    padding: 25px;
+    box-shadow: 15px 15px 15px 15px rgba(0, 0, 0, 0.5);
+}
+
+.detail-data-cont h1{
+    color: #0066FF;
+}
+
+.feedback-modal{
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.feedback-modal.show{
+    opacity: 1;
+    visibility: visible;
+}
+
+.feedback-modal-content{
+    background-color: #1A1F36;
+    padding: 40px;
+    width: 80%;
+    max-width: 650px;
+    max-height: 85%; /* Ajusta la altura máxima al 80% de la pantalla */
+    overflow-y: auto; /* Agrega scroll si el contenido es mayor al tamaño máximo */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.confirm-modal{
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.confirm-modal-content{
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1A1F36;
+    padding: 30px;
+    width: auto;
+    max-width: 500px;
+    min-width: 500px;
+    max-height: 85%; /* Ajusta la altura máxima al 80% de la pantalla */
+    height: auto;
+    overflow-y: auto; /* Agrega scroll si el contenido es mayor al tamaño máximo */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.confirm-modal.show{
+    opacity: 1;
+    visibility: visible;
+}
+
+.feedback-text{
+    color: #0066FF;
+}
+
+.publications-form{
+    margin-top: 20px;
+}
+
+.btn-container{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.input-cont{
+    flex: 1;
+    position: relative;
+    margin: 0px 10px;
+}
+
+.text-body-cont{
+    background-color: #2C3E50;
+    border: #0066FF 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.input-cont.text-body-cont{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.id-input,
+.title-input{
+    background-color: #2C3E50;
+    color: whitesmoke;
+    margin: 10px 0px;
+    padding: 25px 10px 8px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #0066FF;
+    border-radius: 5px;
+}
+
+textarea{
+    resize: none;
+    background-color: #1A1F36;
+    color: whitesmoke;
+}
+
+.text-input{
+    margin: 10px 0px;
+    padding: 10px 0px 40px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #0066FF;
+    border-radius: 5px;
+}
+
+.img-input{
+    margin: 10px 0px;
+    width: 100%;
+}
+
+.id-mark{
+    color: blue;
+    font-size: 10px;
+    margin-left: 12px;
+}
+
+
+
+.id-label,
+.title-label{
+    position: absolute;
+    left: 3px;
+    top: 20px;
+    padding: 1px 5px;
+    transition: all 0.3s;
+    pointer-events: none;  /*Permite clics en el elemento debajo del label*/
+    color: #aaa;
+    font-size: 15px;
+}
+
+.text-label,
+.img-label{
+    color: #0066FF;
+}
+
+input:not(:placeholder-shown) + label,
+input:focus + label{
+    top: 15px;
+    font-size: 10px;
+    color: #0066FF;
+}
+
+.createpub-btn,
+.cancel-btn{
+    background-color: #2C3E50;
+    color: whitesmoke;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.createpub-btn{
+    border: #0066FF 2px solid;
+}
+
+.createpub-btn:hover{
+    background-color: #0066FF;
+    color: whitesmoke;
+}
+
+.cancel-btn{
+    border: red 2px solid;
+}
+
+.cancel-btn:hover{
+    background-color: red;
+    color: whitesmoke;
+}
+
+.confirm-btns-cont{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-btn{
+    width: auto;
+    max-width: 60%;
+    min-width: 60%;
+    margin: 25px 2px 5px 2px;
+    padding: 7px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.confirm-btn#confirm-yes{
+    background-color: #2C3E50;
+    color: #0066FF;
+    border: #0066FF 2px solid;
+    margin-right: 5px;
+}
+
+.confirm-btn#confirm-yes-alt{
+    background-color: #2C3E50;
+    color: #0066FF;
+    border: #0066FF 2px solid;
+    margin-right: 5px;
+}
+
+.confirm-btn#confirm-no{
+    background-color: #2C3E50;
+    color: red;
+    border: red 2px solid;
+}
+
+.confirm-btn#confirm-yes:hover{
+    background-color: #0066FF;
+    color: whitesmoke;
+}
+
+.confirm-btn#confirm-yes-alt:hover{
+    background-color: #0066FF;
+    color: whitesmoke;
+}
+
+.confirm-btn#confirm-no:hover{
+    background-color: red;
+    color: whitesmoke;
+}

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador de publicaciones</title>
+    <link id="theme-link" rel="stylesheet" href="../css/publications.css">
+    <link id="sidebar-theme" rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="navbar-cont">
+            <input type="text" id="search-input" class="lexend-regular search-input" placeholder="Buscar publicaciones..." aria-label="Buscar en la tabla">
+            <img src="../assets/img/logo.png" class="icon-logo" alt="Logo HealthyMind">
+        </div>
+    </header>
+    <main>
+        <!-- Barra de configuración -->
+        <div id="sidebar" class="sidebar">
+            <div class="theme-cont">
+                <p class="lexend-semibold theme-p">Tema</p>
+            </div>
+            <div class="theme-icons-cont">
+                <button id="light-mode-toggle" class="material-symbols-outlined light-mode-toggle" aria-label="Alternar a modo claro">light_mode</button>
+                <button id="dark-mode-toggle" class="material-symbols-outlined dark-mode-toggle" aria-label="Alternar a modo oscuro">dark_mode</button>
+                <button id="neutral-mode-toggle" class="material-symbols-outlined neutral-mode-toggle" aria-label="Alternar a modo neutral">brightness_4</button>
+            </div>
+            <div class="logout-cont">
+                <button id="logout-btn" class="logout-btn lexend-semibold" aria-label="Cerrar sesión">
+                    Cerrar sesión
+                    <span class="material-symbols-outlined logout-icon">logout</span>
+                </button>
+            </div>
+         </div>
+
+        <div class="settings-cont">
+            <button id="settings-btn" class="material-symbols-outlined settings-btn">settings</button>
+        </div>
+        
+        <div class="initial-cont">
+            <h1 class="lexend-semibold title">Lista de publicaciones</h1>
+            <div class="initial-btn-cont">
+                <button class="lexend-regular newpub-btn">
+                    Nueva publicación
+                    <span class="newpub-icon material-symbols-outlined">post_add</span>
+                </button>
+                <button id="deletepub-btn" class="lexend-regular deletepub-btn">
+                    Eliminar seleccionadas
+                    <span class="deletepub-icon material-symbols-outlined">delete_forever</span>
+                </button>
+            </div>
+        </div>
+         <div class="lexend-medium pubs-container">
+            <!-- Contenido agregado dinamicamente -->
+         </div>
+
+         <!-- Modal -->
+          <div  id="modal" class="modal">
+            <div class="modal-content">
+                <h2 class="lexend-semibold modal-title">Añadir nueva publicación</h2>
+                <form id="publications-form" class="publications-form">
+                    <p class="lexend-light id-mark">El ID es generado automaticamente y no es modificable*</p>
+                    <div class="input-cont">
+                        <input type="text" id="idField" class="lexend-regular id-input" placeholder=" " required aria-required="true" readonly>
+                        <label class="lexend-medium id-label" for="idField">ID generado</label>
+                    </div>
+                    <div class="input-cont">
+                        <input type="text" id="titleField" class="lexend-regular title-input" placeholder=" " required aria-required="true">
+                        <label class="lexend-medium title-label" for="titleField">Título de publicación</label>
+                    </div>
+                    <div class="input-cont text-body-cont">
+                        <label class="lexend-medium text-label" for="textField">Cuerpo de publicación</label>
+                        <textarea type="text" id="textField" class="lexend-regular text-input" placeholder=" " required aria-required="true"></textarea>
+                    </div>
+                    <div class="input-cont">
+                        <label class="lexend-medium img-label" for="imgField">Imagen de publicación</label>
+                        <input type="file" id="imgField" class="lexend-regular img-input" accept="image/*">
+                    </div>
+                    <div class="btn-container">
+                        <button type="submit" class="lexend-medium createpub-btn" aria-label="Crear publicación">
+                            Crear publicación
+                            <span class="createpub-icon material-symbols-outlined">post_add</span>
+                        </button>
+                        <button type="button" id="cancel-btn" class="lexend-medium cancel-btn">
+                            Cancelar
+                            <span class="cancel-icon material-symbols-outlined">close</span>
+                        </button>
+                    </div> 
+                </form>
+            </div>
+          </div>
+
+          <!-- Publication modal-->
+           <div id="pub-modal" class="pub-modal">
+                <div id="pub-modal-content" class="pub-modal-content">
+                    <div id="detail-img-cont" class="detail-img-cont">
+                        <div id="detail-img-bg" class="detail-img-bg"></div>
+                        <img id="detail-pub-img" class="detail-pub-img"></img>
+                    </div>
+                    <div class="detail-data-cont">
+                        <h1 class="lexend-semibold">Detalles de publicación</h1>
+                        <h2 class="lexend-semibold">Título de publicación</h2>
+                        <p class="lexend-regular" id="detail-pub-title"></p>
+                        <h2 class="lexend-semibold">Cuerpo de publicación</h2>
+                        <p class="lexend-regular" id="detail-pub-body"></p>
+                        <h3 class="lexend-semibold">ID</h3>
+                        <p class="lexend-regular" id="detail-pub-id"></p>
+                    </div>
+                </div>
+           </div>
+
+          <!-- Feedback modal -->
+           <div id="feedback-modal" class="feedback-modal">
+                <div id="feedback-modal-content" class="feedback-modal-content">
+                    <h2 id="feedback-text" class="lexend-semibold feedback-text">Publicación creada con éxito!</h2>
+                </div>
+           </div>
+
+           <!-- Confirmation modal -->
+            <div id="confirm-modal" class="confirm-modal" aria-live="assertive">
+                <div class="confirm-modal-content">
+                    <p id="confirm-message" class="lexend-semibold">¿Está seguro que desea eliminar esta publicación?</p>
+                    <div class="confirm-btns-cont">
+                        <button id="confirm-yes" class="lexend-medium confirm-btn" aria-label="Confirmar eliminación">Sí</button>
+                        <button id="confirm-yes-alt" class="lexend-medium confirm-btn" aria-label="Confirmar eliminación">Sí</button>
+                        <button id="confirm-no" class="lexend-medium confirm-btn" aria-label="Cancelar eliminación">No</button>
+                    </div>
+                </div>
+            </div>
+    </main>
+
+    <script src="../js/publications.js" type="module" defer></script>
+</body>
+</html>

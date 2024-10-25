@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('pac-btn').addEventListener('click', () =>{
         window.location.href = '../html/list_p.html';
     });
+
+    document.getElementById('pub-btn').addEventListener('click', () =>{
+        window.location.href = '../html/publications.html';
+    });
 });
 
 //*Función para el estado de autenticación con el método correspondiente
@@ -79,7 +83,7 @@ const setupLightMode = () => {
     });
 };
 
-//*Activa el modo luminoso
+//*Activa el light mode
 const enableLightMode = (lightButton, darkButton, neutralButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn, handsImg) => {
     body.classList.remove('dark-mode');
     settingsBtn.classList.remove('dark-mode');
@@ -134,7 +138,7 @@ const setupDarkMode = () => {
     });
 };
 
-//*Activa el modo oscuro
+//*Activa el dark mode
 const enableDarkMode = (darkButton, lightButton, neutralButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn, handsImg) => {
     body.classList.add('dark-mode');
     settingsBtn.classList.add('dark-mode');
@@ -187,7 +191,7 @@ const setupNeutralMode = () => {
     });
 };
 
-//*Activa el modo oscuro
+//*Activa el neutral mode
 const enableNeutralMode = (neutralButton, lightButton, darkButton, body, settingsBtn, sidebar, logoutBtn, title, subtitle, espBtn, pacBtn, pubBtn, handsImg) => {
     body.classList.add('neutral-mode');
     settingsBtn.classList.add('neutral-mode');

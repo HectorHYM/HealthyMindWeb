@@ -1,0 +1,96 @@
+/* Elements */
+/* Estilos para barra lateral emergente */
+.sidebar{
+    width: 250px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: -250px; /* Se oculta la barra lateral fuera de la vista */
+    background-color: #0066FF;
+    color: whitesmoke;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.sidebar.active{
+    right: 0;
+}
+
+.theme-cont{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.theme-p{
+    color: black;
+    transition: all 0.3s ease;
+}
+
+.theme-icons-cont{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    gap: 8px;
+}
+
+.light-mode-toggle{
+    background: none;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.light-mode-toggle:hover{
+    color: whitesmoke;
+}
+
+.dark-mode-toggle{
+    background: none;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.dark-mode-toggle:hover{
+    color: whitesmoke;
+}
+
+.neutral-mode-toggle{
+    background: none;
+    border: none;
+    transition: color 0.3s ease;
+}
+
+.neutral-mode-toggle:hover{
+    color: whitesmoke;
+}
+
+.logout-cont{
+    display: flex;
+    align-items: center; /* Alinea los elementos verticalmente en el centro */
+    gap: 10px; /* Espacio entre los elementos */
+    justify-content: flex-end;
+    margin-top: auto;
+}
+
+.logout-btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.logout-icon {
+    margin-left: 8px;
+}
+
+.logout-btn:hover{
+    color: whitesmoke;
+}
