@@ -68,6 +68,21 @@ body{
     margin-right: 10px;
 }
 
+.settings-btn{
+    transition: all 0.3s ease;
+}
+
+.settings-btn{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.settings-btn:hover{
+    color: #0066FF;
+}
+
 main{
     height: 100vh;
     display: flex;

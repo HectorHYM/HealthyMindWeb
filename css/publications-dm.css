@@ -115,7 +115,7 @@ header{
 
 .search-input:hover,
 .search-input:focus{
-    border: black 1px solid;
+    border: whitesmoke 1px solid;
 }
 
 main{

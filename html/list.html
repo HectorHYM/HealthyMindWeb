@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Administrador de especialistas</title>
-    <link rel="stylesheet" href="../css/list.css">
+    <link rel="stylesheet" id="theme-link" href="../css/list.css">
+    <link rel="stylesheet" id="sidebar-theme" href="../css/sidebar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
@@ -17,36 +18,49 @@
         <nav class="navbar">
             <img src="../assets/img/logo.png" alt="Logo de HealthyMind">
             <div class="search-bar">
-                <input type="text" id="search-input" class="search-input" placeholder="Buscar..." aria-label="Buscar en la tabla">
+                <input type="text" id="search-input" class="lexend-regular search-input" placeholder="Buscar..." aria-label="Buscar en la tabla">
                 <button class="material-symbols-outlined search-icon" aria-label="Iniciar busqueda">search</button>
             </div>
         </nav>
     </header>
 
-    <!--Botones para añadir y eliminar registros-->
-    <main class="buttons-cont">
-        <button id="new-btn" class="new-btn lexend-semibold" aria-label="Añadir nuevos registros">Nuevo registro +</button>
-        <button id="delete-btn" class="delete-btn lexend-semibold" aria-label="Eliminar registros seleccionados">Eliminar seleccionados -</button>
-
-        <!--Modal de feedback-->
-        <div id="feedback-modal" class="lexend-semibold modal" aria-live="assertive">
-            <div class="modal-content">
-                <p id="feedback-message"></p>
-            </div>
+    <!-- Barra de configuración -->
+    <div id="sidebar" class="sidebar">
+        <div class="theme-cont">
+            <p class="lexend-semibold theme-p">Tema</p>
         </div>
-
-        <!-- Modal de confirmación -->
-        <div id="confirm-modal" class="modal" aria-live="assertive">
-            <div class="modal-content">
-                <p id="confirm-message" class="lexend-semibold">¿Estás seguro de que deseas eliminar a estos usuarios?</p>
-                <button id="confirm-yes" class="lexend-medium confirm-btn" aria-label="Confirmar eliminación">Sí</button>
-                <button id="confirm-no" class="lexend-medium confirm-btn" aria-label="Cancelar eliminación">No</button>
-            </div>
+        <div class="theme-icons-cont">
+            <button id="light-mode-toggle" class="material-symbols-outlined light-mode-toggle" aria-label="Alternar a modo claro">light_mode</button>
+            <button id="dark-mode-toggle" class="material-symbols-outlined dark-mode-toggle" aria-label="Alternar a modo oscuro">dark_mode</button>
+            <button id="neutral-mode-toggle" class="material-symbols-outlined neutral-mode-toggle" aria-label="Alternar a modo neutral">brightness_4</button>
         </div>
+        <div class="shorcuts-cont">
+            <p class="lexend-semibold theme-p">Otras pestañas</p>
+            <button id="pac-btn" class="pac-btn lexend-regular">
+                <img src="../assets/img/users_icon.png" alt="Icono de pacientes" class="btn-icon">
+                Pacientes
+            </button>
+            <button id="pub-btn" class="pub-btn lexend-regular">
+                <img src="../assets/img/publis.png" alt="Icono de publicaciones" class="btn-icon">
+                Publicaciones
+            </button>
+        </div>
+        <div class="logout-cont">
+            <button id="logout-btn" class="logout-btn lexend-semibold" aria-label="Cerrar sesión">
+                Cerrar sesión
+                <span class="material-symbols-outlined logout-icon">logout</span>
+            </button>
+        </div>
+     </div>
 
-        <!--Boton para volver a home-->
-        <button id="back-icon-btn" class="back-icon-btn material-symbols-outlined" aria-label="Volver">redo</button>
-    </main>
+    <div class="init-cont">
+        <div class="title-cont">
+            <h2 class="lexend-semibold">Lista de registros de especialistas</h2>
+        </div>
+        <div class="btn-settings-cont">
+            <button id="settings-btn" class="settings-btn material-symbols-outlined" aria-label="Volver">settings</button>
+        </div>
+    </div>
 
     <!--Las tablas y pestañas se llenan dinámicamente con JS-->
     <div class="tabs-content"></div>

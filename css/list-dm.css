@@ -10,6 +10,10 @@ html, body {
     width: 100%;
 }
 
+body{
+    background-color: #1A1F36;
+}
+
 /*Fuentes*/
 .lexend-semibold{
     font-family: "Lexend", sans-serif;
@@ -92,16 +96,23 @@ body,
 }
 
 .search-input{
+    color: whitesmoke;
+    background-color: #1A1F36;
     flex: 1;
-    border: none;
+    border: blue 2px solid;
     outline: none;
     padding: 9px;
     border-radius: 15px;
-    background-color: #ECF2F8;
     box-shadow: 0 6px 5px rgba(0, 0, 0, 0.2);
 }
 
+.search-input:hover,
+.search-input:focus{
+    border: whitesmoke 1px solid;
+}
+
 .search-icon{
+    color: whitesmoke;
     position: absolute;
     top: 50%;
     right: 20px;
@@ -132,7 +143,7 @@ body,
     align-items: center;
 }
 
-.light-mode-toggle{
+.dark-mode-toggle{
     color: whitesmoke;
 }
 
@@ -241,6 +252,7 @@ h2{
 }
 
 .settings-btn {
+    color: whitesmoke;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -251,6 +263,7 @@ h2{
 }
 
 .specialist-table{
+    color: whitesmoke;
     width: 98%;
     box-sizing: border-box;
     border-collapse: collapse;
@@ -337,7 +350,7 @@ h2{
     padding: 10px;
     margin: 2px;
     background-color: white;
-    border: 1px solid #0066FF;
+    border: 2px solid #0066FF;
     border-radius: 5px;
     transition: all 0.3s ease;
 }
@@ -347,12 +360,13 @@ h2{
     padding: 10px;
     margin: 2px;
     background-color: #0066FF;
-    border: 1px solid white;
+    border: 2px solid white;
     border-radius: 5px;
     color: white;
 }
 
 .noresults-div{
+    color: whitesmoke;
     display: flex;
     justify-content: center;
     align-items: center;

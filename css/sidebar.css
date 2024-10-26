@@ -68,6 +68,41 @@
     color: whitesmoke;
 }
 
+.shorcuts-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.esp-btn,
+.pac-btn,
+.pub-btn{
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.esp-btn:hover,
+.pac-btn:hover,
+.pub-btn:hover{
+    color: whitesmoke;
+}
+
+.btn-icon{
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 5px;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
 .logout-cont{
     display: flex;
     align-items: center; /* Alinea los elementos verticalmente en el centro */
