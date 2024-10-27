@@ -2,11 +2,69 @@ import { logoutHandler } from "./auth.js";
 import { loadUserData, deleteUser } from "./firestore_p.js";
 import { changeIcon } from "./icons.js";
 
-//*Boton para volver a home
-export const setupBackButton = () => {
-    document.getElementById('back-icon-btn').addEventListener('click', () => {
-        window.location.href = '../../html/home.html';
+export const setUpSidebar = () => {
+    document.getElementById('settings-btn').addEventListener('click', () => {
+        let sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
     });
+
+    document.addEventListener('click', (e) => {
+        let sidebar = document.getElementById('sidebar');
+        let settingsButton = document.getElementById('settings-btn');
+        
+        if(!sidebar.contains(e.target) && !settingsButton.contains(e.target)){
+            sidebar.classList.remove('active');
+        }
+    });
+
+    const loadTheme = () => {
+        const themeLink = document.getElementById('theme-link');
+        const sidebarTheme = document.getElementById('sidebar-theme');
+    
+        if(localStorage.getItem('darkMode') === 'enabled'){
+            themeLink.href = '../css/list-dm.css';
+            sidebarTheme.href = '../css/sidebar.css';
+        }else if(localStorage.getItem('neutralMode') === 'enabled'){
+            themeLink.href = '../css/list-nm.css';
+            sidebarTheme.href = '../css/sidebar-nm.css';
+        }else{
+            themeLink.href = '../css/list.css';
+            sidebarTheme.href = '../css/sidebar.css';
+        }
+    };
+
+    loadTheme()
+
+    document.getElementById('light-mode-toggle').addEventListener('click', () => {
+        localStorage.setItem('darkMode', 'disabled');
+        localStorage.setItem('neutralMode', 'disabled');
+        localStorage.setItem('lightMode', 'enabled');
+        loadTheme();
+    });
+
+    document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+        localStorage.setItem('darkMode', 'enabled');
+        localStorage.setItem('neutralMode', 'disabled');
+        localStorage.setItem('lightMode', 'disabled');
+        loadTheme();
+    });
+
+    document.getElementById('neutral-mode-toggle').addEventListener('click', () => {
+        localStorage.setItem('darkMode', 'disabled');
+        localStorage.setItem('neutralMode', 'enabled');
+        localStorage.setItem('lightMode', 'disabled');
+        loadTheme();
+    });
+
+    document.getElementById('esp-btn').addEventListener('click', () => {
+        window.location.href = '../html/list.html';
+    });
+
+    document.getElementById('pub-btn').addEventListener('click', () => {
+        window.location.href = '../html/publications.html';
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', logoutHandler);
 };
 
 //*Función que añade eventos para la ejecución de la busqueda de usuarios
@@ -131,7 +189,6 @@ function createTable(registers) {
     `
         <thead>
             <tr class="lexend-medium">
-                <th class="check-icon material-symbols-outlined">checklist</th>
                 <th class="headers">Nombre(s)</th>
                 <th class="headers">Apellido</th>
                 <th class="headers">Email</th>
@@ -140,7 +197,6 @@ function createTable(registers) {
                 <th class="headers">Nacimiento</th>
                 <th class="headers">Género</th>
                 <th class="headers">Estado</th>
-                <th class="actions-head">Acciones</th>
             </tr>
         </thead>
         <tbody class="lexend-regular">
@@ -158,7 +214,6 @@ const populateTable = (registers, tbody) => {
         const tr = document.createElement('tr');
         tr.innerHTML = 
         `
-            <td class="check-void-icon material-symbols-outlined">check_box_outline_blank</td>
             <td>${register.nombres}</td>
             <td>${register.apellidos}</td>
             <td>${register.email}</td>
@@ -167,24 +222,8 @@ const populateTable = (registers, tbody) => {
             <td>${register.fecha_nacimiento}</td>
             <td>${register.genero}</td>
             <td>${register.estado_perfil}</td>
-            <td class="action">
-                <span class="actions">...</span>
-                <div class="pop-up lexend-medium">
-                    <a href="./panel.html?id=${register.id}">Detalles</a>
-                    <a href="./specialist-edit.html?id=${register.id}">Editar</a>
-                    <a href="#" class="single-delete" data-id="${register.id}">Eliminar</a>
-                </div>
-            </td>
         `;
-        tr.querySelector('.check-void-icon').addEventListener('click', function() {
-            changeIcon(this);
-        });
 
-        tr.addEventListener('click', (e) => {
-            if(!e.target.closest('.action') && !e.target.closest('.check-void-icon')){
-                window.location.href = `../../html/panel.html?id=${register.id}`;
-            }
-        });
         tbody.appendChild(tr);
     });
 

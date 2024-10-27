@@ -67,14 +67,6 @@ export const setUpSidebar = () => {
     document.getElementById('logout-btn').addEventListener('click', logoutHandler);
 };
 
-//*Boton para volver a home
-export const setupBackButton = () => {
-    //!document.getElementById('back-icon-btn').addEventListener('click', logoutHandler);
-    /**document.getElementById('back-icon-btn').addEventListener('click', () => {
-        window.location.href = '../../html/home.html';
-    });**/
-};
-
 //*Función que añade eventos para la ejecución de la busqueda de usuarios
 export const setupSearch = () => {
     const searchInput = document.querySelector('.search-input');
