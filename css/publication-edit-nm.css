@@ -13,6 +13,10 @@ html, body {
     background-attachment: fixed;
 }
 
+body{
+    background-color: #0d0d0d
+}
+
 /*Iconos*/
 .material-symbols-outlined {
     font-variation-settings:
@@ -46,22 +50,23 @@ html, body {
 
 /*Elementos*/
 body,
+.settings-icon-btn,
 .title,
+.right-side,
 .publication-form,
 h3,
+h4,
 input,
+.custom-warning,
 textarea,
 .custom-img-btn,
+.btn-register,
 .confirm-btn#confirm-yes,
 .confirm-btn#confirm-no{
     transition: all 0.3s ease;
 }
 
-.settings-icon-btn{
-    transition: all 0.3s ease;
-}
-
-.light-mode-toggle{
+.dark-mode-toggle{
     color: whitesmoke;
 }
 
@@ -76,6 +81,7 @@ textarea,
 }
 
 .settings-icon-btn{
+    color: whitesmoke;
     background: none;
     max-width: 5%;
     border: none;
@@ -85,7 +91,7 @@ textarea,
 }
 
 .settings-icon-btn:hover{
-    color: white;
+    color: #0066FF;
 }
 
 .container{
@@ -109,7 +115,7 @@ textarea,
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #0066FF;
+    background-color: #1C1C1C;
     box-shadow: 1px 1px 1px 8px rgba(0,0,0,0.1);
 }
 
@@ -120,6 +126,7 @@ textarea,
 }
 
 .title{
+    color: whitesmoke;
     margin-top: 20px;
     font-size: 40px;
     font-weight: bold;
@@ -133,14 +140,14 @@ textarea,
     color: #888;
 }
 
-.arrow {
+.arrow{
     margin-top: 20px;
     width: 50px; /* Ajusta el tamaño de la flecha según necesites */
     height: auto;
 }
 
 .publication-form{
-    background: whitesmoke;
+    background: #0d0d0d;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -157,11 +164,12 @@ textarea,
 }
 
 h3{
+    color: whitesmoke;
     margin: 5px;
 }
 
 h4{
-    color: #0066FF;
+    color: whitesmoke;
     font-size: 18px;
     margin-bottom: 8px;
 }
@@ -175,10 +183,12 @@ h4{
 }
 
 input[type="text"]{
+    background-color: whitesmoke;
+    color: #0d0d0d;
     padding: 20px 35px;
     width: 100%;
     box-sizing: border-box;
-    border: 1px solid #0066FF;
+    border: 1px solid #6C757D;
     border-radius: 5px;
 }
 
@@ -194,9 +204,9 @@ input[type="file"] {
 }
 
 .custom-img-btn{
-    color: #0066FF;
-    background-color: whitesmoke;
-    border: #0066FF 2px solid;
+    color: whitesmoke;
+    background-color: #1C1C1C;
+    border: whitesmoke 2px solid;
     display: inline-block;
     cursor: pointer;
     padding: 10px 10px;
@@ -213,11 +223,11 @@ input[type="file"] {
 
 .custom-warning{
     font-size: 14px;
-    color: #eed328;
+    color: whitesmoke;
 }
 
 .custom-warning.change{
-    color: #0066FF;
+    color: whitesmoke;
 }
 
 .img-preview{
@@ -230,6 +240,8 @@ input[type="file"] {
 }
 
 textarea{
+    color: #0d0d0d;
+    background-color: whitesmoke;
     resize: none;
     padding: 20px 20px;
     width: 100%;
@@ -237,7 +249,7 @@ textarea{
     max-height: 300px;
     min-height: 180px;
     box-sizing: border-box;
-    border: 1px solid #0066FF;
+    border: 1px solid #6C757D;
     border-radius: 5px;
     text-align: justify;
 }
@@ -251,8 +263,8 @@ textarea{
 .btn-register{
     width: 60%;
     padding: 10px;
-    background-color: #0066FF;
-    color: white;
+    background-color: whitesmoke;
+    color: #0d0d0d;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -282,11 +294,12 @@ textarea{
 }
 
 .confirm-modal-content{
+    color: whitesmoke;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: #0d0d0d;
     padding: 30px;
     width: auto;
     max-width: 500px;
@@ -310,17 +323,17 @@ textarea{
     border-radius: 5px;
     cursor: pointer;
 }
- 
+
 .confirm-btn#confirm-yes{
-    background-color: whitesmoke;
-    color: #0066FF;
-    border: #0066FF 2px solid;
+    background-color: #1C1C1C;
+    color: whitesmoke;
+    border: whitesmoke 2px solid;
 }
 
 .confirm-btn#confirm-no{
-    background-color: whitesmoke;
-    color: red;
-    border: red 2px solid;
+    background-color: #1C1C1C;
+    color: whitesmoke;
+    border: whitesmoke 2px solid;
 }
  
 :hover.confirm-btn#confirm-yes{
@@ -333,7 +346,7 @@ textarea{
     color: white;
 }
 
-.close-button{
+.close-button {
     color: #aaa;
     float: right;
     font-size: 28px;

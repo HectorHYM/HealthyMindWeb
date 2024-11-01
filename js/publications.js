@@ -49,6 +49,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
+    document.getElementById('esp-btn').addEventListener('click', () => {
+        window.location.href = '../html/list.html';
+    })
+
+    document.getElementById('pac-btn').addEventListener('click', () => {
+        window.location.href = '../html/list_p.html';
+    });
+
     document.getElementById('logout-btn').addEventListener('click', logoutHandler);
 
     //* Escucha de la barra de busqueda

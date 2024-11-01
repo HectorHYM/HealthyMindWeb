@@ -13,31 +13,30 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
-const enableDarkMode = (backIconBtn, infoButton, theadDates, cells, scheduleTheads, modalContent) => {
-    const body = document.body;
-    body.classList.add('dark-mode');
-    backIconBtn.classList.add('dark-mode');
-    infoButton.classList.add('dark-mode');
-    theadDates.classList.add('dark-mode');
-    cells.forEach(cell => cell.classList.add('dark-mode'));
-    modalContent.classList.add('dark-mode');
-    scheduleTheads.forEach(thead => thead.classList.add('dark-mode'));
-    localStorage.setItem('darkMode', 'enabled');
-};
-
-const disableDarkMode = (backIconBtn, infoButton, theadDates, cells, scheduleTheads, modalContent) => {
-    const body = document.body;
-    body.classList.remove('dark-mode');
-    backIconBtn.classList.remove('dark-mode');
-    infoButton.classList.remove('dark-mode');
-    theadDates.classList.remove('dark-mode');
-    cells.forEach(cell => cell.classList.remove('dark-mode'));
-    modalContent.classList.remove('dark-mode');
-    scheduleTheads.forEach(thead => thead.classList.remove('dark-mode'));
-    localStorage.setItem('darkMode', 'disabled');
-};
-
 document.addEventListener("DOMContentLoaded", async () => {
+
+    loadTheme()
+
+    document.getElementById('light-mode-toggle').addEventListener('click', () => {
+        localStorage.setItem('darkMode', 'disabled');
+        localStorage.setItem('neutralMode', 'disabled');
+        localStorage.setItem('lightMode', 'enabled');
+        loadTheme();
+    });
+
+    document.getElementById('dark-mode-toggle').addEventListener('click', () => {
+        localStorage.setItem('darkMode', 'enabled');
+        localStorage.setItem('neutralMode', 'disabled');
+        localStorage.setItem('lightMode', 'disabled');
+        loadTheme();
+    });
+
+    document.getElementById('neutral-mode-toggle').addEventListener('click', () => {
+        localStorage.setItem('darkMode', 'disabled');
+        localStorage.setItem('neutralMode', 'enabled');
+        localStorage.setItem('lightMode', 'disabled');
+        loadTheme();
+    });
 
     const urlParams = new URLSearchParams(window.location.search);
     const registerId = urlParams.get('id');
@@ -70,35 +69,51 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.error("No se ha proporcionado ningún id desde la URL");
     }
 
-    document.querySelector('.close').addEventListener('click', closeModal);
-
-    window.onclick = function(event){
-        const modal = document.getElementById('modal');
-        if(event.target == modal){
-            modal.style.display = "none";
-        }
-    };
-
-    document.getElementById('back-icon-btn').addEventListener('click', () => {
-        window.history.back();
+    document.getElementById('settings-icon-btn').addEventListener('click', () => {
+        let sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('active');
     });
 
-    //*Elementos para el dark mode
-    const backIconBtn = document.querySelector('.back-icon-btn');
-    const infoButton = document.querySelector('.info-button');
-    const theadDates = document.querySelector('.thead-dates');
-    const cells = document.querySelectorAll('.date-cell');
-    const modalContent = document.querySelector('.modal-content');
-    const scheduleTheads = document.querySelectorAll('.schedule-thead');
+    document.addEventListener('click', (e) => {
+        let sidebar = document.getElementById('sidebar');
+        let settingsButton = document.getElementById('settings-icon-btn');
+        
+        if(!sidebar.contains(e.target) && !settingsButton.contains(e.target)){
+            sidebar.classList.remove('active');
+        }
+    });
 
-    //*Se aplica el modo oscuro si está guardado en localStorage
-    if(localStorage.getItem('darkMode') === 'enabled'){
-        enableDarkMode(backIconBtn, infoButton, theadDates, cells, scheduleTheads, modalContent);
-    }else{
-        disableDarkMode(backIconBtn, infoButton, theadDates, cells, scheduleTheads, modalContent);
-    }
+    document.getElementById('esp-btn').addEventListener('click', () => {
+        window.location.href = '../html/list.html';
+    })
+
+    document.getElementById('pac-btn').addEventListener('click', () => {
+        window.location.href = '../html/list_p.html';
+    });
+
+    document.getElementById('pub-btn').addEventListener('click', () => {
+        window.location.href = '../html/publications.html';
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', logoutHandler);
     
 });
+
+const loadTheme = () => {
+    const themeLink = document.getElementById('theme-link');
+    const sidebarTheme = document.getElementById('sidebar-theme');
+
+    if(localStorage.getItem('darkMode') === 'enabled'){
+        themeLink.href = '../css/panel-dm.css';
+        sidebarTheme.href = '../css/sidebar.css';
+    }else if(localStorage.getItem('neutralMode') === 'enabled'){
+        themeLink.href = '../css/panel-nm.css';
+        sidebarTheme.href = '../css/sidebar-nm.css';
+    }else{
+        themeLink.href = '../css/panel.css';
+        sidebarTheme.href = '../css/sidebar.css';
+    }
+};
 
 //* Controlador para la barra de busqueda
 const setupSearch = (registerId) => {
@@ -209,9 +224,7 @@ const formatDateReverse = (dateString) => {
 //*Se manda un mensaje de falta de coincidencias en caso de no haber un dato con la busqueda ingresada
 const noResults = () => {
     const contentContainer = document.getElementById('dates-body');
-    //let tabsContainer = document.querySelector('.tabs');
     contentContainer.innerHTML = `<div class="lexend-semibold noresults-div">No se encontraron coincidencias</div>`;
-    //tabsContainer.innerHTML = ``;
 };
 
 //*LLenado de datos de los detalles de especialista
@@ -224,43 +237,55 @@ const fillDetails = async (registerId) => {
             if(docSnap.exists()){
                 const data = docSnap.data();
                 const profileImage = document.getElementById('img-perfil');
+                const methodsCont = document.getElementById('methods-data-cont');
+                const formationsCont = document.getElementById('formations-data-cont');
+                const languagesCont = document.getElementById('languages-data-cont');
+                const bankingCont = document.getElementById('banking-data-cont');
+                const methods = data.metodos;
+                const formations = data.formacion;
+                const languages = data.idiomas;
+                const bankingData = data.banca;
                 profileImage.src = data.foto_personal || '../assets/img/logo.png';
 
                 document.querySelector('.detail-curp').textContent = registerId || 'N/A';
+                document.querySelector('.detail-cash').textContent = `$${data.dineroDisponible}` || 'N/A';
                 document.querySelector('.detail-nombre').textContent = data.nombres || 'N/A';
                 document.querySelector('.detail-apellido').textContent = data.apellido_p + " " + data.apellido_m || 'N/A';
                 document.querySelector('.detail-email').textContent = data.email || 'N/A';
-                document.querySelector('.detail-especialidad').textContent = data.especialidad || 'N/A';
-                document.querySelector('.detail-especialidad1').textContent = data.metodos[0] || 'N/A';
-                document.querySelector('.detail-especialidad2').textContent = data.metodos[1] || 'N/A';
-                document.querySelector('.detail-rfc').textContent = data.rfc || 'N/A';
+
+                methods.forEach(method => {
+                    const methodText = document.createElement('p');
+                    methodText.className = 'lexend-semibold detail-especialidad';
+                    methodText.textContent = method || 'N/A';
+                    methodsCont.appendChild(methodText);
+                });
+
                 document.querySelector('.detail-cedula').textContent = data.cedula || 'N/A';
+                document.querySelector('.detail-typecedula').textContent = data.tipoCedula || 'N/A';
+
+                bankingData.forEach(banking => {
+                    const bankingText = document.createElement('p');
+                    bankingText.className = 'lexend-semibold detail-banking';
+                    bankingText.textContent = banking || 'N/A';
+                    bankingCont.appendChild(bankingText);
+                });
+
                 document.querySelector('.detail-telefono').textContent = data.telefono || 'N/A';
-                document.querySelector('.detail-fechanac').textContent = data.fechanac || 'N/A';
-                document.querySelector('.detail-formacion').textContent = data.formacion[0] || 'N/A';
-                document.querySelector('.detail-formacion1').textContent = data.formacion[3] || 'N/A';
-                document.querySelector('.detail-idioma').textContent = data.idiomas[0] || 'N/A';
-                document.querySelector('.detail-idioma1').textContent = data.idiomas[1] || 'N/A';
+                document.querySelector('.detail-fechanac').textContent = data.fecha_nacimiento || 'N/A';
+                document.querySelector('.detail-account').textContent = data.estado_cuenta || 'N/A';
 
-                //* Elementos y lógica para el botón y el modal de información
-                const infoButton = document.getElementById('info-button');
-                const modal = document.getElementById('modal');
-                const modalTitle = document.getElementById('modal-title');
-                const modalInfo = document.getElementById('modal-info');
-                const modalTable = document.getElementById('modal-table');
-                const paymentsModal = document.getElementById('paymentsModal');
-                const paymentsDetailsModal = document.getElementById('paymentDetailsModal');
-                const modalInfoContent = document.getElementById('modal-info-content');
+                formations.forEach(formation => {
+                    const formationText = document.createElement('p');
+                    formationText.className = 'lexend-semibold detail-formation';
+                    formationText.textContent = formation || 'N/A';
+                    formationsCont.appendChild(formationText);
+                });
 
-                //*Evento de boton de información
-                infoButton.addEventListener('click', () => {
-                    modalTitle.textContent = 'Información'; //? Se cambia el titulo del modal si es necesario
-                    modalInfoContent.textContent = data.informacion || "No hay información disponible";
-                    modalInfo.style.display = 'block';
-                    modalTable.style.display = 'none';
-                    paymentsModal.style.display = 'none';
-                    paymentsDetailsModal.style.display = 'none';
-                    modal.style.display = 'block'; 
+                languages.forEach(language => {
+                    const languageText = document.createElement('p');
+                    languageText.className = 'lexend-semibold detail-language';
+                    languageText.textContent = language || 'N/A';
+                    languagesCont.appendChild(languageText);
                 });
 
             }else{
@@ -295,12 +320,19 @@ const getPayments = async (registerId) => {
 
 //* Función para abrir el modal y llenar la lista de los pagos realizados
 const showPaymentsModal = async (registerId) => {
-    const paymentsModal = document.getElementById('paymentsModal');
-    const paymentsDetailsModal = document.getElementById('paymentDetailsModal');
     const modalTitle = document.getElementById('modal-title');
     const paymentsList = document.getElementById('paymentsList');
-    const modalInfo = document.getElementById('modal-info');
-    const modalTable = document.getElementById('modal-table');
+    const modal = document.getElementById('paylist-modal');
+    modal.classList.add('show');
+
+    //* Añade el evento de cerrar al botón de cierre
+    document.querySelector('.pay-close').addEventListener('click', () => closeModal(modal));
+
+    window.onclick = function(event){
+        if(event.target == modal){
+            closeModal(modal);
+        }
+    };
     
     //* Se obtiene la lista de los pagos referentes al especialista actual
     const payments = await getPayments(registerId);
@@ -311,22 +343,35 @@ const showPaymentsModal = async (registerId) => {
         return `<li class="lexend-regular pay-element" data-id="${pay.docId}">${formattedDate}</li>`;
     }).join('');
 
-    modal.style.display = 'block';
-    paymentsModal.style.display = 'block';
-    paymentsDetailsModal.style.display = 'none';
-    modalInfo.style.display = 'none';
-    modalTable.style.display = 'none';
     modalTitle.textContent = 'Lista de citas realizadas'; //? Se cambia el titulo del modal si es necesario
 };
 
 //* Función para abrir el modal con los detalles del pago/cita
 const showPaymentDetailsModal = async (paymentId) => {
-    const paymentsModal = document.getElementById('paymentsModal');
-    const paymentsDetailsModal = document.getElementById('paymentDetailsModal');
-    const modalInfo = document.getElementById('modal-info');
-    const modalTable = document.getElementById('modal-table');
+    const modal = document.getElementById('paydetail-modal');
+    const preModal = document.getElementById('paylist-modal');
+    const backModalBtn = document.getElementById('back-modal-btn');
+    modal.classList.add('show');
+    preModal.classList.remove('show');
 
-    const titleElement = document.getElementById('modal-title');
+    //*Boton de retorno al modal anterior
+    backModalBtn.addEventListener('click', () => {
+        modal.classList.remove('show');
+        preModal.classList.add('show');
+    });
+
+    //* Añade el evento de cerrar al botón de cierre
+    document.querySelector('.paydetail-close').addEventListener('click', () => closeModal(modal));
+
+    window.onclick = function(event){
+        if(event.target == modal){
+            closeModal(modal);
+        }
+
+        if(event.target == preModal){
+            closeModal(preModal);
+        }
+    };
 
     const dateText = document.getElementById('date-text');
     const payStateText = document.getElementById('pay-state-text');
@@ -335,19 +380,12 @@ const showPaymentDetailsModal = async (paymentId) => {
     const namePacientText = document.getElementById('name-pacient-text');
     const meetCodeText = document.getElementById('meet-code-text');
     const totalPaymentText = document.getElementById('total-payment-text');
-
-    paymentsModal.style.display = 'none';
-    paymentsDetailsModal.style.display = 'block';
-    modalInfo.style.display = 'none';
-    modalTable.style.display = 'none';
+    const typePaymentText = document.getElementById('type-payment-text');
 
     //* Se obtiene el pago/cita seleccionada
     const paymentRef = doc(db, 'transacciones', paymentId);
     const paymentDoc = await getDoc(paymentRef);
     const payment = paymentDoc.data();
-
-    //* Se actualiza el contenido del modal con los datos del pago/cita
-    titleElement.textContent = "Detalles de cita";
 
     dateText.textContent = payment.fecha_cita;
     payStateText.textContent = payment.estado_pago;
@@ -361,6 +399,7 @@ const showPaymentDetailsModal = async (paymentId) => {
 
     meetCodeText.textContent = payment.id_meet;
     totalPaymentText.textContent = payment.total;
+    typePaymentText.textContent = payment.tipo_transaccion;
 };
 
 //*Se obtienen las fechas de la agenda
@@ -414,14 +453,19 @@ const formatDateString = (dateString) => {
 
 //* Se muestra el modal con la tabla de horarios y se muestran los datos
 const showModal = async (dateId, registerId) => {
-    document.getElementById('modal-info').style.display = 'none'; //? Ocultar modal de información
-    document.getElementById('paymentsModal').style.display = 'none'; //? Ocultar modal de lista de pagos
-    document.getElementById('paymentDetailsModal').style.display = 'none'; //? Ocultar modal de detalles de pagos/citas
     document.getElementById('modal-title').textContent = 'Horarios'; //? Cambia el título al de horarios
-    document.getElementById('modal-table').style.display = 'table'; //? Mostrar modal de la tabla
-    document.getElementById('modal').style.display = 'block';
-
     const modal = document.getElementById('modal');
+    modal.classList.add('show');
+
+    //* Añade el evento de cerrar al botón de cierre
+    document.querySelector('.close').addEventListener('click', () => closeModal(modal));
+
+    window.onclick = function(event){
+        if(event.target == modal){
+            closeModal(modal);
+        }
+    };
+
     const modalTableBody = document.querySelector('#modal-table tbody');
     modalTableBody.innerHTML = ``;
     const horariosRef = collection(db, 'users-especialista', registerId, 'agenda', dateId, 'horarios');
@@ -443,23 +487,29 @@ const showModal = async (dateId, registerId) => {
         finalTimeCell.className = 'data-schedule-cell';
         finalTimeCell.classList.add('lexend-regular');
         finalTimeCell.textContent = data.hora_final || 'N/A'; 
+        const priceCell = document.createElement('td');
+        priceCell.className = 'data-schedule-cell';
+        priceCell.classList.add('lexend-regular');
+        priceCell.textContent = `$${data.precio}` || 'N/A';
 
         row.appendChild(stateCell);
         row.appendChild(startTimeCell);
         row.appendChild(finalTimeCell);
+        row.appendChild(priceCell);
         modalTableBody.appendChild(row);
     });
-    modal.style.display = 'block';
-
-    const dataScheduleCells = document.querySelectorAll('.data-schedule-cell');
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        dataScheduleCells.forEach(cell => cell.classList.add('dark-mode'));
-    } else {
-        dataScheduleCells.forEach(cell => cell.classList.remove('dark-mode'));
-    }
 };
 
-const closeModal = () => {
-    const modal = document.getElementById('modal');
-    modal.style.display = "none";
+const closeModal = (modal) => {
+    modal.classList.remove('show');
+};
+
+//*Manejador de cerrado de sesión
+const logoutHandler = async () => {
+    try{
+        await signOut(auth);
+        console.log("Sesión cerrada exitosamente");
+    }catch(error){
+        console.error("Error al iniciar sesión: ", error);
+    }
 };

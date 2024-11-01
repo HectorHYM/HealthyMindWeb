@@ -24,7 +24,7 @@ body,
 }
 
 body{
-    background-color: whitesmoke;
+    background-color: #0d0d0d;
 }
 
 /* Fuentes */
@@ -68,10 +68,7 @@ body{
 }
 
 .settings-btn{
-    transition: all 0.3s ease;
-}
-
-.settings-btn{
+    color: white;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -80,10 +77,6 @@ body{
 
 .settings-btn:hover{
     color: #0066FF;
-}
-
-.light-mode-toggle{
-    color: whitesmoke;
 }
 
 main{
@@ -96,12 +89,13 @@ main{
 }
 
 .title{
+    color: whitesmoke;
     font-size: 5em;
     margin-bottom: 20px;
-    color: #0066FF;
 }
 
 .subtitle{
+    color: whitesmoke;
     font-size: 1.5em;
     margin-bottom: 40px;
 }
@@ -118,7 +112,7 @@ main{
     display: flex;
     align-items: center;
     padding: 20px 40px;
-    border: 2px solid #0066FF;
+    border: 2px solid black;
     border-radius: 8px;
     background-color: whitesmoke;
     cursor: pointer;
@@ -138,57 +132,6 @@ main{
 }
 
 .hands-img{
-    width: 40%;
-    height: 45%;
-    background-size: cover;
-    background-position: center;
-    background-image: url(../assets/img/hands.png);
-    border: none;
-    background-color: transparent;
-    padding: 0;
-}
-
-/* Neutral Mode */
-
-body.neutral-mode{
-    background-color: #1C1C1C;
-}
-
-.settings-btn.neutral-mode{
-    color: white;
-}
-
-.neutral-mode.settings-btn:hover{
-    color: #0066FF;
-}
-
-.sidebar.neutral-mode{
-    background-color: white;
-    color: #1C1C1C;
-}
-
-.neutral-mode.light-mode-toggle:hover,
-.neutral-mode.dark-mode-toggle:hover,
-.neutral-mode.neutral-mode-toggle:hover{
-    color: #0066FF;
-}
-
-.neutral-mode.logout-btn:hover{
-    color: #0066FF;
-}
-
-.title.neutral-mode,
-.subtitle.neutral-mode{
-    color: white;
-}
-
-.esp-btn.neutral-mode,
-.pac-btn.neutral-mode,
-.pub-btn.neutral-mode{
-    border: 2px solid black;
-}
-
-.hands-img.neutral-mode{
     width: 40%;
     height: 45%;
     background-size: cover;

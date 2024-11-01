@@ -13,6 +13,10 @@ html, body {
     background-attachment: fixed;
 }
 
+body{
+    background-color: #1A1F36;
+}
+
 /*Iconos*/
 .material-symbols-outlined {
     font-variation-settings:
@@ -61,7 +65,7 @@ textarea,
     transition: all 0.3s ease;
 }
 
-.light-mode-toggle{
+.dark-mode-toggle{
     color: whitesmoke;
 }
 
@@ -120,6 +124,7 @@ textarea,
 }
 
 .title{
+    color: whitesmoke;
     margin-top: 20px;
     font-size: 40px;
     font-weight: bold;
@@ -133,14 +138,14 @@ textarea,
     color: #888;
 }
 
-.arrow {
+.arrow{
     margin-top: 20px;
     width: 50px; /* Ajusta el tamaño de la flecha según necesites */
     height: auto;
 }
 
 .publication-form{
-    background: whitesmoke;
+    background: #2C3E50;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -157,6 +162,7 @@ textarea,
 }
 
 h3{
+    color: whitesmoke;
     margin: 5px;
 }
 
@@ -175,6 +181,8 @@ h4{
 }
 
 input[type="text"]{
+    background-color: #1A1F36;
+    color: whitesmoke;
     padding: 20px 35px;
     width: 100%;
     box-sizing: border-box;
@@ -195,7 +203,7 @@ input[type="file"] {
 
 .custom-img-btn{
     color: #0066FF;
-    background-color: whitesmoke;
+    background-color: #1A1F36;
     border: #0066FF 2px solid;
     display: inline-block;
     cursor: pointer;
@@ -230,6 +238,8 @@ input[type="file"] {
 }
 
 textarea{
+    color: whitesmoke;
+    background-color: #1A1F36;
     resize: none;
     padding: 20px 20px;
     width: 100%;
@@ -282,11 +292,12 @@ textarea{
 }
 
 .confirm-modal-content{
+    color: whitesmoke;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: #1A1F36;
     padding: 30px;
     width: auto;
     max-width: 500px;
@@ -310,15 +321,15 @@ textarea{
     border-radius: 5px;
     cursor: pointer;
 }
- 
+
 .confirm-btn#confirm-yes{
-    background-color: whitesmoke;
+    background-color: #2C3E50;
     color: #0066FF;
     border: #0066FF 2px solid;
 }
 
 .confirm-btn#confirm-no{
-    background-color: whitesmoke;
+    background-color: #2C3E50;
     color: red;
     border: red 2px solid;
 }
@@ -333,7 +344,7 @@ textarea{
     color: white;
 }
 
-.close-button{
+.close-button {
     color: #aaa;
     float: right;
     font-size: 28px;

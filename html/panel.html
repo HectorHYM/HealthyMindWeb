@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de administración</title>
-    <link rel="stylesheet" href="../css/panel.css">
+    <link rel="stylesheet" id="theme-link" href="../css/panel.css">
+    <link rel="stylesheet" id="sidebar-theme" href="../css/sidebar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
@@ -32,35 +33,28 @@
                             <div class="data-cont">
                                 <label class="lexend-semibold" for="curp">Curp</label>
                                 <p class="lexend-semibold detail-curp"></p>
-                            </div>
-                            <div class="data-cont">
-                                <label class="lexend-semibold" for="rfc">RFC</label>
-                                <p class="lexend-semibold detail-rfc"></p>
+                                <label class="lexend-semibold">Dinero disponible</label>
+                                <p class="lexend-semibold detail-cash"></p>
                             </div>
                             <div class="data-cont">
                                 <label class="lexend-semibold" for="cedula">Cedula</label>
                                 <p class="lexend-semibold detail-cedula"></p>
+                                <label class="lexend-semibold">Tipo de cedula</label>
+                                <p class="lexend-semibold detail-typecedula"></p>
+                            </div>
+                            <div id="banking-data-cont" class="data-cont">
+                                <label class="lexend-semibold">Datos de banca</label>
                             </div>
                         </div>
                         <div class="elms-cont">
-                            <div class="data-cont">
+                            <div id="methods-data-cont" class="data-cont">
                                 <label class="lexend-semibold" for="especialidad">Especialidades</label>
-                                <div class="especialidad-cont">
-                                    <p class="lexend-semibold detail-especialidad"></p>
-                                    <button id="info-button" class="info-button material-symbols-outlined">info</button>
-                                </div>
-                                <p class="lexend-semibold detail-especialidad1"></p>
-                                <p class="lexend-semibold detail-especialidad2"></p>
                             </div>
-                            <div class="data-cont">
+                            <div id="formations-data-cont" class="data-cont">
                                 <label class="lexend-semibold" for="formacion">Formación</label>
-                                <p class="lexend-semibold detail-formacion"></p>
-                                <p class="lexend-semibold detail-formacion1"></p>
                             </div>
-                            <div class="data-cont">
+                            <div id="languages-data-cont" class="data-cont">
                                 <label class="lexend-semibold" for="idiomas">Idiomas</label>
-                                <p class="lexend-semibold detail-idioma"></p>
-                                <p class="lexend-semibold detail-idioma1"></p>
                             </div>
                         </div>
                         <div class="elms-cont">
@@ -75,6 +69,10 @@
                             <div class="data-cont">
                                 <label class="lexend-semibold" for="fechanac">Fecha de nacimiento</label>
                                 <p class="lexend-semibold detail-fechanac"></p>
+                            </div>
+                            <div class="data-cont">
+                                <label class="lexend-semibold">Estado de cuenta</label>
+                                <p class="lexend-semibold detail-account"></p>
                             </div>
                         </div>
                     </div>
@@ -92,10 +90,43 @@
                 </div>
             </div>
         </div>
-        <button id="back-icon-btn" class="back-icon-btn material-symbols-outlined" aria-label="Volver a tabla">menu_open</button>
+        <button id="settings-icon-btn" class="settings-icon-btn material-symbols-outlined" aria-label="Volver a tabla">settings</button>
     </header>
 
     <main class="mid">
+        <!-- Barra de configuración -->
+        <div id="sidebar" class="sidebar">
+            <div class="theme-cont">
+                <p class="lexend-semibold theme-p">Tema</p>
+            </div>
+            <div class="theme-icons-cont">
+                <button id="light-mode-toggle" class="material-symbols-outlined light-mode-toggle" aria-label="Alternar a modo claro">light_mode</button>
+                <button id="dark-mode-toggle" class="material-symbols-outlined dark-mode-toggle" aria-label="Alternar a modo oscuro">dark_mode</button>
+                <button id="neutral-mode-toggle" class="material-symbols-outlined neutral-mode-toggle" aria-label="Alternar a modo neutral">brightness_4</button>
+            </div>
+            <div class="shorcuts-cont">
+                <p class="lexend-semibold theme-p">Otras pestañas</p>
+                <button id="esp-btn" class="esp-btn lexend-regular">
+                    <img src="../assets/img/esp_icon.png" alt="Icono de especialistas" class="btn-icon">
+                    Especialistas
+                </button>
+                <button id="pac-btn" class="pac-btn lexend-regular">
+                    <img src="../assets/img/users_icon.png" alt="Icono de pacientes" class="btn-icon">
+                    Pacientes
+                </button>
+                <button id="pub-btn" class="pub-btn lexend-regular">
+                    <img src="../assets/img/publis.png" alt="Icono de publicaciones" class="btn-icon">
+                    Publicaciones
+                </button>
+            </div>
+            <div class="logout-cont">
+                <button id="logout-btn" class="logout-btn lexend-semibold" aria-label="Cerrar sesión">
+                    Cerrar sesión
+                    <span class="material-symbols-outlined logout-icon">logout</span>
+                </button>
+            </div>
+         </div>
+
         <!--Tabla de fechas-->
         <h2 class="lexend-semibold">Fechas de cita</h2>
         <table id="dates-table" class="dates-table">
@@ -103,7 +134,7 @@
                 <tr>
                     <th class="lexend-medium thead-dates">
                         Fecha
-                        <input type="text" id="search-input" class="search-input" placeholder="Buscar..." aria-label="Buscar en la tabla">
+                        <input type="text" id="search-input" class="lexend-regular search-input" placeholder="Buscar..." aria-label="Buscar en la tabla">
                     </th>
                 </tr>
             </thead>
@@ -124,24 +155,39 @@
                             <th class="lexend-semibold schedule-thead">Estado</th>
                             <th class="lexend-semibold schedule-thead">Hora inicial</th>
                             <th class="lexend-semibold schedule-thead">Hora final</th>
+                            <th class="lexend-semibold schedule-thead">Precio</th>
                         </tr>
                     </thead>
                     <tbody>
                         <!--Contenido agregado dinámicamente-->
                     </tbody>
                 </table>
-                <!--Modal para información sobre la especialidad de los especialistas-->
-                <div id="modal-info" style="display: none;">
-                    <p id="modal-info-content" class="lexend-light"></p>
-                </div>
-                <!-- Modal de pagos -->
-                <div id="paymentsModal" style="display: none;">
+            </div>
+        </div>
+
+        <!-- Modal de pagos -->
+        <div id="paylist-modal" class="modal">
+            <div class="modal-content">
+                <span id="modal-close" class="pay-close">&times;</span>
+                <h2 id="modal-title" class="lexend-semibold">Citas realizadas</h2>
+                <div id="paymentsModal">
                     <div class="modal-payments-content">
-                        <ul id="paymentsList"></ul>
+                        <ul id="paymentsList" class="payments-list"></ul>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div id="paydetail-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-options-cont">
+                    <span id="back-modal-btn" class="material-symbols-outlined back-modal-btn">arrow_back</span>
+                    <span id="modal-close" class="paydetail-close">&times;</span>
+                </div>
+                <h2 id="modal-title" class="lexend-semibold">Detalles de citas</h2>
+
                 <!-- Modal de detalles de los pagos o citas realizadas -->
-                <div id="paymentDetailsModal" style="display: none;">
+                <div id="paymentDetailsModal">
                     <div class="modal-payments-details-content">
                         <div class="date-data-row">
                             <div class="date-data-cont">
@@ -191,6 +237,13 @@
                             </div>
                         </div>
                         <div class="date-data-last-row">
+                            <div class="date-data-last-cont">
+                                <div class="date-data-inter-cont">
+                                    <span class="material-symbols-outlined">payments</span>
+                                    <p class="lexend-semibold date-data-label" for="Pago total">Tipo de transacción</p>
+                                </div>
+                                <p id="type-payment-text" class="lexend-regular pay-text-element"></p>
+                            </div>
                             <div class="date-data-last-cont">
                                 <div class="date-data-inter-cont">
                                     <span class="material-symbols-outlined">payments</span>

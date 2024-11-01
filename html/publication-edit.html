@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Regístro de especialista</title>
-    <link rel="stylesheet" href="../css/publication-edit.css">
+    <link rel="stylesheet" id="theme-link" href="../css/publication-edit.css">
+    <link rel="stylesheet" id="sidebar-theme" href="../css/sidebar.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
@@ -14,6 +15,38 @@
 <body>
     <!--Formulario de registro-->
     <main class="container">
+        <!-- Barra de configuración -->
+        <div id="sidebar" class="sidebar">
+            <div class="theme-cont">
+                <p class="lexend-semibold theme-p">Tema</p>
+            </div>
+            <div class="theme-icons-cont">
+                <button id="light-mode-toggle" class="material-symbols-outlined light-mode-toggle" aria-label="Alternar a modo claro">light_mode</button>
+                <button id="dark-mode-toggle" class="material-symbols-outlined dark-mode-toggle" aria-label="Alternar a modo oscuro">dark_mode</button>
+                <button id="neutral-mode-toggle" class="material-symbols-outlined neutral-mode-toggle" aria-label="Alternar a modo neutral">brightness_4</button>
+            </div>
+            <div class="shorcuts-cont">
+                <p class="lexend-semibold theme-p">Otras pestañas</p>
+                <button id="pub-btn" class="pub-btn lexend-regular">
+                    <img src="../assets/img/publis.png" alt="Icono de publicaciones" class="btn-icon">
+                    Publicaciones
+                </button>
+                <button id="esp-btn" class="esp-btn lexend-regular">
+                    <img src="../assets/img/esp_icon.png" alt="Icono de especialistas" class="btn-icon">
+                    Especialistas
+                </button>
+                <button id="pac-btn" class="pac-btn lexend-regular">
+                    <img src="../assets/img/users_icon.png" alt="Icono de pacientes" class="btn-icon">
+                    Pacientes
+                </button>
+            </div>
+            <div class="logout-cont">
+                <button id="logout-btn" class="logout-btn lexend-semibold" aria-label="Cerrar sesión">
+                    Cerrar sesión
+                    <span class="material-symbols-outlined logout-icon">logout</span>
+                </button>
+            </div>
+         </div>
         <div class="left-side">
             <img src="../assets/img/infantil.png" alt="Registro de especialista" class="main-image">
             <h2 class="lexend-semibold title">Desarrolla el contenido</h2>
@@ -23,8 +56,8 @@
             <img src="../assets/img/blue_arrow.png" alt="Flecha" class="arrow">
         </div>
         <div class="right-side">
-            <div class="logout-btn-cont">
-                <button id="logout-icon-btn" class="logout-icon-btn material-symbols-outlined" aria-label="Volver a tabla">logout</button>
+            <div class="settings-btn-cont">
+                <button id="settings-icon-btn" class="settings-icon-btn material-symbols-outlined" aria-label="Opciones">settings</button>
             </div>
             <form id="publication-form" class="publication-form">
                 <h3 class="lexend-semibold">Editar publicación</h3>
@@ -47,7 +80,7 @@
                     <textarea type="text" id="texto" class="lexend-regular" name="texto" placeholder=" " required aria-required="true"></textarea>
                 </div>
                 <div class="btn-container">
-                    <button type="button" id="btn-register" class="btn-register lexend-medium" aria-label="Registrar usuario">Registrar</button>
+                    <button type="button" id="btn-register" class="btn-register lexend-medium" aria-label="Registrar usuario">Editar publicación</button>
                 </div>   
             </form>
         </div>
