@@ -56,6 +56,7 @@ body,
 .settings-icon-btn,
 .txtdetails,
 .elements-in,
+.elements-out,
 th.thead-dates,
 td.date-cell,
 .search-input{
@@ -178,7 +179,7 @@ h3{
 
 .elms-cont{
     display: flex;
-    gap: 30px;
+    gap: 20px;
 }
 
 .data-cont{

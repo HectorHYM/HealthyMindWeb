@@ -118,8 +118,6 @@ const loadTheme = () => {
 //* Controlador para la barra de busqueda
 const setupSearch = (registerId) => {
     const searchInput = document.querySelector('.search-input');
-    //const searchButton = document.querySelector('.search-icon');
-    //searchButton.addEventListener('click', handleSearch);
     searchInput.addEventListener('keyup', (e) => {
         if(e.key === "Enter"){
             handleSearch(registerId);
@@ -164,9 +162,7 @@ const comparisonDateFormat = (dateId) => {
 //*Función para limpiar los contenedores
 const clearContainers = () => {
     const contentContainer = document.getElementById('dates-body');
-    //let tabsContainer = document.querySelector('.tabs');
     contentContainer.innerHTML = ``;
-    //tabsContainer.innerHTML = ``; 
 };
 
 //*Función para colocar las pestañas y el contenido principal de estas
@@ -253,10 +249,28 @@ const fillDetails = async (registerId) => {
                 document.querySelector('.detail-apellido').textContent = data.apellido_p + " " + data.apellido_m || 'N/A';
                 document.querySelector('.detail-email').textContent = data.email || 'N/A';
 
+                const methodsCode = {
+                    'A1': "Trastornos de ansiedad",
+                    'A2': "Depresión",
+                    'A3': "Problemas familiares",
+                    'A4': "Estrés postraumático",
+                    'A5': "Trastornos de la alimentación",
+                    'A6': "Problemas de pareja",
+                    'A7': "Adicciones",
+                    'A8': "Problemas de autoestima",
+                    'A9': "Trastornos del sueño",
+                    'A10': "Trastorno obsesivo-compulsivo (TOC)",
+                    'A11': "Trastornos del desarrollo",
+                    'A12': "Dificultades de aprendizaje",
+                    'A13': "Problemas de manejo de la ira",
+                    'A14': "Duelos y perdidas",
+                    'A15': "Bienestar psicológico"
+                };
+
                 methods.forEach(method => {
                     const methodText = document.createElement('p');
                     methodText.className = 'lexend-semibold detail-especialidad';
-                    methodText.textContent = method || 'N/A';
+                    methodText.textContent = methodsCode[method] || 'N/A';
                     methodsCont.appendChild(methodText);
                 });
 
@@ -281,10 +295,16 @@ const fillDetails = async (registerId) => {
                     formationsCont.appendChild(formationText);
                 });
 
+                const languagesCode = {
+                    'I1': 'Español',
+                    'I2': 'Ingles',
+                    'I3': 'Francés'
+                };
+
                 languages.forEach(language => {
                     const languageText = document.createElement('p');
                     languageText.className = 'lexend-semibold detail-language';
-                    languageText.textContent = language || 'N/A';
+                    languageText.textContent = languagesCode[language] || 'N/A';
                     languagesCont.appendChild(languageText);
                 });
 
