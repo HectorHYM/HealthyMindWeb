@@ -55,7 +55,10 @@ body,
 .search-input,
 .search-icon,
 .settings-btn,
-.specialist-table{
+.specialist-table,
+.title,
+.specialist-table td,
+.specialist-table th{
     transition: all 0.3s ease;
 }
 
@@ -142,6 +145,14 @@ body,
     align-items: center;
     margin-top: 20px;
     margin-left: 5px;
+}
+
+.title.smallfont{
+    font-size: 1em;
+}
+
+.title.bigfont{
+    font-size: 2em;
 }
 
 h2{
@@ -275,9 +286,25 @@ h2{
     padding-right: 10px;
 }
 
+.specialist-table th.smallfont{
+    font-size: .8em;
+}
+
+.specialist-table th.bigfont{
+    font-size: 1.2em;
+}
+
 .specialist-table td{
     font-weight: 400;
     padding: 10px 0px;   
+}
+
+.specialist-table td.smallfont{
+      font-size: .8em;
+}
+
+.specialist-table td.bigfont{
+     font-size: 1.2em;
 }
 
 .specialist-table tbody tr:hover{
@@ -325,6 +352,11 @@ h2{
     font-size: 10px;
 }
 
+.tabs-content{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Mejora la experiencia en dispositivos iOS */
+}
+
 .tabs{
     display: flex;
     float: right;
@@ -357,4 +389,36 @@ h2{
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+/* Oculta la estructura de tabla en cuadros pequeñas */
+@media (max-width: 900px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+    }
+    
+    /* Oculta encabezados de la tabla */
+    thead tr {
+        display: none;
+    }
+    
+    tr {
+        margin-bottom: 15px;
+        border: 1px solid #0066FF;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    td::before {
+        content: attr(data-label); /* Usa el atributo data-label para mostrar el nombre de la columna */
+        font-weight: bold;
+        color: #0066FF;
+    }
 }

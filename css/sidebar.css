@@ -1,5 +1,10 @@
 /* Elements */
 /* Estilos para barra lateral emergente */
+
+.toggle{
+    transition: all 0.3s ease;
+}
+
 .sidebar{
     width: 250px;
     height: 100%;
@@ -20,18 +25,21 @@
     right: 0;
 }
 
-.theme-cont{
+.theme-cont,
+.font-cont{
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
 }
 
-.theme-p{
+.theme-p,
+.font-p{
     color: black;
     transition: all 0.3s ease;
 }
 
-.theme-icons-cont{
+.theme-icons-cont,
+.fonts-size-cont{
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
@@ -66,6 +74,26 @@
 
 .neutral-mode-toggle:hover{
     color: whitesmoke;
+}
+
+.toggle{
+    color: #0066FF;
+    background-color: whitesmoke;
+    padding: 10px;
+    border-radius: 5px; 
+    border: #0066FF 2px solid;
+}
+
+.toggle.color{
+    color: whitesmoke;
+    background-color: #0066FF;
+    border: whitesmoke 2px solid;
+}
+
+.toggle:hover{
+    color: whitesmoke;
+    background-color: #0066FF;
+    border: whitesmoke 2px solid;
 }
 
 .shorcuts-cont{

@@ -19,7 +19,8 @@ body,
 .main-esp-btn,
 .main-pac-btn,
 .main-pub-btn,
-.hands-img {
+.hands-img,
+.btn-txt{
     transition: all 0.3s ease;
 }
 
@@ -101,9 +102,40 @@ main{
     color: #0066FF;
 }
 
+.title.smallfont{
+    font-size: 4em;
+}
+
+.title.bigfont{
+    font-size: 6em;
+}
+
 .subtitle{
     font-size: 1.5em;
     margin-bottom: 40px;
+    text-align: center;
+}
+
+.subtitle.smallfont{
+    font-size: 1em;
+    margin-bottom: 40px;
+}
+
+.subtitle.bigfont{
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.btn-txt{
+    font-size: 1em;
+}
+
+.btn-txt.smallfont{
+    font-size: .8em;
+}
+
+.btn-txt.bigfont{
+    font-size: 1.5em;
 }
 
 .options-cont{
@@ -148,53 +180,61 @@ main{
     padding: 0;
 }
 
-/* Neutral Mode */
-
-body.neutral-mode{
-    background-color: #1C1C1C;
+/* Media query celulares */
+@media (max-width: 950px) {
+    .hands-img{
+        display: none;
+    }
 }
 
-.settings-btn.neutral-mode{
-    color: white;
+@media (width: 1024px){
+    .hands-img {
+        width: 65%;
+    }
 }
 
-.neutral-mode.settings-btn:hover{
-    color: #0066FF;
+@media (width: 1024px) and (height: 600px){
+    .hands-img{
+        width: 40%;
+    }
 }
 
-.sidebar.neutral-mode{
-    background-color: white;
-    color: #1C1C1C;
-}
+@media (max-width: 900px){
+    .title{
+        font-size: 2.8em;
+    }
+    
+    .title.smallfont{
+        font-size: 2.6em;
+    }
+    
+    .title.bigfont{
+        font-size: 3em;
+    }
 
-.neutral-mode.light-mode-toggle:hover,
-.neutral-mode.dark-mode-toggle:hover,
-.neutral-mode.neutral-mode-toggle:hover{
-    color: #0066FF;
-}
+    .subtitle{
+        font-size: 0.9em;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    
+    .subtitle.smallfont{
+        font-size: 0.8em;
+        margin-bottom: 40px;
+    }
+    
+    .subtitle.bigfont{
+        font-size: 1em;
+        margin-bottom: 40px;
+    }
 
-.neutral-mode.logout-btn:hover{
-    color: #0066FF;
-}
+    .options-cont{
+        flex-direction: column;
+    }
 
-.title.neutral-mode,
-.subtitle.neutral-mode{
-    color: white;
-}
-
-.esp-btn.neutral-mode,
-.pac-btn.neutral-mode,
-.pub-btn.neutral-mode{
-    border: 2px solid black;
-}
-
-.hands-img.neutral-mode{
-    width: 40%;
-    height: 45%;
-    background-size: cover;
-    background-position: center;
-    background-image: url(../assets/img/png_inverted_hands.png);
-    border: none;
-    background-color: transparent;
-    padding: 0;
+    .main-esp-btn,
+    .main-pac-btn,
+    .main-pub-btn{
+        padding: 15px 30px;
+    }
 }

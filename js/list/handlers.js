@@ -1,6 +1,5 @@
 import { logoutHandler, auth } from "./auth.js";
 import { loadUserData, deleteUser } from "./firestore.js";
-import { changeIcon } from "./icons.js";
 
 export const setUpSidebar = () => {
     document.getElementById('settings-btn').addEventListener('click', () => {
@@ -33,8 +32,47 @@ export const setUpSidebar = () => {
         }
     };
 
-    loadTheme()
+    const loadFont = () => {
+        const title = document.getElementById('title');
+        const ths = document.querySelectorAll('th');
+        const tds = document.querySelectorAll('td');
+        const toggles = document.querySelectorAll('.toggle');
+        const elements = [title, tds[0], tds[1], tds[2], tds[3], tds[4], tds[5], ths[0], ths[1], ths[2], ths[3], ths[4], ths[5]];
+    
+        if(localStorage.getItem('smallFont') === 'enabled'){
+            toggles[0].classList.add('color');
+            toggles[1].classList.remove('color');
+            toggles[2].classList.remove('color');
+        }else if(localStorage.getItem('bigFont') === 'enabled'){
+            toggles[0].classList.remove('color');
+            toggles[1].classList.remove('color');
+            toggles[2].classList.add('color');
+        }else{
+            toggles[0].classList.remove('color');
+            toggles[1].classList.add('color');
+            toggles[2].classList.remove('color');
+        }
+    
+        elements.forEach(element => {
+            if(element){
+                if(localStorage.getItem('smallFont') === 'enabled'){
+                    element.classList.add('smallfont');
+                    element.classList.remove('bigfont');
+                }else if(localStorage.getItem('bigFont') === 'enabled'){
+                    element.classList.add('bigfont');
+                    element.classList.remove('smallfont');
+                }else{
+                    element.classList.remove('bigfont');
+                    element.classList.remove('smallfont');
+                }
+            }
+        });
+    };
 
+    loadTheme();
+    loadFont();
+
+    //*Eventos para cambio de tema
     document.getElementById('light-mode-toggle').addEventListener('click', () => {
         localStorage.setItem('darkMode', 'disabled');
         localStorage.setItem('neutralMode', 'disabled');
@@ -54,6 +92,28 @@ export const setUpSidebar = () => {
         localStorage.setItem('neutralMode', 'enabled');
         localStorage.setItem('lightMode', 'disabled');
         loadTheme();
+    });
+
+    //*Eventos para cambio de fuente
+    document.getElementById('small-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('bigFont', 'disabled');
+        localStorage.setItem('medFont', 'disabled');
+        localStorage.setItem('smallFont', 'enabled');
+        loadFont();
+    });
+
+    document.getElementById('big-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('bigFont', 'enabled');
+        localStorage.setItem('smallFont', 'disabled');
+        localStorage.setItem('medFont', 'disabled');
+        loadFont();
+    });
+
+    document.getElementById('med-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('smallFont', 'disabled');
+        localStorage.setItem('medFont', 'enabled');
+        localStorage.setItem('bigFont', 'disabled');
+        loadFont();
     });
 
     document.getElementById('pac-btn').addEventListener('click', () => {
@@ -209,16 +269,19 @@ function createTable(registers) {
 //*Rellena la tabla con todos los datos y asigna los eventos tanto de la tabla como de los pop-up
 const populateTable = (registers, tbody) => {
     tbody.innerHTML = ``;
+    //*Se definen los encabezados que servirán como `data-label`
+    const headers = ["Nombre(s)", "Apellidos", "Email", "Telefono", "CURP", "Cedula"];
+
     registers.forEach(register => {
         const tr = document.createElement('tr');
         tr.innerHTML = 
         `
-            <td>${register.nombres}</td>
-            <td>${register.apellido_p} ${register.apellido_m}</td>
-            <td>${register.email}</td>
-            <td>${register.telefono}</td>
-            <td>${register.curp}</td>
-            <td>${register.cedula}</td>
+            <td data-label="${headers[0]}">${register.nombres}</td>
+            <td data-label="${headers[1]}">${register.apellido_p} ${register.apellido_m}</td>
+            <td data-label="${headers[2]}">${register.email}</td>
+            <td data-label="${headers[3]}">${register.telefono}</td>
+            <td data-label="${headers[4]}">${register.curp}</td>
+            <td data-label="${headers[5]}">${register.cedula}</td>
         `;
 
         tr.addEventListener('click', (e) => {

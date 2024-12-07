@@ -19,7 +19,8 @@ body,
 .main-esp-btn,
 .main-pac-btn,
 .main-pub-btn,
-.hands-img {
+.hands-img,
+.btn-txt{
     transition: all 0.3s ease;
 }
 
@@ -94,10 +95,40 @@ main{
     margin-bottom: 20px;
 }
 
+.title.smallfont{
+    font-size: 4em;
+}
+
+.title.bigfont{
+    font-size: 6em;
+}
+
 .subtitle{
     color: whitesmoke;
     font-size: 1.5em;
     margin-bottom: 40px;
+}
+
+.subtitle.smallfont{
+    font-size: 1em;
+    margin-bottom: 40px;
+}
+
+.subtitle.bigfont{
+    font-size: 2.5em;
+    margin-bottom: 40px;
+}
+
+.btn-txt{
+    font-size: 1em;
+}
+
+.btn-txt.smallfont{
+    font-size: .8em;
+}
+
+.btn-txt.bigfont{
+    font-size: 1.5em;
 }
 
 .options-cont{
@@ -140,4 +171,52 @@ main{
     border: none;
     background-color: transparent;
     padding: 0;
+}
+
+/* Media query para celulares y iPad Pro */
+@media (max-width: 1024px), 
+       (max-height: 1366px) {
+    .hands-img {
+        display: none;
+    }
+}
+
+@media (max-width: 900px){
+    .title{
+        font-size: 2.8em;
+    }
+    
+    .title.smallfont{
+        font-size: 2.6em;
+    }
+    
+    .title.bigfont{
+        font-size: 3em;
+    }
+
+    .subtitle{
+        font-size: 0.9em;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    
+    .subtitle.smallfont{
+        font-size: 0.8em;
+        margin-bottom: 40px;
+    }
+    
+    .subtitle.bigfont{
+        font-size: 1em;
+        margin-bottom: 40px;
+    }
+
+    .options-cont{
+        flex-direction: column;
+    }
+
+    .main-esp-btn,
+    .main-pac-btn,
+    .main-pub-btn{
+        padding: 15px 30px;
+    }
 }
