@@ -8,7 +8,7 @@ export const onAuthStateChangedHandler = (auth) => {
     onAuthStateChanged(auth, (user) => {
         console.log("Estado de autenticación cambiado: ", user);
         if(!user){
-            window.location.href = '../html/index.html';
+            window.location.href = '../index.html';
         }
     });
 };

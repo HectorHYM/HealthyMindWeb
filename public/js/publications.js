@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 onAuthStateChanged(auth, (user) => {
     console.log("Estado de autenticación cambiado:", user);
     if(!user){
-        window.location.href = "./index.html";
+        window.location.href = "../index.html";
     }
 });
 
@@ -357,7 +357,7 @@ const renderPublications = (publications) => {
         editPubBtn.textContent = 'edit_note';
 
         editPubBtn.addEventListener('click', () => {
-            window.location.href = `../../html/publication-edit.html?id=${publication.id}`;
+            window.location.href = `publication-edit.html?id=${publication.id}`;
         });
 
         //? Muestra de modal de confirmación

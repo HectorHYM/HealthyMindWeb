@@ -286,7 +286,7 @@ const populateTable = (registers, tbody) => {
 
         tr.addEventListener('click', (e) => {
             if(!e.target.closest('.action')){
-                window.location.href = `../../html/panel.html?id=${register.id}`;
+                window.location.href = `panel.html?id=${register.id}`;
             }
         });
         tbody.appendChild(tr);
