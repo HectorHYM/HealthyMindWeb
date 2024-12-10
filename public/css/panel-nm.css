@@ -536,6 +536,10 @@ td.data-schedule-cell{
     .panel-text{
         display: none;
     }
+
+    .date-data-row{
+        flex-direction: column;
+    }
 }
 
 @media (max-width:630px) {
