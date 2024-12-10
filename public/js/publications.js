@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadAndRenderPublications();
 
     loadTheme();
+    loadFont();
 
     document.getElementById('light-mode-toggle').addEventListener('click', () => {
         localStorage.setItem('darkMode', 'disabled');
@@ -33,6 +34,28 @@ document.addEventListener('DOMContentLoaded', async () => {
         localStorage.setItem('neutralMode', 'enabled');
         localStorage.setItem('lightMode', 'disabled');
         loadTheme();
+    });
+
+    //*Eventos para cambio de fuente
+    document.getElementById('small-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('bigFont', 'disabled');
+        localStorage.setItem('medFont', 'disabled');
+        localStorage.setItem('smallFont', 'enabled');
+        loadFont();
+    });
+
+    document.getElementById('big-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('bigFont', 'enabled');
+        localStorage.setItem('smallFont', 'disabled');
+        localStorage.setItem('medFont', 'disabled');
+        loadFont();
+    });
+
+    document.getElementById('med-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('smallFont', 'disabled');
+        localStorage.setItem('medFont', 'enabled');
+        localStorage.setItem('bigFont', 'disabled');
+        loadFont();
     });
 
     document.getElementById('settings-btn').addEventListener('click', () => {
@@ -193,6 +216,47 @@ const loadTheme = () => {
     }
 };
 
+const loadFont = () => {
+    const title = document.getElementById('title');
+    const newPubBtn = document.getElementById('newpub-btn');
+    const deletePubBtn = document.getElementById('deletepub-btn');
+    const detailsTxts = document.querySelectorAll('.details');
+    const modalDetailsTxts = document.querySelectorAll('.modal-details');
+    const toggles = document.querySelectorAll('.toggle');
+    const elements = [title, newPubBtn, deletePubBtn, ...detailsTxts, ...modalDetailsTxts];
+
+    //*Se actualizan los estilos de los toggles según el estado del almacenamiento.
+    if(localStorage.getItem('smallFont') === 'enabled'){
+        toggles[0]?.classList.add('color');
+        toggles[1]?.classList.remove('color');
+        toggles[2]?.classList.remove('color');
+    }else if(localStorage.getItem('bigFont') === 'enabled'){
+        toggles[0]?.classList.remove('color');
+        toggles[1]?.classList.remove('color');
+        toggles[2]?.classList.add('color');
+    }else{
+        toggles[0]?.classList.remove('color');
+        toggles[1]?.classList.add('color');
+        toggles[2]?.classList.remove('color');
+    }
+
+    //* Se itera sobre todos los elementos seleccionados y actualiza las clases de fuente.
+    elements.forEach(element => {
+        if(element){
+            if(localStorage.getItem('smallFont') === 'enabled'){
+                element.classList.add('smallfont');
+                element.classList.remove('bigfont');
+            }else if(localStorage.getItem('bigFont') === 'enabled'){
+                element.classList.add('bigfont');
+                element.classList.remove('smallfont');
+            }else{
+                element.classList.remove('bigfont');
+                element.classList.remove('smallfont');
+            }
+        }
+    });
+};
+
 let currentPage = 1;
 const publicationsPerPage = 6;
 
@@ -247,6 +311,10 @@ const paginatePublications = (publications) => {
 
     //? Se renderizan solo las publicaciones de la página actual
     renderPublications(publications.slice(start, end));
+    setTimeout(() => {
+        console.log("Tabla lista, llamando a loadFont");
+        loadFont();
+    }, 0); //? Permite que el DOM se actualice
 
     //? Se actualiza el sistema de paginación
     renderPagination(totalPages, publications);
@@ -320,7 +388,7 @@ const renderPublications = (publications) => {
         const pubModal = document.getElementById('pub-modal');
         const detailImgBg = document.getElementById('detail-img-bg');
         const detailPubImg = document.getElementById('detail-pub-img');
-        const detailPubTitle = document.getElementById('detail-pub-title');    
+        const detailPubTitle = document.getElementById('detail-pub-title');
         const detailPubBody = document.getElementById('detail-pub-body');
         const detailPubId = document.getElementById('detail-pub-id');    
         
@@ -438,7 +506,7 @@ const renderPublications = (publications) => {
         titleIcon.textContent = 'titlecase';
         labelTitle.appendChild(titleIcon);
         const pubTitle = document.createElement('p');
-        pubTitle.className = 'pub-title';
+        pubTitle.className = 'pub-title details';
         pubTitle.textContent = publication.titulo || 'N/A';
 
         //?Se crea el texto con el ID
@@ -450,7 +518,7 @@ const renderPublications = (publications) => {
         idIcon.textContent = 'verified';
         labelId.appendChild(idIcon);
         const pubId = document.createElement('p');
-        pubId.className = 'pub-id';
+        pubId.className = 'pub-id details';
         pubId.textContent = `${publication.id_generado}`;
 
         //? Se agregan los elementos de texto a su contenedor

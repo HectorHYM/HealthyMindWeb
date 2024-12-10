@@ -6,9 +6,9 @@ import { createPopUps } from './icons.js';
 onAuthStateChangedHandler(auth);
 
 document.addEventListener('DOMContentLoaded', () => {
+    setupTabsWithContent();
     setUpSidebar();
     setupSearch();
-    setupTabsWithContent();
     setupDeleteConfirmation();
     createPopUps();
 });

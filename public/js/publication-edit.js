@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const defaultImgUrl = '../assets/img/logo.png';
 
     loadTheme();
+    loadFont();
 
     document.getElementById('light-mode-toggle').addEventListener('click', () => {
         localStorage.setItem('darkMode', 'disabled');
@@ -35,6 +36,28 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('neutralMode', 'enabled');
         localStorage.setItem('lightMode', 'disabled');
         loadTheme();
+    });
+
+    //*Eventos para cambio de fuente
+    document.getElementById('small-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('bigFont', 'disabled');
+        localStorage.setItem('medFont', 'disabled');
+        localStorage.setItem('smallFont', 'enabled');
+        loadFont();
+    });
+
+    document.getElementById('big-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('bigFont', 'enabled');
+        localStorage.setItem('smallFont', 'disabled');
+        localStorage.setItem('medFont', 'disabled');
+        loadFont();
+    });
+
+    document.getElementById('med-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('smallFont', 'disabled');
+        localStorage.setItem('medFont', 'enabled');
+        localStorage.setItem('bigFont', 'disabled');
+        loadFont();
     });
 
     document.getElementById('settings-icon-btn').addEventListener('click', () => {
@@ -220,6 +243,51 @@ const loadTheme = () => {
         themeLink.href = '../css/publication-edit.css';
         sidebarTheme.href = '../css/sidebar.css';
     }
+};
+
+const loadFont = () => {
+    const title = document.getElementById('title');
+    const description = document.getElementById('description');
+    const initFormTitle = document.getElementById('init-form-title');
+    const h4s = document.querySelectorAll('h4');
+    const customWarning = document.getElementById('custom-warning');
+    const customImgBtn = document.getElementById('custom-img-btn');
+    const input = document.querySelector('input');
+    const textarea = document.querySelector('textarea');
+    const btnRegister = document.getElementById('btn-register');
+    const toggles = document.querySelectorAll('.toggle');
+    const elements = [title, description, initFormTitle, ...h4s, customWarning, customImgBtn, input, textarea, btnRegister];
+
+    //*Se actualizan los estilos de los toggles según el estado del almacenamiento.
+    if(localStorage.getItem('smallFont') === 'enabled'){
+        toggles[0]?.classList.add('color');
+        toggles[1]?.classList.remove('color');
+        toggles[2]?.classList.remove('color');
+    }else if(localStorage.getItem('bigFont') === 'enabled'){
+        toggles[0]?.classList.remove('color');
+        toggles[1]?.classList.remove('color');
+        toggles[2]?.classList.add('color');
+    }else{
+        toggles[0]?.classList.remove('color');
+        toggles[1]?.classList.add('color');
+        toggles[2]?.classList.remove('color');
+    }
+
+    //* Se itera sobre todos los elementos seleccionados y actualiza las clases de fuente.
+    elements.forEach(element => {
+        if(element){
+            if(localStorage.getItem('smallFont') === 'enabled'){
+                element.classList.add('smallfont');
+                element.classList.remove('bigfont');
+            }else if(localStorage.getItem('bigFont') === 'enabled'){
+                element.classList.add('bigfont');
+                element.classList.remove('smallfont');
+            }else{
+                element.classList.remove('bigfont');
+                element.classList.remove('smallfont');
+            }
+        }
+    });
 };
 
 //*Manejador de cerrado de sesión

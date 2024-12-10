@@ -15,7 +15,11 @@ onAuthStateChanged(auth, (user) => {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    loadTheme()
+    loadTheme();
+    setTimeout(() => {
+        console.log("Tabla lista, llamando a loadFont");
+        loadFont();
+    }, 0); //? Permite que el DOM se actualice
 
     document.getElementById('light-mode-toggle').addEventListener('click', () => {
         localStorage.setItem('darkMode', 'disabled');
@@ -36,6 +40,28 @@ document.addEventListener("DOMContentLoaded", async () => {
         localStorage.setItem('neutralMode', 'enabled');
         localStorage.setItem('lightMode', 'disabled');
         loadTheme();
+    });
+
+    //*Eventos para cambio de fuente
+    document.getElementById('small-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('bigFont', 'disabled');
+        localStorage.setItem('medFont', 'disabled');
+        localStorage.setItem('smallFont', 'enabled');
+        loadFont();
+    });
+
+    document.getElementById('big-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('bigFont', 'enabled');
+        localStorage.setItem('smallFont', 'disabled');
+        localStorage.setItem('medFont', 'disabled');
+        loadFont();
+    });
+
+    document.getElementById('med-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('smallFont', 'disabled');
+        localStorage.setItem('medFont', 'enabled');
+        localStorage.setItem('bigFont', 'disabled');
+        loadFont();
     });
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -113,6 +139,50 @@ const loadTheme = () => {
         themeLink.href = '../css/panel.css';
         sidebarTheme.href = '../css/sidebar.css';
     }
+};
+
+const loadFont = () => {
+    const txtDetails = document.getElementById('txtdetails');
+    const txtWelcome = document.getElementById('txtwelcome');
+    const txtWarning = document.getElementById('txtwarning');
+    const detailsTxt = document.querySelectorAll('.details');
+    const panelText = document.getElementById('panel-text');
+    const ths = document.querySelectorAll('th');
+    const tds = document.querySelectorAll('td');
+    const titleDates = document.getElementById('title-dates');
+    const toggles = document.querySelectorAll('.toggle');
+    const elements = [txtDetails, txtWelcome, txtWarning, ...detailsTxt, panelText, ...ths, ...tds, titleDates];
+
+    //*Se actualizan los estilos de los toggles según el estado del almacenamiento.
+    if(localStorage.getItem('smallFont') === 'enabled'){
+        toggles[0]?.classList.add('color');
+        toggles[1]?.classList.remove('color');
+        toggles[2]?.classList.remove('color');
+    }else if(localStorage.getItem('bigFont') === 'enabled'){
+        toggles[0]?.classList.remove('color');
+        toggles[1]?.classList.remove('color');
+        toggles[2]?.classList.add('color');
+    }else{
+        toggles[0]?.classList.remove('color');
+        toggles[1]?.classList.add('color');
+        toggles[2]?.classList.remove('color');
+    }
+
+    //* Se itera sobre todos los elementos seleccionados y actualiza las clases de fuente.
+    elements.forEach(element => {
+        if(element){
+            if(localStorage.getItem('smallFont') === 'enabled'){
+                element.classList.add('smallfont');
+                element.classList.remove('bigfont');
+            }else if(localStorage.getItem('bigFont') === 'enabled'){
+                element.classList.add('bigfont');
+                element.classList.remove('smallfont');
+            }else{
+                element.classList.remove('bigfont');
+                element.classList.remove('smallfont');
+            }
+        }
+    });
 };
 
 //* Controlador para la barra de busqueda
@@ -269,9 +339,14 @@ const fillDetails = async (registerId) => {
 
                 methods.forEach(method => {
                     const methodText = document.createElement('p');
-                    methodText.className = 'lexend-semibold detail-especialidad';
+                    methodText.className = 'lexend-semibold detail-especialidad details';
                     methodText.textContent = methodsCode[method] || 'N/A';
                     methodsCont.appendChild(methodText);
+                    setTimeout(() => {
+                        console.log("Tabla lista, llamando a loadFont");
+                        loadFont();
+                    }, 0); //? Permite que el DOM se actualice
+                
                 });
 
                 document.querySelector('.detail-cedula').textContent = data.cedula || 'N/A';
@@ -279,9 +354,14 @@ const fillDetails = async (registerId) => {
 
                 bankingData.forEach(banking => {
                     const bankingText = document.createElement('p');
-                    bankingText.className = 'lexend-semibold detail-banking';
+                    bankingText.className = 'lexend-semibold detail-banking details';
                     bankingText.textContent = banking || 'N/A';
                     bankingCont.appendChild(bankingText);
+                    setTimeout(() => {
+                        console.log("Tabla lista, llamando a loadFont");
+                        loadFont();
+                    }, 0); //? Permite que el DOM se actualice
+                
                 });
 
                 document.querySelector('.detail-telefono').textContent = data.telefono || 'N/A';
@@ -290,9 +370,14 @@ const fillDetails = async (registerId) => {
 
                 formations.forEach(formation => {
                     const formationText = document.createElement('p');
-                    formationText.className = 'lexend-semibold detail-formation';
+                    formationText.className = 'lexend-semibold detail-formation details';
                     formationText.textContent = formation || 'N/A';
                     formationsCont.appendChild(formationText);
+                    setTimeout(() => {
+                        console.log("Tabla lista, llamando a loadFont");
+                        loadFont();
+                    }, 0); //? Permite que el DOM se actualice
+                
                 });
 
                 const languagesCode = {
@@ -303,9 +388,14 @@ const fillDetails = async (registerId) => {
 
                 languages.forEach(language => {
                     const languageText = document.createElement('p');
-                    languageText.className = 'lexend-semibold detail-language';
+                    languageText.className = 'lexend-semibold detail-language details';
                     languageText.textContent = languagesCode[language] || 'N/A';
                     languagesCont.appendChild(languageText);
+                    setTimeout(() => {
+                        console.log("Tabla lista, llamando a loadFont");
+                        loadFont();
+                    }, 0); //? Permite que el DOM se actualice
+                
                 });
 
             }else{

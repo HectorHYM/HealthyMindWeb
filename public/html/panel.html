@@ -16,31 +16,31 @@
     <header class="head">
         <!--Flujo de datos del usuario-->
         <div class="txts">
-            <h1 class="lexend-semibold txtdetails">Detalles</h1>
-            <p class="lexend-medium txtwelcome">Hola, bienvenido!</p>
-            <p class="lexend-light txtwarning">La mayoría de los datos recopilados son de ciertos periodos por lo que datos de antiguas fechas pudieran no aparecer</p>
+            <h1 id="txtdetails" class="lexend-semibold txtdetails">Detalles</h1>
+            <p id="txtwelcome" class="lexend-medium txtwelcome">Hola, bienvenido!</p>
+            <p id="txtwarning" class="lexend-light txtwarning">La mayoría de los datos recopilados son de ciertos periodos por lo que datos de antiguas fechas pudieran no aparecer</p>
             <div class="elements-out">
                 <div class="elements-in">
                     <div class="left-part">
                         <div class="left-head-cont">
                             <div class="credentials-cont">
                                 <img class="img-perfil" id="img-perfil" src="" alt="Foto de perfil">
-                                <p class="lexend-semibold detail-nombre"></p>
-                                <p class="lexend-semibold detail-apellido"></p>
+                                <p class="lexend-semibold detail-nombre details"></p>
+                                <p class="lexend-semibold detail-apellido details"></p>
                             </div>
                         </div>
                         <div class="elms-cont">
                             <div class="data-cont">
                                 <label class="lexend-semibold" for="curp">Curp</label>
-                                <p class="lexend-semibold detail-curp"></p>
+                                <p class="lexend-semibold detail-curp details"></p>
                                 <label class="lexend-semibold">Dinero disponible</label>
-                                <p class="lexend-semibold detail-cash"></p>
+                                <p class="lexend-semibold detail-cash details"></p>
                             </div>
                             <div class="data-cont">
                                 <label class="lexend-semibold" for="cedula">Cedula</label>
-                                <p class="lexend-semibold detail-cedula"></p>
+                                <p class="lexend-semibold detail-cedula details"></p>
                                 <label class="lexend-semibold">Tipo de cedula</label>
-                                <p class="lexend-semibold detail-typecedula"></p>
+                                <p class="lexend-semibold detail-typecedula details"></p>
                             </div>
                             <div id="banking-data-cont" class="data-cont">
                                 <label class="lexend-semibold">Datos de banca</label>
@@ -57,19 +57,19 @@
                         <div class="elms-cont">
                             <div class="data-cont">
                                 <label class="lexend-semibold" for="correo">Correo Electrónico</label>
-                                <p class="lexend-semibold detail-email"></p>
+                                <p class="lexend-semibold detail-email details"></p>
                             </div>
                             <div class="data-cont">
                                 <label class="lexend-semibold" for="telefono">Telefono</label>
-                                <p class="lexend-semibold detail-telefono"></p>
+                                <p class="lexend-semibold detail-telefono details"></p>
                             </div>
                             <div class="data-cont">
                                 <label class="lexend-semibold" for="fechanac">Fecha de nacimiento</label>
-                                <p class="lexend-semibold detail-fechanac"></p>
+                                <p class="lexend-semibold detail-fechanac details"></p>
                             </div>
                             <div class="data-cont">
                                 <label class="lexend-semibold">Estado de cuenta</label>
-                                <p class="lexend-semibold detail-account"></p>
+                                <p class="lexend-semibold detail-account details"></p>
                             </div>
                             <div id="languages-data-cont" class="data-cont">
                                 <label class="lexend-semibold" for="idiomas">Idiomas</label>
@@ -81,7 +81,7 @@
                             <span class="material-symbols-outlined icon-citas">pending_actions</span>
                         </div>
                         <div class="right-body-cont">
-                            <h3 class="lexend-regular panel-text">Los datos acerca de los especialistas aseguran su autenticidad, 
+                            <h3 id="panel-text" class="lexend-regular panel-text">Los datos acerca de los especialistas aseguran su autenticidad, 
                                 por lo que es importante rectificarlos constantemente. Asimismo, la información relacionada con las 
                                 citas que se realizan posee la misma relevancia, por lo que debe mantenerse de manera transparente.</h3>
                             <img class="img-panel" src="../assets/img/panel.png" alt="Foto de panel">
@@ -103,6 +103,14 @@
                 <button id="light-mode-toggle" class="material-symbols-outlined light-mode-toggle" aria-label="Alternar a modo claro">light_mode</button>
                 <button id="dark-mode-toggle" class="material-symbols-outlined dark-mode-toggle" aria-label="Alternar a modo oscuro">dark_mode</button>
                 <button id="neutral-mode-toggle" class="material-symbols-outlined neutral-mode-toggle" aria-label="Alternar a modo neutral">brightness_4</button>
+            </div>
+            <div class="font-cont">
+                <p class="lexend-semibold font-p">Tamaño de fuente</p>
+            </div>
+            <div class="fonts-size-cont">
+                <button id="small-font-toggle" class="lexend-regular small-font toggle" aria-label="Alternar a letra chica">Peq</button>
+                <button id="med-font-toggle" class="lexend-regular med-font toggle" aria-label="Alternar a letra regular">Med</button>
+                <button id="big-font-toggle" class="lexend-regular big-font toggle" aria-label="Alternar a letra grande">Gra</button>
             </div>
             <div class="shorcuts-cont">
                 <p class="lexend-semibold theme-p">Otras pestañas</p>
@@ -128,7 +136,7 @@
          </div>
 
         <!--Tabla de fechas-->
-        <h2 class="lexend-semibold">Fechas de cita</h2>
+        <h2 id="title-dates" class="lexend-semibold title-dates">Fechas de cita</h2>
         <table id="dates-table" class="dates-table">
             <thead>
                 <tr>

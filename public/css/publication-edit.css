@@ -47,11 +47,15 @@ html, body {
 /*Elementos*/
 body,
 .title,
+.description,
 .publication-form,
 h3,
+h4,
+.custom-warning,
 input,
 textarea,
 .custom-img-btn,
+.btn-register,
 .confirm-btn#confirm-yes,
 .confirm-btn#confirm-no{
     transition: all 0.3s ease;
@@ -125,12 +129,28 @@ textarea,
     font-weight: bold;
 }
 
+.title.bigfont{
+    font-size: 50px;
+}
+
+.title.smallfont{
+    font-size: 30px;
+}
+
 .description {
     /*margin-top: 10px;*/
     margin: 10px 30% 0px 30%;
     font-size: 16px;
     text-align: left;
     color: #888;
+}
+
+.description.bigfont{
+    font-size: 20px;
+}
+
+.description.smallfont{
+    font-size: 12px;
 }
 
 .arrow {
@@ -156,6 +176,14 @@ textarea,
     box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.1);
 }
 
+.init-form-title.bigfont{
+    font-size: 1.3em;
+}
+
+.init-form-title.smallfont{
+    font-size: 1em;
+}
+
 h3{
     margin: 5px;
 }
@@ -164,6 +192,14 @@ h4{
     color: #0066FF;
     font-size: 18px;
     margin-bottom: 8px;
+}
+
+h4.bigfont{
+    font-size: 1.3em;
+}
+
+h4.smallfont{
+    font-size: 1em;
 }
 
 .input-container{
@@ -182,8 +218,15 @@ input[type="text"]{
     border-radius: 5px;
 }
 
+input.bigfont{
+    font-size: 1.0em;
+}
+
+input.smallfont{
+    font-size: 0.7em;
+}
+
 .custom-file-upload{
-    position: relative;
     display: inline-block;
     width: 100%;
     margin-bottom: 20px;
@@ -211,9 +254,25 @@ input[type="file"] {
     background-color: #0066FF;
 }
 
+.custom-img-btn.bigfont{
+    font-size: 14px;
+}
+
+.custom-img-btn.smallfont{
+    font-size: 10px;
+}
+
 .custom-warning{
     font-size: 14px;
     color: #eed328;
+}
+
+.custom-warning.bigfont{
+    font-size: 16px;
+}
+
+.custom-warning.smallfont{
+    font-size: 12px;
 }
 
 .custom-warning.change{
@@ -242,6 +301,14 @@ textarea{
     text-align: justify;
 }
 
+textarea.bigfont{
+    font-size: 1.0em;
+}
+
+textarea.smallfont{
+    font-size: 0.7em;
+}
+
 .btn-container{
     display: flex;
     justify-content: center;
@@ -257,6 +324,14 @@ textarea{
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.1);
+}
+
+.btn-register.bigfont{
+    font-size: 1.2em;
+}
+
+.btn-register.smallfont{
+    font-size: 0.7em;
 }
 
 .btn-register:active{

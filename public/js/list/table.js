@@ -7,9 +7,9 @@ onAuthStateChangedHandler(auth);
 
 //*Inicialización de eventos
 document.addEventListener("DOMContentLoaded", () => {
+    setupTabsWithContent();
     setUpSidebar();
     setupDeleteConfirmation();
-    setupTabsWithContent();
     setupSearch();
     createPopUps();
 });

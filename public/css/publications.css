@@ -155,6 +155,14 @@ main{
     font-size: 45px;
 }
 
+.title.bigfont{
+    font-size: 55px;
+}
+
+.title.smallfont{
+    font-size: 35px;
+}
+
 .initial-btn-cont{
     display: flex;
     flex-direction: row;
@@ -182,6 +190,14 @@ main{
     color: whitesmoke;
 }
 
+.newpub-btn.bigfont{
+    font-size: 1.2em;
+}
+
+.newpub-btn.smallfont{
+    font-size: 0.7em;
+}
+
 .deletepub-btn{
     background-color: whitesmoke;
     display: flex;
@@ -198,6 +214,14 @@ main{
 .deletepub-btn:hover{
     background-color: red;
     color: whitesmoke;
+}
+
+.deletepub-btn.bigfont{
+    font-size: 1.2em;
+}
+
+.deletepub-btn.smallfont{
+    font-size: 0.7em;
 }
 
 .pubs-container{
@@ -352,6 +376,14 @@ main{
     font-size: 15px;
 }
 
+.details.bigfont{
+    font-size: 1.3em;
+}
+
+.details.smallfont{
+    font-size: 0.8em;
+}
+
 .page-btn{
     background-color: whitesmoke;
     border: 2px #0066FF solid;
@@ -437,6 +469,14 @@ main{
     overflow-y: auto; /* Agrega scroll si el contenido es mayor al tamaño máximo */
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-details.bigfont{
+    font-size: 1.3em;
+}
+
+.modal-details.smallfont{
+    font-size: 0.8em;
 }
 
 .detail-img-cont{

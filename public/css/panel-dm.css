@@ -55,6 +55,11 @@ body{
 body,
 .settings-icon-btn,
 .txtdetails,
+.txtwelcome,
+.txtwarning,
+.details,
+.panel-text,
+.title-dates,
 .elements-in,
 .elements-out,
 th.thead-dates,
@@ -80,14 +85,38 @@ td.date-cell,
     box-sizing: border-box;
 }
 
+.txtdetails.bigfont{
+    font-size: 2.5em;
+}
+
+.txtdetails.smallfont{
+    font-size: 1.5em;
+}
+
 .txtwelcome{
     color: #6C757D;
     margin-left: 5px;
 }
 
+.txtwelcome.bigfont{
+    font-size: 1.3em;
+}
+
+.txtwelcome.smallfont{
+    font-size: 0.8em;
+}
+
 .txtwarning{
     color: #0066FF;
     margin-left: 5px;
+}
+
+.txtwarning.bigfont{
+    font-size: 1.5em;
+}
+
+.txtwarning.smallfont{
+    font-size: 0.8em;
 }
 
 .elements-out{
@@ -152,6 +181,14 @@ h3{
     margin-top: 10px;
 }
 
+.details.bigfont{
+    font-size: 1.3em;
+}
+
+.details.smallfont{
+    font-size: .8em;
+}
+
 .credentials-cont{
     display: flex;
     gap: 10px;
@@ -175,6 +212,14 @@ h3{
 
 .icon-citas:hover{
     color: #0066FF;
+}
+
+.panel-text.bigfont{
+    font-size: 1.3em;
+}
+
+.panel-text.smallfont{
+    font-size: .8em;
 }
 
 .elms-cont{
@@ -272,10 +317,26 @@ h2{
     border-radius: 8px;
 }
 
+.title-dates.bigfont{
+    font-size: 1.8em;
+}
+
+.title-dates.smallfont{
+    font-size: 1.2em;
+}
+
 .dates-table,
 .modal-table{
     width: 100%;
     border-collapse: collapse;
+}
+
+th.bigfont{
+    font-size: 1.3em;
+}
+
+th.smallfont{
+    font-size: .8em;
 }
 
 th.thead-dates{
@@ -287,6 +348,14 @@ th.thead-dates{
     padding: 10px;
     border: 1px solid #2C3E50;
     box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
+}
+
+td.bigfont{
+    font-size: 1.3em;
+}
+
+td.smallfont{
+    font-size: .8em;
 }
 
 td.date-cell{

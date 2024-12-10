@@ -1,6 +1,44 @@
 import { logoutHandler } from "./auth.js";
 import { loadUserData, deleteUser } from "./firestore_p.js";
-import { changeIcon } from "./icons.js";
+
+const loadFont = () => {
+    const title = document.getElementById('title');
+    const ths = document.querySelectorAll('th');
+    const tds = document.querySelectorAll('td');
+    const toggles = document.querySelectorAll('.toggle');
+    const elements = [title, ...tds, ...ths]; //* Se combina el título, encabezados y celdas dinámicamente.
+
+    //*Se actualizan los estilos de los toggles según el estado del almacenamiento.
+    if(localStorage.getItem('smallFont') === 'enabled'){
+        toggles[0]?.classList.add('color');
+        toggles[1]?.classList.remove('color');
+        toggles[2]?.classList.remove('color');
+    }else if(localStorage.getItem('bigFont') === 'enabled'){
+        toggles[0]?.classList.remove('color');
+        toggles[1]?.classList.remove('color');
+        toggles[2]?.classList.add('color');
+    }else{
+        toggles[0]?.classList.remove('color');
+        toggles[1]?.classList.add('color');
+        toggles[2]?.classList.remove('color');
+    }
+
+    //* Se itera sobre todos los elementos seleccionados y actualiza las clases de fuente.
+    elements.forEach(element => {
+        if(element){
+            if(localStorage.getItem('smallFont') === 'enabled'){
+                element.classList.add('smallfont');
+                element.classList.remove('bigfont');
+            }else if(localStorage.getItem('bigFont') === 'enabled'){
+                element.classList.add('bigfont');
+                element.classList.remove('smallfont');
+            }else{
+                element.classList.remove('bigfont');
+                element.classList.remove('smallfont');
+            }
+        }
+    });
+};
 
 export const setUpSidebar = () => {
     document.getElementById('settings-btn').addEventListener('click', () => {
@@ -33,7 +71,8 @@ export const setUpSidebar = () => {
         }
     };
 
-    loadTheme()
+    loadTheme();
+    loadFont();
 
     document.getElementById('light-mode-toggle').addEventListener('click', () => {
         localStorage.setItem('darkMode', 'disabled');
@@ -54,6 +93,28 @@ export const setUpSidebar = () => {
         localStorage.setItem('neutralMode', 'enabled');
         localStorage.setItem('lightMode', 'disabled');
         loadTheme();
+    });
+
+    //*Eventos para cambio de fuente
+    document.getElementById('small-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('bigFont', 'disabled');
+        localStorage.setItem('medFont', 'disabled');
+        localStorage.setItem('smallFont', 'enabled');
+        loadFont();
+    });
+
+    document.getElementById('big-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('bigFont', 'enabled');
+        localStorage.setItem('smallFont', 'disabled');
+        localStorage.setItem('medFont', 'disabled');
+        loadFont();
+    });
+
+    document.getElementById('med-font-toggle').addEventListener('click', () => {
+        localStorage.setItem('smallFont', 'disabled');
+        localStorage.setItem('medFont', 'enabled');
+        localStorage.setItem('bigFont', 'disabled');
+        loadFont();
     });
 
     document.getElementById('esp-btn').addEventListener('click', () => {
@@ -192,7 +253,6 @@ function createTable(registers) {
                 <th class="headers">Nombre(s)</th>
                 <th class="headers">Apellido</th>
                 <th class="headers">Email</th>
-                <th class="headers">Curp</th>
                 <th class="headers">Telefono</th>
                 <th class="headers">Nacimiento</th>
                 <th class="headers">Género</th>
@@ -217,7 +277,6 @@ const populateTable = (registers, tbody) => {
             <td>${register.nombres}</td>
             <td>${register.apellidos}</td>
             <td>${register.email}</td>
-            <td>${register.curp}</td>
             <td>${register.telefono}</td>
             <td>${register.fecha_nacimiento}</td>
             <td>${register.genero}</td>
@@ -226,6 +285,11 @@ const populateTable = (registers, tbody) => {
 
         tbody.appendChild(tr);
     });
+
+    setTimeout(() => {
+        console.log("Tabla lista, llamando a loadFont");
+        loadFont();
+    }, 0); //? Permite que el DOM se actualice
 
     tbody.addEventListener('click', function(e){
         if(e.target && e.target.matches('a.single-delete')){

@@ -1,6 +1,43 @@
 import { logoutHandler, auth } from "./auth.js";
 import { loadUserData, deleteUser } from "./firestore.js";
 
+const loadFont = () => {
+    const title = document.getElementById('title');
+    const ths = document.querySelectorAll('th');
+    const tds = document.querySelectorAll('td');
+    const toggles = document.querySelectorAll('.toggle');
+    const elements = [title, ...tds, ...ths];
+
+    if(localStorage.getItem('smallFont') === 'enabled'){
+        toggles[0]?.classList.add('color');
+        toggles[1]?.classList.remove('color');
+        toggles[2]?.classList.remove('color');
+    }else if(localStorage.getItem('bigFont') === 'enabled'){
+        toggles[0]?.classList.remove('color');
+        toggles[1]?.classList.remove('color');
+        toggles[2]?.classList.add('color');
+    }else{
+        toggles[0]?.classList.remove('color');
+        toggles[1]?.classList.add('color');
+        toggles[2]?.classList.remove('color');
+    }
+
+    elements.forEach(element => {
+        if(element){
+            if(localStorage.getItem('smallFont') === 'enabled'){
+                element.classList.add('smallfont');
+                element.classList.remove('bigfont');
+            }else if(localStorage.getItem('bigFont') === 'enabled'){
+                element.classList.add('bigfont');
+                element.classList.remove('smallfont');
+            }else{
+                element.classList.remove('bigfont');
+                element.classList.remove('smallfont');
+            }
+        }
+    });
+};
+
 export const setUpSidebar = () => {
     document.getElementById('settings-btn').addEventListener('click', () => {
         let sidebar = document.getElementById('sidebar');
@@ -30,43 +67,6 @@ export const setUpSidebar = () => {
             themeLink.href = '../css/list.css';
             sidebarTheme.href = '../css/sidebar.css';
         }
-    };
-
-    const loadFont = () => {
-        const title = document.getElementById('title');
-        const ths = document.querySelectorAll('th');
-        const tds = document.querySelectorAll('td');
-        const toggles = document.querySelectorAll('.toggle');
-        const elements = [title, tds[0], tds[1], tds[2], tds[3], tds[4], tds[5], ths[0], ths[1], ths[2], ths[3], ths[4], ths[5]];
-    
-        if(localStorage.getItem('smallFont') === 'enabled'){
-            toggles[0].classList.add('color');
-            toggles[1].classList.remove('color');
-            toggles[2].classList.remove('color');
-        }else if(localStorage.getItem('bigFont') === 'enabled'){
-            toggles[0].classList.remove('color');
-            toggles[1].classList.remove('color');
-            toggles[2].classList.add('color');
-        }else{
-            toggles[0].classList.remove('color');
-            toggles[1].classList.add('color');
-            toggles[2].classList.remove('color');
-        }
-    
-        elements.forEach(element => {
-            if(element){
-                if(localStorage.getItem('smallFont') === 'enabled'){
-                    element.classList.add('smallfont');
-                    element.classList.remove('bigfont');
-                }else if(localStorage.getItem('bigFont') === 'enabled'){
-                    element.classList.add('bigfont');
-                    element.classList.remove('smallfont');
-                }else{
-                    element.classList.remove('bigfont');
-                    element.classList.remove('smallfont');
-                }
-            }
-        });
     };
 
     loadTheme();
@@ -291,6 +291,11 @@ const populateTable = (registers, tbody) => {
         });
         tbody.appendChild(tr);
     });
+
+    setTimeout(() => {
+        console.log("Tabla lista, llamando a loadFont");
+        loadFont();
+    }, 0); //? Permite que el DOM se actualice
 
     tbody.addEventListener('click', function(e){
         if(e.target && e.target.matches('a.single-delete')){
