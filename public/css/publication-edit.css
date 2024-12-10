@@ -429,3 +429,9 @@ textarea.smallfont{
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+@media (max-width: 1260pc) {
+    .left-side{
+        display: none;
+    }
+}
