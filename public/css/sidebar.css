@@ -109,6 +109,7 @@
 .esp-btn,
 .pac-btn,
 .pub-btn{
+    color: black;
     background-color: transparent;
     display: flex;
     align-items: center;
