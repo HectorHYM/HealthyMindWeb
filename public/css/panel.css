@@ -524,3 +524,9 @@ td.data-schedule-cell{
         display: none;
     }
 }
+
+@media (max-width:630px) {
+    .elms-cont{
+        flex-direction: column;
+    }
+}
