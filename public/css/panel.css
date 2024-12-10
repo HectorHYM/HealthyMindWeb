@@ -529,4 +529,24 @@ td.data-schedule-cell{
     .elms-cont{
         flex-direction: column;
     }
+    .details.bigfont{
+        font-size: 1.1em;
+    }
+    .details.smallfont{
+        font-size: .9em;
+    }
+    th.bigfont{
+        font-size: 1.1em;
+    }
+    
+    th.smallfont{
+        font-size: .9em;
+    }
+    td.bigfont{
+        font-size: 1.1em;
+    }
+    
+    td.smallfont{
+        font-size: .9em;
+    }
 }
