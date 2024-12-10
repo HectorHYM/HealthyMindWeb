@@ -27,6 +27,7 @@
 
 .theme-cont,
 .font-cont{
+    color: black;
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
@@ -40,6 +41,7 @@
 
 .theme-icons-cont,
 .fonts-size-cont{
+    color: black;
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
@@ -97,6 +99,7 @@
 }
 
 .shorcuts-cont{
+    color: black;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
