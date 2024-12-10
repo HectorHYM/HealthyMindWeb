@@ -439,3 +439,29 @@ textarea.smallfont{
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+@media (max-width: 1260px) {
+    .left-side{
+        display: none;
+    }
+    .right-side {
+        justify-content: space-around;
+        background-color: #1C1C1C;
+        padding: 10px;
+        box-shadow: none; /* Reduce el sombreado para pantallas pequeñas */
+    }
+
+    .publication-form {
+        min-width: auto; /* Elimina el ancho mínimo fijo */
+        max-width: 100%; /* Ocupa todo el ancho disponible */
+        height: auto;
+        max-height: none; /* Permite que crezca dinámicamente */
+        padding: 15px;
+        border-radius: 5px; /* Reduce los bordes redondeados */
+        box-shadow: none; /* Opcional: elimina sombras para un diseño más limpio */
+        margin: 0; /* Asegúrate de que no haya espacio innecesario */
+    }
+    .settings-icon-btn{
+        color: whitesmoke;
+    }
+}

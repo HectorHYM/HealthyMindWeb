@@ -447,11 +447,14 @@ const showPaymentsModal = async (registerId) => {
     //* Se obtiene la lista de los pagos referentes al especialista actual
     const payments = await getPayments(registerId);
     
-    //* Se llena la lista en el modal y se ocultan los modales no utilizados
-    paymentsList.innerHTML = payments.map(pay => {
-        const formattedDate = formatDateString(pay.fecha_cita);
-        return `<li class="lexend-regular pay-element" data-id="${pay.docId}">${formattedDate}</li>`;
-    }).join('');
+    if (payments && payments.length > 0) {
+        paymentsList.innerHTML = payments.map(pay => {
+            const formattedDate = formatDateString(pay.fecha_cita);
+            return `<li class="lexend-regular pay-element" data-id="${pay.docId}">${formattedDate}</li>`;
+        }).join('');
+    } else {
+        paymentsList.innerHTML = `<p class="lexend-semibold">No hay citas realizadas en estos momentos</p>`;
+    }
 
     modalTitle.textContent = 'Lista de citas realizadas'; //? Se cambia el titulo del modal si es necesario
 };
