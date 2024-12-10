@@ -517,3 +517,10 @@ td.data-schedule-cell{
     text-decoration: none;
     cursor: pointer;
 }
+
+@media (max-width:1035px) {
+    .img-panel,
+    .panel-text{
+        display: none;
+    }
+}
