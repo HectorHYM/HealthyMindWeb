@@ -532,3 +532,80 @@ td.data-schedule-cell{
     text-decoration: none;
     cursor: pointer;
 }
+
+@media (max-width:1035px) {
+    .img-panel,
+    .panel-text{
+        display: none;
+    }
+}
+
+@media (max-width:630px) {
+    .elms-cont{
+        flex-direction: column;
+    }
+    .details{
+        font-size: .8em;
+    }
+    .details.bigfont{
+        font-size: .8em;
+    }
+    .details.smallfont{
+        font-size: .8em;
+    }
+    th{
+        font-size: .8em;
+    }
+    th.bigfont{
+        font-size: .8em;
+    }
+    th.smallfont{
+        font-size: .8em;
+    }
+    td{
+        font-size: .8em;
+    }
+    td.bigfont{
+        font-size: .8em;
+    }
+    
+    td.smallfont{
+        font-size: .8em;
+    }
+
+    .txtdetails{
+        font-size: .8em;
+    }
+    
+    .txtdetails.bigfont{
+        font-size: .8em;
+    }
+    
+    .txtdetails.smallfont{
+        font-size: .8em;
+    }
+
+    .txtwelcome{
+        font-size: .8em;
+    }
+
+    .txtwelcome.bigfont{
+        font-size: .8em;
+    }
+    
+    .txtwelcome.smallfont{
+        font-size: .8em;
+    }
+
+    .txtwarning{
+        font-size: .8em;
+    }
+
+    .txtwarning.bigfont{
+        font-size: .8em;
+    }
+    
+    .txtwarning.smallfont{
+        font-size: .8em;
+    }
+}
