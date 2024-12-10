@@ -48,6 +48,7 @@
 }
 
 .light-mode-toggle{
+    color: black;
     background: none;
     border: none;
     transition: color 0.3s ease;
@@ -58,6 +59,7 @@
 }
 
 .dark-mode-toggle{
+    color: black;
     background: none;
     border: none;
     transition: color 0.3s ease;
@@ -68,6 +70,7 @@
 }
 
 .neutral-mode-toggle{
+    color: black;
     background: none;
     border: none;
     transition: color 0.3s ease;
